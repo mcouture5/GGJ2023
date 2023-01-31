@@ -1,14 +1,9 @@
 import 'phaser';
 import { Boot } from './scenes/Boot';
 import { MainMenu } from './scenes/MainMenu';
-import { GameScene } from './scenes/GameScene';
 import { Company } from './scenes/splash/Company';
 import { PhaserSplash } from './scenes/splash/Phaser';
 import { DISPLAY_SIZE } from './constants';
-import { CharacterCreation } from './scenes/CharacterCreation';
-import { Gig } from './scenes/Gig';
-import { NewBandmember } from './scenes/NewBandmember';
-import GameOver from './scenes/GameOver';
 
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -20,7 +15,7 @@ const config: Phaser.Types.Core.GameConfig = {
         height: DISPLAY_SIZE.height
     },
     parent: 'game',
-    scene: [Boot, Company, PhaserSplash, MainMenu, GameScene, CharacterCreation, Gig, NewBandmember, GameOver],
+    scene: [Boot, Company, PhaserSplash, MainMenu],
     input: {
         keyboard: false,
         mouse: true,

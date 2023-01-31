@@ -5,7 +5,7 @@ Global Game Jam 2022 Fpoons
 We are using Typescript with webpack.
 
 ## 1) Checkout source
-Clone the repo to your machine. `git clone https://github.com/mcouture5/GGJ2022.git`
+Clone the repo to your machine. `git clone https://github.com/mcouture5/GGJ2023.git`
 
 ## 2) Install dependencies
 `npm install` in the main folder.

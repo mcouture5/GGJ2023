@@ -1,4 +1,3 @@
-import { MusicTracks } from '../MusicTracks';
 import { BACKGROUND_RBG, DISPLAY_SIZE } from '../constants';
 
 const { r, g, b } = BACKGROUND_RBG;
