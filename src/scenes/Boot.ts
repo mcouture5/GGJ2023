@@ -1,5 +1,6 @@
 // VERY IMPORTANT TO KEEP THIS
 // It needs to be imported as a side effect so the plugin manager will run.
+// import '../plugins.ts';
 import { BACKGROUND_HEX_COLOR } from '../constants';
 
 /**

@@ -7,7 +7,7 @@ import { DISPLAY_SIZE } from './constants';
 
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
-    title: 'Just The 4 Of Us',
+    title: 'Ruffly Rooted',
     scale: {
         parent: 'game',
         mode: Phaser.Scale.FIT,
