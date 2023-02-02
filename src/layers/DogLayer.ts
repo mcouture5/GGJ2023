@@ -1,4 +1,5 @@
-import { TILE_SIZE } from '../constants';
+import { OBSTACLES, TILE_SIZE } from '../constants';
+import { GameManager } from '../GameManager';
 import { Dog } from '../objects/Dog';
 import { GameScene } from "../scenes/GameScene";
 
@@ -11,11 +12,12 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private right: Phaser.Input.Keyboard.Key;
     private up: Phaser.Input.Keyboard.Key;
     private down: Phaser.Input.Keyboard.Key;
+    private space: Phaser.Input.Keyboard.Key;
 
     private dog: Dog;
 
     // From the top left of the matrix
-    private dogPosition: {x: number, y: number} = {x: 1, y: 1};
+    private dogPosition: {x: number, y: number} = {x: 7, y: 7};
 
     // whether a "move" socket event is currently pending, prevents duplicate events from being issued
     private movePending: boolean;
@@ -44,6 +46,9 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.down = this.scene.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.DOWN
         );
+        this.space = this.scene.input.keyboard.addKey(
+            Phaser.Input.Keyboard.KeyCodes.SPACE
+        );
     }
     
     update() {
@@ -59,54 +64,62 @@ export class DogLayer extends Phaser.GameObjects.Container {
         if (this.down && Phaser.Input.Keyboard.JustDown(this.down)) {
             this.moveDogDown();
         }
+        if (this.space && Phaser.Input.Keyboard.JustDown(this.space)) {
+            this.interactWith();
+        }
     }
 
     private moveDogLeft() {
-        const x = this.dogPosition.x - 1;
-        const y = this.dogPosition.y;
-        if (!this.canMove(x, y)) {
-            console.log("No move left!");
-            return;
-        }
-        this.dogPosition = {x: x, y: y};
-        this.dog.moveTo(x, y, false);
+        this.requestMove(this.dogPosition.x - 1, this.dogPosition.y);
     }
 
     private moveDogRight() {
-        const x = this.dogPosition.x + 1;
-        const y = this.dogPosition.y;
-        if (!this.canMove(x, y)) {
-            console.log("No move right!");
-            return;
-        }
-        this.dogPosition = {x: x, y: y};
-        this.dog.moveTo(x, y, false);
+        this.requestMove(this.dogPosition.x + 1, this.dogPosition.y);
     }
 
     private moveDogUp() {
-        const x = this.dogPosition.x;
-        const y = this.dogPosition.y - 1;
-        if (!this.canMove(x, y)) {
-            console.log("No move up!");
-            return;
-        }
-        this.dogPosition = {x: x, y: y};
-        this.dog.moveTo(x, y, false);
+        this.requestMove(this.dogPosition.x, this.dogPosition.y - 1);
     }
 
     private moveDogDown() {
-        const x = this.dogPosition.x;
-        const y = this.dogPosition.y + 1;
+        this.requestMove(this.dogPosition.x, this.dogPosition.y + 1);
+    }
+
+    private requestMove(x: number, y: number) {
         if (!this.canMove(x, y)) {
-            console.log("No move down!");
+            console.log("No move!");
             return;
         }
         this.dogPosition = {x: x, y: y};
-        this.dog.moveTo(x, y, false);
+        this.doMove();
+    }
+
+    private doMove() {
+        this.dog.moveTo(this.dogPosition.x, this.dogPosition.y, false);
+        console.log(this.dogPosition);
+        this.getNeighbors();
     }
 
     private canMove(x: number, y: number): boolean {
         const outOfBounds = x < 0 || x >= 16 || y < 0 || y >= 9;
-        return !outOfBounds;
+        if (outOfBounds) return false;
+        let obstacleInTheWay = false;
+        for (let tile of OBSTACLES) {
+            if (tile[0] == x && tile[1] == y) {
+                obstacleInTheWay = true;
+                break;
+            }
+        }
+        if (obstacleInTheWay) return false;
+        return true;
+    }
+
+    private getNeighbors() {
+        let neighbors = GameManager.getInstance().getNeighbors(this.dogPosition.x, this.dogPosition.y);
+        console.log("Neighbors", neighbors);
+    }
+
+    private interactWith() {
+        GameManager.getInstance().interactWith();
     }
 }

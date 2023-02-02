@@ -19,7 +19,22 @@
             {
                 "type": "image",
                 "key": "farm",
-                "url": "./assets/images/farm.jpg"
+                "url": "./assets/images/Background.png"
+            },
+            {
+                "type": "image",
+                "key": "house",
+                "url": "./assets/images/house.png"
+            },
+            {
+                "type": "image",
+                "key": "compost",
+                "url": "./assets/images/compost.png"
+            },
+            {
+                "type": "image",
+                "key": "well",
+                "url": "./assets/images/well.png"
             },
             {
                 "type": "spritesheet",
