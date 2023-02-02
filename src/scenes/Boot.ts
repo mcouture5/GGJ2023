@@ -46,12 +46,12 @@ export class Boot extends Phaser.Scene {
          * pack is a JSON that contains details about other files that should be added into the Loader.
          * Place ALL files to load in there, separated by sections.
          */
-        //this.load.pack('assets', './assets/pack.json');
+        this.load.pack('assets', './assets/pack.json');
     }
 
     create() {
-        this.scene.start('Company');
-        //this.scene.start('CharacterCreation');
+        //this.scene.start('Company');
+        this.scene.start('GameScene');
     }
 
     private createLoadingbar() {

@@ -50,7 +50,8 @@ module.exports = {
                 usePolling: false
             }
         },
-        host: '127.0.0.1',
+        allowedHosts: 'all',
+        host: '0.0.0.0',
         port: 8080,
         watchFiles: ['./src/**/*', './index.html', './assets/**/*']
     },

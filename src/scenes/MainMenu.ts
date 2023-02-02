@@ -9,7 +9,7 @@ export class MainMenu extends Phaser.Scene {
     }
 
     preload() {
-        this.cameras.main.setBackgroundColor("#FF0000");
+        this.cameras.main.setBackgroundColor("#FFFFFF");
     }
 
     init() {}

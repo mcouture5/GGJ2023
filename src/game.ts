@@ -4,6 +4,7 @@ import { MainMenu } from './scenes/MainMenu';
 import { Company } from './scenes/splash/Company';
 import { PhaserSplash } from './scenes/splash/Phaser';
 import { DISPLAY_SIZE } from './constants';
+import { GameScene } from './scenes/GameScene';
 
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -15,11 +16,11 @@ const config: Phaser.Types.Core.GameConfig = {
         height: DISPLAY_SIZE.height
     },
     parent: 'game',
-    scene: [Boot, Company, PhaserSplash, MainMenu],
+    scene: [Boot, Company, PhaserSplash, MainMenu, GameScene],
     input: {
-        keyboard: false,
+        keyboard: true,
         mouse: true,
-        touch: true,
+        touch: false,
         gamepad: false
     },
     physics: null,

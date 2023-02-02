@@ -10,3 +10,5 @@ export const BACKGROUND_RBG = {
     g: 228,
     b: 235
 };
+
+export const TILE_SIZE = 120;

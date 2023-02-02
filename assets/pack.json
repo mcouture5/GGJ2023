@@ -1,0 +1,35 @@
+{
+    "audio": {
+        "files": [
+            
+        ]
+    },
+    "images": {
+        "files": [
+            {
+                "type": "image",
+                "key": "company",
+                "url": "./assets/images/company.png"
+            },
+            {
+                "type": "image",
+                "key": "phaser",
+                "url": "./assets/images/phaser.png"
+            },
+            {
+                "type": "image",
+                "key": "farm",
+                "url": "./assets/images/farm.jpg"
+            },
+            {
+                "type": "spritesheet",
+                "key": "hero",
+                "url": "./assets/images/hero.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            }
+        ]
+    }
+}
