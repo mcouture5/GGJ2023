@@ -11,6 +11,10 @@ export class Plant extends Phaser.GameObjects.Sprite {
     fix: string;
     key: string;
 
+    // sounds
+    private growSound: Phaser.Sound.BaseSound;
+    private harvestSound: Phaser.Sound.BaseSound;
+
     constructor(scene: Phaser.Scene, x: number, y: number, key: string, fix: string) {
         super(scene, x * TILE_SIZE, y * TILE_SIZE, key);
         //super(scene, (x * TILE_SIZE) + (TILE_SIZE * 0.125), (y * TILE_SIZE) + (TILE_SIZE * 0.125), key);
@@ -20,6 +24,9 @@ export class Plant extends Phaser.GameObjects.Sprite {
         this.fix = fix;
         this.key = key;
         this.setFrame(0, false, false);
+
+        this.growSound = this.scene.sound.add('grow', {volume: 0.01});
+        this.harvestSound = this.scene.sound.add('harvest', {volume: 0.5});
     }
     
 
@@ -52,11 +59,13 @@ export class Plant extends Phaser.GameObjects.Sprite {
      */
     public harvest() {
         this.growTimer.destroy();
+        this.harvestSound.play();
     }
 
     private makeGrowthHappen() {
         this.growthStage++;
         this.setFrame(this.growthStage, false, false);
+        this.growSound.play();
     }
 
     private canBeHarvested() {

@@ -5,8 +5,13 @@ import { Harvest } from './plants/Harvest';
 
 export class Compost extends Obstacle {
 
+    // sounds
+    private compostSound: Phaser.Sound.BaseSound;
+
     constructor(scene: Phaser.Scene) {
         super(scene, {x: 1, y: 7}, COMPOST, 'compost');
+
+        this.compostSound = this.scene.sound.add('compost', {volume: 0.4});
     }
 
     update(): void {
@@ -15,5 +20,6 @@ export class Compost extends Obstacle {
     public interactWith(harvest: Harvest): void {
         if (!harvest) return;
         GameManager.getInstance().destroyHarvest(harvest);
+        this.compostSound.play();
     }
 }
