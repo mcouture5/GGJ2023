@@ -1,7 +1,91 @@
 {
     "audio": {
         "files": [
-            
+            {
+                "type": "audio",
+                "key": "ruff-ruff-root",
+                "url": "./assets/sounds/ruff-ruff-root.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "compost",
+                "url": "./assets/sounds/compost.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "drink",
+                "url": "./assets/sounds/drink.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "eat",
+                "url": "./assets/sounds/eat.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "grow",
+                "url": "./assets/sounds/grow.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "harvest",
+                "url": "./assets/sounds/harvest.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "ka-ching",
+                "url": "./assets/sounds/ka-ching.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "kick-dirt",
+                "url": "./assets/sounds/kick-dirt.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "pee",
+                "url": "./assets/sounds/pee.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "pee-2",
+                "url": "./assets/sounds/pee-2.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "placement-screwdriver",
+                "url": "./assets/sounds/placement-screwdriver.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "rot",
+                "url": "./assets/sounds/rot.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "seeding",
+                "url": "./assets/sounds/seeding.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "seeding-2",
+                "url": "./assets/sounds/seeding-2.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "success",
+                "url": "./assets/sounds/success.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "walk",
+                "url": "./assets/sounds/walk.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "wrong",
+                "url": "./assets/sounds/wrong.mp3"
+            }
         ]
     },
     "images": {
