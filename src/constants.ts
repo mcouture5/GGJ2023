@@ -50,3 +50,9 @@ export const PLOTS: number[][] = [
 ];
 
 export const OBSTACLES: number[][] = [...FARMHOUSE, ...COMPOST, ...WATERING_HOLE];
+
+export const PLANT_TYPES = ['potato'];
+
+export const PREFIXES = ['re', 'un'];
+export const SUFFIXES = ['able', 'ly', 'ness'];
+export const FIXES = [...PREFIXES, ...SUFFIXES];

@@ -47,8 +47,53 @@
             },
             {
                 "type": "spritesheet",
-                "key": "plant",
-                "url": "./assets/images/plant.png",
+                "key": "potato",
+                "url": "./assets/images/potato.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "carrot",
+                "url": "./assets/images/carrot.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "onion",
+                "url": "./assets/images/onion.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "leek",
+                "url": "./assets/images/leek.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "beet",
+                "url": "./assets/images/beet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "turnip",
+                "url": "./assets/images/turnip.png",
                 "frameConfig": {
                     "frameWidth": 120,
                     "frameHeight": 120

@@ -2,7 +2,7 @@ import { DogLayer } from "./layers/DogLayer";
 import { FarmLayer } from "./layers/FarmLayer";
 import { PlantLayer } from "./layers/PlantLayer";
 import { IObstacle } from "./objects/Obstacle";
-import { IPlant, Plant } from "./objects/Plant";
+import { Plant } from "./objects/Plant";
 
 /**
  * Responsible for handling interactions between all layers.
@@ -11,9 +11,9 @@ export class GameManager {
     private static instance: GameManager;
     private _dogPosition: number[] = [7,7];
 
-    private neighbors: {left?: IObstacle, right?: IObstacle, above?: IObstacle, below?: IObstacle, under?: IPlant} = {};
+    private neighbors: {left?: IObstacle, right?: IObstacle, above?: IObstacle, below?: IObstacle, under?: Plant} = {};
     private obstacles: IObstacle[] = [];
-    private plants: IPlant[] = [];
+    private plants: Plant[] = [];
 
     public farmLayer: FarmLayer;
     public plantLayer: PlantLayer;
@@ -39,15 +39,16 @@ export class GameManager {
         this.obstacles.push(obstacle);
     }
 
-    public registerPlant(plant: IPlant) {
+    public registerPlant(plant: Plant) {
         this.plants.push(plant);
         this.checkNeighbors();
     }
 
-    public unregisterPlant(plant: IPlant) {
+    public unregisterPlant(plant: Plant) {
         this.neighbors.under = undefined;
         this.plants.splice(this.plants.indexOf(plant), 1);
         this.plantLayer.plantRemoved(plant);
+        plant.harvest();
     }
 
     public checkNeighbors() {
