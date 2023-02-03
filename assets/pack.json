@@ -98,6 +98,11 @@
                     "frameWidth": 120,
                     "frameHeight": 120
                 }
+            },
+            {
+                "type": "image",
+                "key": "potato-harvested",
+                "url": "./assets/images/potato-harvested.png"
             }
         ]
     }

@@ -1,4 +1,5 @@
 import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../constants';
+import { Plant } from './Plant';
 
 interface DogContext {
     idle: string;

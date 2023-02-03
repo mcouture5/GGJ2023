@@ -1,11 +1,15 @@
 import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
+import { Harvest } from './plants/Harvest';
 
 export class Plant extends Phaser.GameObjects.Sprite {
     matrixPosition: {x: number, y: number};
-    fix: string;
     private growTimer: Phaser.Time.TimerEvent;
     private growthStage: number = 0;
+
+    // To pass on after we are harvested
+    fix: string;
+    key: string;
 
     constructor(scene: Phaser.Scene, x: number, y: number, key: string, fix: string) {
         super(scene, x * TILE_SIZE, y * TILE_SIZE, key);
@@ -14,6 +18,7 @@ export class Plant extends Phaser.GameObjects.Sprite {
         //this.setScale(0.75, 0.75);
         this.matrixPosition = {x: x, y: y};
         this.fix = fix;
+        this.key = key;
         this.setFrame(0, false, false);
     }
     
@@ -25,8 +30,9 @@ export class Plant extends Phaser.GameObjects.Sprite {
         return x === this.matrixPosition.x && y === this.matrixPosition.y; 
     }
 
-    public interactWith() {
-        GameManager.getInstance().unregisterPlant(this);
+    public interactWith(harvest?: Harvest) {
+        if (harvest || !this.canBeHarvested()) return;
+        GameManager.getInstance().harvestPlant(this);
     }
 
     public grow(rate?: number) {
@@ -42,15 +48,18 @@ export class Plant extends Phaser.GameObjects.Sprite {
     }
 
     /**
-     * This is effectively the destory method. Do anything here that should be done when the plant gets pulled.
+     * Do anything here that should be done when the plant gets pulled.
      */
     public harvest() {
         this.growTimer.destroy();
-        this.destroy();
     }
 
     private makeGrowthHappen() {
         this.growthStage++;
         this.setFrame(this.growthStage, false, false);
+    }
+
+    private canBeHarvested() {
+        return this.growthStage > 0;
     }
 }

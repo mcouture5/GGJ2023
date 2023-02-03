@@ -1,5 +1,7 @@
 import { COMPOST, } from '../constants';
+import { GameManager } from '../GameManager';
 import { Obstacle } from './Obstacle';
+import { Harvest } from './plants/Harvest';
 
 export class Compost extends Obstacle {
 
@@ -10,7 +12,8 @@ export class Compost extends Obstacle {
     update(): void {
     }
 
-    public interactWith(): void {
-        console.log("Compost!!!");
+    public interactWith(harvest: Harvest): void {
+        if (!harvest) return;
+        GameManager.getInstance().destroyHarvest(harvest);
     }
 }

@@ -1,6 +1,8 @@
 import { OBSTACLES, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
 import { Dog } from '../objects/Dog';
+import { Plant } from '../objects/Plant';
+import { Harvest } from '../objects/plants/Harvest';
 import { GameScene } from "../scenes/GameScene";
 
 export class DogLayer extends Phaser.GameObjects.Container {
@@ -13,6 +15,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private space: Phaser.Input.Keyboard.Key;
 
     private dog: Dog;
+    private heldHarvest: Harvest;
 
     // From the top left of the matrix
     private dogPosition: number[] = [7,7];
@@ -32,6 +35,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private createDog() {
         this.dog = new Dog({ scene: this.scene, x: this.dogPosition[0] * TILE_SIZE, y: this.dogPosition[1] * TILE_SIZE, id: 0 });
         this.add(this.dog);
+        GameManager.getInstance().registerDog(this.dog);
         this.left = this.scene.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.LEFT
         );
@@ -65,6 +69,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         if (this.space && Phaser.Input.Keyboard.JustDown(this.space)) {
             this.interactWith();
         }
+        this.heldHarvest?.update();
     }
 
     private moveDogLeft() {
@@ -113,6 +118,17 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private interactWith() {
-        GameManager.getInstance().interactWith();
+        GameManager.getInstance().interactWith(this.heldHarvest);
+    }
+    
+    public setHoldingPlant(plant: Plant) {
+        this.heldHarvest = new Harvest(this.scene, this.dogPosition[0], this.dogPosition[1], plant);
+        this.add(this.heldHarvest);
+        this.heldHarvest.holdMe(this.dog);
+    }
+    
+    public destroyHarvest() {
+        this.heldHarvest.destroy();
+        this.heldHarvest = null;
     }
 }

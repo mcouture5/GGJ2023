@@ -1,11 +1,13 @@
 import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../constants';
+import { Plant } from './Plant';
+import { Harvest } from './plants/Harvest';
 
 export interface IObstacle {
     isAbove(x: number, y: number): boolean;
     isBelow(x: number, y: number): boolean;
     isLeftOf(x: number, y: number): boolean;
     isRightOf(x: number, y: number): boolean;
-    interactWith(): void;
+    interactWith(harvest?: Harvest): void;
 }
 
 
@@ -79,7 +81,7 @@ export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
         return false;
     }
 
-    public interactWith() {
+    public interactWith(harvest?: Harvest) {
         // Override me!
         console.log("Interaction!");
     }

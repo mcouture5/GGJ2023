@@ -1,8 +1,10 @@
 import { DogLayer } from "./layers/DogLayer";
 import { FarmLayer } from "./layers/FarmLayer";
 import { PlantLayer } from "./layers/PlantLayer";
+import { Dog } from "./objects/Dog";
 import { IObstacle } from "./objects/Obstacle";
 import { Plant } from "./objects/Plant";
+import { Harvest } from "./objects/plants/Harvest";
 
 /**
  * Responsible for handling interactions between all layers.
@@ -18,6 +20,8 @@ export class GameManager {
     public farmLayer: FarmLayer;
     public plantLayer: PlantLayer;
     public dogLayer: DogLayer;
+
+    public dog: Dog;
     
     // Singleton baby
     public static getInstance() {
@@ -38,17 +42,27 @@ export class GameManager {
     public registerObstacle(obstacle: IObstacle) {
         this.obstacles.push(obstacle);
     }
+    public registerDog(dog: Dog) {
+        this.dog = dog;
+    }
 
     public registerPlant(plant: Plant) {
         this.plants.push(plant);
         this.checkNeighbors();
     }
 
-    public unregisterPlant(plant: Plant) {
+    /**
+     * Does all the heavy lifting (LOL) when harvesting a plant.
+     */
+    public harvestPlant(plant: Plant) {
+        this.dogLayer.setHoldingPlant(plant);
         this.neighbors.under = undefined;
         this.plants.splice(this.plants.indexOf(plant), 1);
         this.plantLayer.plantRemoved(plant);
-        plant.harvest();
+    }
+
+    public destroyHarvest(harvest: Harvest) {
+        this.dogLayer.destroyHarvest();
     }
 
     public checkNeighbors() {
@@ -76,11 +90,11 @@ export class GameManager {
         console.log("Neighbors", this.neighbors);
     }
 
-    public interactWith() {
-        this.neighbors?.left?.interactWith();
-        this.neighbors?.right?.interactWith();
-        this.neighbors?.above?.interactWith();
-        this.neighbors?.below?.interactWith();
-        this.neighbors?.under?.interactWith();
+    public interactWith(harvest?: Harvest) {
+        this.neighbors?.left?.interactWith(harvest);
+        this.neighbors?.right?.interactWith(harvest);
+        this.neighbors?.above?.interactWith(harvest);
+        this.neighbors?.below?.interactWith(harvest);
+        this.neighbors?.under?.interactWith(harvest);
     }
 }

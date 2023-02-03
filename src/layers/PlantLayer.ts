@@ -16,7 +16,7 @@ import { GameScene } from "../scenes/GameScene";
 export class PlantLayer extends Phaser.GameObjects.Container {
     private availablePlots = [...PLOTS];
     private sowTimer: Phaser.Time.TimerEvent;
-    private plants: Array<new (sscene: Phaser.Scene, x: number, y: number) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
+    private plants: Array<new (scene: Phaser.Scene, x: number, y: number) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -32,11 +32,11 @@ export class PlantLayer extends Phaser.GameObjects.Container {
     private sowIfAvailable() {
         // Timer will run the entire game scene.
         this.sowTimer = this.scene.time.delayedCall((Math.random() * 1000) + 1000,
-                () => {
-                    this.growPlant();
-                    this.sowTimer.destroy();
-                    this.sowIfAvailable();
-                }
+            () => {
+                this.growPlant();
+                this.sowTimer.destroy();
+                this.sowIfAvailable();
+            }
         )
     }
 
@@ -53,14 +53,12 @@ export class PlantLayer extends Phaser.GameObjects.Container {
     }
 
     public plantRemoved(plant: Plant) {
+        plant.harvest();
         this.availablePlots.push([plant.matrixPosition.x, plant.matrixPosition.y]);
+        this.remove(plant, true);
     }
 
     private getRandomPlant() {
         return this.plants[Math.floor(Math.random() * this.plants.length)];
-    }
-    
-    private getRandomFix() {
-        return FIXES[Math.floor(Math.random() * FIXES.length)];
     }
 }
