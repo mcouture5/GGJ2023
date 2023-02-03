@@ -28,8 +28,17 @@ export const MATRIX: number[][] = [
 
 
 export const FARMHOUSE: number[][] = [
-    [1,1],[2,1],[3,1],[4,1],[5,1],
-    [1,2],[2,2],[3,2],[4,2],[5,2]
+    [1,1],[2,1],[3,1],[4,1],[5,1]
+];
+
+export const PREFIX_POS: number[][] = [
+    [1,2]
+];
+export const SUFFIX_POS: number[][] = [
+    [5,2]
+];
+export const SUBMIT_POS: number[][] = [
+    [2,2],[3,2],[4,2]
 ];
 
 export const COMPOST: number[][] = [
@@ -49,7 +58,7 @@ export const PLOTS: number[][] = [
     [9,6], [11,6], [13,6]
 ];
 
-export const OBSTACLES: number[][] = [...FARMHOUSE, ...COMPOST, ...WATERING_HOLE];
+export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SUBMIT_POS, ...COMPOST, ...WATERING_HOLE];
 
 export const PLANT_TYPES = ['potato'];
 

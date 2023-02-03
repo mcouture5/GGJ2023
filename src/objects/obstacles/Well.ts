@@ -1,4 +1,4 @@
-import { WATERING_HOLE } from '../constants';
+import { WATERING_HOLE } from '../../constants';
 import { Obstacle } from './Obstacle';
 
 export class Well extends Obstacle {

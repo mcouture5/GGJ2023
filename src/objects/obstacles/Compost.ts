@@ -1,7 +1,7 @@
-import { COMPOST, } from '../constants';
-import { GameManager } from '../GameManager';
+import { COMPOST, } from '../../constants';
+import { GameManager } from '../../GameManager';
 import { Obstacle } from './Obstacle';
-import { Harvest } from './plants/Harvest';
+import { Harvest } from '../plants/Harvest';
 
 export class Compost extends Obstacle {
 

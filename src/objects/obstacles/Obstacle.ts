@@ -1,6 +1,6 @@
-import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../constants';
-import { Plant } from './Plant';
-import { Harvest } from './plants/Harvest';
+import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../../constants';
+import { Plant } from '../Plant';
+import { Harvest } from '../plants/Harvest';
 
 export interface IObstacle {
     isAbove(x: number, y: number): boolean;

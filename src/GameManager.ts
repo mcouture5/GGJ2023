@@ -2,7 +2,7 @@ import { DogLayer } from "./layers/DogLayer";
 import { FarmLayer } from "./layers/FarmLayer";
 import { PlantLayer } from "./layers/PlantLayer";
 import { Dog } from "./objects/Dog";
-import { IObstacle } from "./objects/Obstacle";
+import { IObstacle } from "./objects/obstacles/Obstacle";
 import { Plant } from "./objects/Plant";
 import { Harvest } from "./objects/plants/Harvest";
 

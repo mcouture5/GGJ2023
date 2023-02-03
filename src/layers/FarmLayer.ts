@@ -1,16 +1,17 @@
 import { DISPLAY_SIZE, MATRIX, OBSTACLES, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
-import { Compost } from '../objects/Compost';
-import { Dog } from '../objects/Dog';
-import { House } from '../objects/House';
-import { Plant } from '../objects/Plant';
-import { Well } from '../objects/Well';
-import { GameScene } from "../scenes/GameScene";
+import { Compost } from '../objects/obstacles/Compost';
+import { House } from '../objects/obstacles/House';
+import { PrefixBucket } from '../objects/obstacles/PrefixBucket';
+import { SuffixBucket } from '../objects/obstacles/SuffixBucket';
+import { Well } from '../objects/obstacles/Well';
 
 export class FarmLayer extends Phaser.GameObjects.Container {
     private house: House;
     private compost: Compost;
     private well: Well;
+    private prefixBucket: PrefixBucket;
+    private suffixBucket: SuffixBucket;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -35,8 +36,16 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.well);
         GameManager.getInstance().registerObstacle(this.well);
 
+        this.prefixBucket = new PrefixBucket(this.scene);
+        this.add(this.prefixBucket);
+        GameManager.getInstance().registerObstacle(this.prefixBucket);
+
+        this.suffixBucket = new SuffixBucket(this.scene);
+        this.add(this.suffixBucket);
+        GameManager.getInstance().registerObstacle(this.suffixBucket);
+
         // The matrix is always there, you just need to see it.
-        //this.createMatrix();
+        this.createMatrix();
     }
 
     update() {

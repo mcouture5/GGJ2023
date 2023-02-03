@@ -100,7 +100,6 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private doMove() {
         this.dog.moveTo(this.dogPosition[0], this.dogPosition[1], false);
         GameManager.getInstance().dogPosition = [...this.dogPosition];
-        console.log("Dog at", this.dogPosition);
     }
 
     private canMove(x: number, y: number): boolean {

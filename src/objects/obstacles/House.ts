@@ -1,7 +1,6 @@
-import { FARMHOUSE } from '../constants';
-import { GameManager } from '../GameManager';
+import { FARMHOUSE } from '../../constants';
 import { Obstacle } from './Obstacle';
-import { Harvest } from './plants/Harvest';
+import { Harvest } from '../plants/Harvest';
 
 export class House extends Obstacle {
 

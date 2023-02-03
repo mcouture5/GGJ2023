@@ -1,8 +1,5 @@
 import { DISPLAY_SIZE, FIXES, MATRIX, OBSTACLES, PLANT_TYPES, PLOTS, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
-import { Compost } from '../objects/Compost';
-import { Dog } from '../objects/Dog';
-import { House } from '../objects/House';
 import { Plant } from '../objects/Plant';
 import { Beet } from '../objects/plants/Beet';
 import { Carrot } from '../objects/plants/Carrot';
@@ -10,8 +7,6 @@ import { Leek } from '../objects/plants/Leek';
 import { Onion } from '../objects/plants/Onion';
 import { Potato } from '../objects/plants/Potato';
 import { Turnip } from '../objects/plants/Turnip';
-import { Well } from '../objects/Well';
-import { GameScene } from "../scenes/GameScene";
 
 export class PlantLayer extends Phaser.GameObjects.Container {
     private availablePlots = [...PLOTS];
