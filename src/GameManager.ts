@@ -1,14 +1,23 @@
 import { DogLayer } from "./layers/DogLayer";
 import { FarmLayer } from "./layers/FarmLayer";
+import { PlantLayer } from "./layers/PlantLayer";
 import { IObstacle } from "./objects/Obstacle";
+import { IPlant, Plant } from "./objects/Plant";
 
+/**
+ * Responsible for handling interactions between all layers.
+ */
 export class GameManager {
     private static instance: GameManager;
-    private neighbors: {left?: IObstacle, right?: IObstacle, above?: IObstacle, below?: IObstacle} = {};
-    private obstacles: IObstacle[] = [];
+    private _dogPosition: number[] = [7,7];
 
-    private _farmLayer: FarmLayer;
-    private _dogLayer: DogLayer;
+    private neighbors: {left?: IObstacle, right?: IObstacle, above?: IObstacle, below?: IObstacle, under?: IPlant} = {};
+    private obstacles: IObstacle[] = [];
+    private plants: IPlant[] = [];
+
+    public farmLayer: FarmLayer;
+    public plantLayer: PlantLayer;
+    public dogLayer: DogLayer;
     
     // Singleton baby
     public static getInstance() {
@@ -18,25 +27,31 @@ export class GameManager {
         return GameManager.instance;
     }
 
-    public set farmLayer(val: FarmLayer) {
-        this._farmLayer = val;
+    public set dogPosition(val: number[]) {
+        this._dogPosition = val;
+        this.checkNeighbors();
     }
-    public get farmLayer() {
-        return this._farmLayer;
+    public get dogPosition() {
+        return this._dogPosition;
     }
     
-    public set dogLayer(val: DogLayer) {
-        this._dogLayer = val;
-    }
-    public get dogLayer() {
-        return this._dogLayer;
-    }
-
     public registerObstacle(obstacle: IObstacle) {
         this.obstacles.push(obstacle);
     }
 
-    public getNeighbors(x: number, y: number) {
+    public registerPlant(plant: IPlant) {
+        this.plants.push(plant);
+        this.checkNeighbors();
+    }
+
+    public unregisterPlant(plant: IPlant) {
+        this.neighbors.under = undefined;
+        this.plants.splice(this.plants.indexOf(plant), 1);
+        this.plantLayer.plantRemoved(plant);
+    }
+
+    public checkNeighbors() {
+        let [x,y] = this._dogPosition;
         this.neighbors = {};
         for (let obstacle of this.obstacles) {
             if (obstacle.isLeftOf(x, y)) {
@@ -52,7 +67,12 @@ export class GameManager {
                 this.neighbors.below = obstacle;
             }
         }
-        return this.neighbors;
+        for (let plant of this.plants) {
+            if (plant.isUnder(x, y)) {
+                this.neighbors.under = plant;
+            }
+        }
+        console.log("Neighbors", this.neighbors);
     }
 
     public interactWith() {
@@ -60,5 +80,6 @@ export class GameManager {
         this.neighbors?.right?.interactWith();
         this.neighbors?.above?.interactWith();
         this.neighbors?.below?.interactWith();
+        this.neighbors?.under?.interactWith();
     }
 }

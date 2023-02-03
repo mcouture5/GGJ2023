@@ -41,4 +41,12 @@ export const WATERING_HOLE: number[][] = [
     [6,8], [7,8]
 ];
 
+export const PLOTS: number[][] = [
+    [9,2], [11,2], [13,2],
+    [9,3], [11,3], [13,3],
+    [9,4], [11,4], [13,4],
+    [9,5], [11,5], [13,5],
+    [9,6], [11,6], [13,6]
+];
+
 export const OBSTACLES: number[][] = [...FARMHOUSE, ...COMPOST, ...WATERING_HOLE];

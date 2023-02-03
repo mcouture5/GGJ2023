@@ -44,6 +44,15 @@
                     "frameWidth": 120,
                     "frameHeight": 120
                 }
+            },
+            {
+                "type": "spritesheet",
+                "key": "plant",
+                "url": "./assets/images/plant.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
             }
         ]
     }

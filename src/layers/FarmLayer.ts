@@ -3,11 +3,11 @@ import { GameManager } from '../GameManager';
 import { Compost } from '../objects/Compost';
 import { Dog } from '../objects/Dog';
 import { House } from '../objects/House';
+import { Plant } from '../objects/Plant';
 import { Well } from '../objects/Well';
 import { GameScene } from "../scenes/GameScene";
 
 export class FarmLayer extends Phaser.GameObjects.Container {
-    private farm: Phaser.GameObjects.Sprite;
     private house: House;
     private compost: Compost;
     private well: Well;

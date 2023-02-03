@@ -5,8 +5,6 @@ import { GameScene } from "../scenes/GameScene";
 
 export class DogLayer extends Phaser.GameObjects.Container {
 
-    private static readonly MIN_ZOOM_LEVEL = 0.75;
-
     // Input keys
     private left: Phaser.Input.Keyboard.Key;
     private right: Phaser.Input.Keyboard.Key;
@@ -17,7 +15,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private dog: Dog;
 
     // From the top left of the matrix
-    private dogPosition: {x: number, y: number} = {x: 7, y: 7};
+    private dogPosition: number[] = [7,7];
 
     // whether a "move" socket event is currently pending, prevents duplicate events from being issued
     private movePending: boolean;
@@ -32,7 +30,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private createDog() {
-        this.dog = new Dog({ scene: this.scene, x: this.dogPosition.x * TILE_SIZE, y: this.dogPosition.y * TILE_SIZE, id: 0 });
+        this.dog = new Dog({ scene: this.scene, x: this.dogPosition[0] * TILE_SIZE, y: this.dogPosition[1] * TILE_SIZE, id: 0 });
         this.add(this.dog);
         this.left = this.scene.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.LEFT
@@ -70,19 +68,19 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private moveDogLeft() {
-        this.requestMove(this.dogPosition.x - 1, this.dogPosition.y);
+        this.requestMove(this.dogPosition[0] - 1, this.dogPosition[1]);
     }
 
     private moveDogRight() {
-        this.requestMove(this.dogPosition.x + 1, this.dogPosition.y);
+        this.requestMove(this.dogPosition[0] + 1, this.dogPosition[1]);
     }
 
     private moveDogUp() {
-        this.requestMove(this.dogPosition.x, this.dogPosition.y - 1);
+        this.requestMove(this.dogPosition[0], this.dogPosition[1] - 1);
     }
 
     private moveDogDown() {
-        this.requestMove(this.dogPosition.x, this.dogPosition.y + 1);
+        this.requestMove(this.dogPosition[0], this.dogPosition[1] + 1);
     }
 
     private requestMove(x: number, y: number) {
@@ -90,14 +88,14 @@ export class DogLayer extends Phaser.GameObjects.Container {
             console.log("No move!");
             return;
         }
-        this.dogPosition = {x: x, y: y};
+        this.dogPosition = [x, y];
         this.doMove();
     }
 
     private doMove() {
-        this.dog.moveTo(this.dogPosition.x, this.dogPosition.y, false);
-        console.log(this.dogPosition);
-        this.getNeighbors();
+        this.dog.moveTo(this.dogPosition[0], this.dogPosition[1], false);
+        GameManager.getInstance().dogPosition = [...this.dogPosition];
+        console.log("Dog at", this.dogPosition);
     }
 
     private canMove(x: number, y: number): boolean {
@@ -112,11 +110,6 @@ export class DogLayer extends Phaser.GameObjects.Container {
         }
         if (obstacleInTheWay) return false;
         return true;
-    }
-
-    private getNeighbors() {
-        let neighbors = GameManager.getInstance().getNeighbors(this.dogPosition.x, this.dogPosition.y);
-        console.log("Neighbors", neighbors);
     }
 
     private interactWith() {
