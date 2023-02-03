@@ -23,6 +23,9 @@ export class DogLayer extends Phaser.GameObjects.Container {
     // whether a "move" socket event is currently pending, prevents duplicate events from being issued
     private movePending: boolean;
 
+    // sounds
+    private walk: Phaser.Sound.BaseSound;
+
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
         this.movePending = false;
@@ -51,8 +54,10 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.space = this.scene.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.SPACE
         );
+
+        this.walk = this.scene.sound.add('walk', {volume: 0.05});
     }
-    
+
     update() {
         if (this.left && Phaser.Input.Keyboard.JustDown(this.left)) {
             this.moveDogLeft();
@@ -98,6 +103,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private doMove() {
+        this.walk.play();
         this.dog.moveTo(this.dogPosition[0], this.dogPosition[1], false);
         GameManager.getInstance().dogPosition = [...this.dogPosition];
     }
