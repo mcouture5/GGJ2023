@@ -1,11 +1,12 @@
 import { TILE_SIZE } from '../../constants';
 import { Dog } from '../Dog';
-import { Plant } from '../Plant';
+import { Plant } from './Plant';
 
 export class Harvest extends Phaser.GameObjects.Sprite {
 
     // Properties from the now destroyed plant
-    fix: string;
+    prefix: string;
+    suffix: string;
     key: string;
 
     // Dog reference, after all, it is holding me...
@@ -13,7 +14,8 @@ export class Harvest extends Phaser.GameObjects.Sprite {
 
     constructor(scene: Phaser.Scene, x: number, y: number, plant: Plant) {
         super(scene, x * TILE_SIZE, y * TILE_SIZE, `${plant.key}-harvested`);
-        this.fix = plant.fix;
+        this.prefix = plant.prefix;
+        this.suffix = plant.suffix;
         this.key = plant.key;
     }
 

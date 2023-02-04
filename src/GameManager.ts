@@ -6,7 +6,7 @@ import { Bucket } from "./objects/obstacles/Bucket";
 import { IObstacle } from "./objects/obstacles/Obstacle";
 import { PrefixBucket } from "./objects/obstacles/PrefixBucket";
 import { SuffixBucket } from "./objects/obstacles/SuffixBucket";
-import { Plant } from "./objects/Plant";
+import { Plant } from "./objects/plants/Plant";
 import { Harvest } from "./objects/plants/Harvest";
 
 /**

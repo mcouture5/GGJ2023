@@ -1,7 +1,7 @@
 import { OBSTACLES, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
 import { Dog } from '../objects/Dog';
-import { Plant } from '../objects/Plant';
+import { Plant } from '../objects/plants/Plant';
 import { Harvest } from '../objects/plants/Harvest';
 import { GameScene } from "../scenes/GameScene";
 import P = Phaser.Input.Keyboard.KeyCodes.P;

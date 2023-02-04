@@ -1,6 +1,6 @@
-import { DISPLAY_SIZE, FIXES, MATRIX, OBSTACLES, PLANT_TYPES, PLOTS, TILE_SIZE } from '../constants';
+import { PLOTS } from '../constants';
 import { GameManager } from '../GameManager';
-import { Plant } from '../objects/Plant';
+import { Plant } from '../objects/plants/Plant';
 import { Beet } from '../objects/plants/Beet';
 import { Carrot } from '../objects/plants/Carrot';
 import { Leek } from '../objects/plants/Leek';
@@ -11,7 +11,7 @@ import { Turnip } from '../objects/plants/Turnip';
 export class PlantLayer extends Phaser.GameObjects.Container {
     private availablePlots = [...PLOTS];
     private sowTimer: Phaser.Time.TimerEvent;
-    private plants: Array<new (scene: Phaser.Scene, x: number, y: number) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
+    private plants: Array<new (scene: Phaser.Scene, x: number, y: number, isPrefix: boolean) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -40,8 +40,9 @@ export class PlantLayer extends Phaser.GameObjects.Container {
             let nextTileIndex = Math.floor(Math.random() * this.availablePlots.length);
             let nextTile = this.availablePlots.splice(nextTileIndex, 1)[0];
             let PlantClass = this.getRandomPlant();
-            let plant: Plant = new PlantClass(this.scene, nextTile[0], nextTile[1]);
+            let plant: Plant = new PlantClass(this.scene, nextTile[0], nextTile[1], Math.random() < 0.5);
             this.add(plant);
+            plant.create();
             GameManager.getInstance().registerPlant(plant);
             plant.grow();
         }
@@ -49,7 +50,7 @@ export class PlantLayer extends Phaser.GameObjects.Container {
 
     public plantRemoved(plant: Plant) {
         plant.harvest();
-        this.availablePlots.push([plant.matrixPosition.x, plant.matrixPosition.y]);
+        this.availablePlots.push([...plant.matrixPosition]);
         this.remove(plant, true);
     }
 
