@@ -69,6 +69,11 @@ export class Plant extends Phaser.GameObjects.Container {
         GameManager.getInstance().harvestPlant(this);
     }
 
+    public kickDirtOnPlant() {
+        // speed up growth by making growth happen immediately
+        this.makeGrowthHappen();
+    }
+
     public grow(rate?: number) {
         this.growTimer = this.scene.time.addEvent({
             callback: () => {
@@ -92,6 +97,10 @@ export class Plant extends Phaser.GameObjects.Container {
     }
 
     private makeGrowthHappen() {
+        // SKIP if already at final growth state
+        if (this.growthStage >= 2) {
+            return;
+        }
         this.growthStage++;
         this.plantSprite.setFrame(this.growthStage, false, false);
         this.growSound.play();

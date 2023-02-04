@@ -74,6 +74,29 @@ export class GameManager {
         this.plantLayer.plantRemoved(plant, true);
     }
 
+    /**
+     * If plant underneath dog, remove plant without harvesting.
+     */
+    public peeOnPlant() {
+        // get plant underneath dog
+        let plant: Plant = this.neighbors?.under;
+        // STOP if no plant
+        if (!plant) {
+            return;
+        }
+        // remove plant without harvesting
+        this.neighbors.under = undefined;
+        this.plants.splice(this.plants.indexOf(plant), 1);
+        this.plantLayer.plantRemoved(plant, false);
+    }
+
+    /**
+     * If plant underneath dog, kick dirt on it to speed up its growth.
+     */
+    public kickDirtOnPlant() {
+        this.neighbors?.under?.kickDirtOnPlant();
+    }
+
     public destroyHarvest(harvest: Harvest) {
         this.dogLayer.destroyHarvest();
     }
@@ -109,18 +132,5 @@ export class GameManager {
         this.neighbors?.above?.interactWith(harvest);
         this.neighbors?.below?.interactWith(harvest);
         this.neighbors?.under?.interactWith(harvest);
-    }
-
-    public peeOnPlant() {
-        // if plant underneath dog, remove plant without playing harvest sound
-        let plant: Plant = this.neighbors?.under;
-        if (plant) {
-            this.plantLayer.plantRemoved(plant, false);
-        }
-    }
-
-    public kickDirtOnPlant() {
-        // TODO
-        //this.neighbors?.under?.kickDirtOnPlant();
     }
 }
