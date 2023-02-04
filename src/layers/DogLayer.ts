@@ -50,7 +50,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.add(this.kickDirtParticles);
 
         // set up dog
-        this.dog = new Dog({ scene: this.scene, x: this.dogPosition[0] * TILE_SIZE, y: this.dogPosition[1] * TILE_SIZE, id: 0 });
+        this.dog = new Dog({ scene: this.scene, tileX: this.dogPosition[0], tileY: this.dogPosition[1], id: 0 });
         this.add(this.dog);
         GameManager.getInstance().registerDog(this.dog);
         this.left = this.scene.input.keyboard.addKey(
@@ -133,7 +133,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
 
     private doMove() {
         this.walkSound.play();
-        this.dog.moveTo(this.dogPosition[0], this.dogPosition[1], false);
+        this.dog.moveTo(this.dogPosition[0], this.dogPosition[1], true);
         GameManager.getInstance().dogPosition = [...this.dogPosition];
     }
 

@@ -8,15 +8,12 @@ interface DogContext {
 
 export interface IDog {
     scene: Phaser.Scene;
-    x: number;
-    y: number;
+    tileX: number;
+    tileY: number;
     id: number;
 }
 
 export class Dog extends Phaser.GameObjects.Sprite  {
-
-    private xScale = 0.5;
-    private yScale = 0.5;
 
     private tileX;
     private tileY;
@@ -36,10 +33,18 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     };
     
     constructor(params: IDog) {
-        super(params.scene, params.x, params.y, 'hero');
+        super(params.scene, params.tileX * TILE_SIZE, params.tileY * TILE_SIZE, 'lab-walk', 0);
+        this.tileX = params.tileX;
+        this.tileY = params.tileY;
         this.dogId = params.id;
         this.setOrigin(0, 0);
-        //this.setScale(this.xScale, this.yScale);
+
+        this.scene.anims.create({
+            key: 'lab_walk',
+            frames: this.scene.anims.generateFrameNumbers('lab-walk', { start: 0, end: 7 }),
+            frameRate: 8,
+            repeat: -1
+        });
     }
 
     update(): void {
@@ -58,27 +63,20 @@ export class Dog extends Phaser.GameObjects.Sprite  {
      */
     public moveTo(x: number, y: number, playAnimation: boolean, callback?: () => void) {
         this.waitingToMove = { x: x, y: y };
-/*
+
         if (this.tileX < this.waitingToMove.x) {
-            this.setScale(this.xScale, this.yScale);
+            this.setFlipX(true);
         } else if (this.tileX > this.waitingToMove.x) {
-            this.setScale(this.xScale * -1, this.yScale);
+            this.setFlipX(false);
         }
-        
-        if (this.tileY > this.waitingToMove.y) {
-            this.setRotation(-270 * (Math.PI/180));
-            this.setScale(this.xScale * -1, this.yScale);
-        } else if (this.tileY < this.waitingToMove.y) {
-            this.setRotation(270 * (Math.PI/180));
-            this.setScale(this.xScale * -1, this.yScale);
-        } else {
-            this.setRotation(0);
-        }
-*/
+
         if (!playAnimation) {
             this.doMove();
             callback && callback();
         } else {
+            this.play('lab_walk', true);
+            this.doMove();
+            callback && callback();
             //this.play(Dog.DOG_CONTEXT[this.dogId].dig);
         }
     }

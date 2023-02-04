@@ -136,6 +136,15 @@
             },
             {
                 "type": "spritesheet",
+                "key": "lab-walk",
+                "url": "./assets/images/lab-walk-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
                 "key": "potato",
                 "url": "./assets/images/potato.png",
                 "frameConfig": {
