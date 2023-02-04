@@ -127,13 +127,30 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
     
     public setHoldingPlant(plant: Plant) {
-        this.heldHarvest = new Harvest(this.scene, this.dogPosition[0], this.dogPosition[1], plant);
+        this.pickupHarvest(new Harvest(this.scene, this.dogPosition[0], this.dogPosition[1], plant));
+    }
+
+    public pickupHarvest(harvest: Harvest) {
+        this.heldHarvest = harvest;
         this.add(this.heldHarvest);
         this.heldHarvest.holdMe(this.dog);
     }
     
+    /**
+     * Destroys the harvest, bye bye.
+     */
     public destroyHarvest() {
-        this.heldHarvest.destroy();
+        this.heldHarvest.dropMe();
+        this.remove(this.heldHarvest, true);
+        this.heldHarvest = null;
+    }
+
+    /**
+     * Just drops the harvest, no destroy.
+     */
+    public dropHarvest() {
+        this.heldHarvest.dropMe();
+        this.remove(this.heldHarvest, false);
         this.heldHarvest = null;
     }
 }

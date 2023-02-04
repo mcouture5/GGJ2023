@@ -1,10 +1,12 @@
 import { DISPLAY_SIZE, MATRIX, OBSTACLES, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
+import { Bucket } from '../objects/obstacles/Bucket';
 import { Compost } from '../objects/obstacles/Compost';
 import { House } from '../objects/obstacles/House';
 import { PrefixBucket } from '../objects/obstacles/PrefixBucket';
 import { SuffixBucket } from '../objects/obstacles/SuffixBucket';
 import { Well } from '../objects/obstacles/Well';
+import { Harvest } from '../objects/plants/Harvest';
 
 export class FarmLayer extends Phaser.GameObjects.Container {
     private house: House;
@@ -74,5 +76,15 @@ export class FarmLayer extends Phaser.GameObjects.Container {
             square.strokeRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             this.add(square);
         }
+    }
+
+    public placeHarvestOnto(harvest: Harvest, bucket: Bucket) {
+        this.add(harvest);
+        harvest.setX(bucket.x);
+        harvest.setY(bucket.y);
+    }
+    
+    public removeHarvestFrom(harvest: Harvest, bucket: Bucket) {
+        this.remove(harvest, false); // no destroy!
     }
 }

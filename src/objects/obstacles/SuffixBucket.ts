@@ -1,16 +1,13 @@
-import { PREFIX_POS, SUFFIX_POS, WATERING_HOLE } from '../../constants';
-import { Obstacle } from './Obstacle';
+import { SUFFIX_POS } from '../../constants';
+import { Bucket } from './Bucket';
 
-export class SuffixBucket extends Obstacle {
+export class SuffixBucket extends Bucket {
 
     constructor(scene: Phaser.Scene) {
-        super(scene, {x: 6, y: 8}, SUFFIX_POS, '');
+        super(scene, {x: 5, y: 2}, SUFFIX_POS, '');
     }
 
     update(): void {
     }
 
-    public interactWith(): void {
-        console.log("Suffix!!!");
-    }
 }

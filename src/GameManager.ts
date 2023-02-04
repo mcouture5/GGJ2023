@@ -2,7 +2,10 @@ import { DogLayer } from "./layers/DogLayer";
 import { FarmLayer } from "./layers/FarmLayer";
 import { PlantLayer } from "./layers/PlantLayer";
 import { Dog } from "./objects/Dog";
+import { Bucket } from "./objects/obstacles/Bucket";
 import { IObstacle } from "./objects/obstacles/Obstacle";
+import { PrefixBucket } from "./objects/obstacles/PrefixBucket";
+import { SuffixBucket } from "./objects/obstacles/SuffixBucket";
 import { Plant } from "./objects/Plant";
 import { Harvest } from "./objects/plants/Harvest";
 
@@ -49,6 +52,16 @@ export class GameManager {
     public registerPlant(plant: Plant) {
         this.plants.push(plant);
         this.checkNeighbors();
+    }
+
+    public placeHarvestOntoBucket(harvest: Harvest, bucket: Bucket) {
+        this.dogLayer.dropHarvest();
+        this.farmLayer.placeHarvestOnto(harvest, bucket);
+    }
+
+    public pickupHarvestFromBucket(harvest: Harvest, bucket: Bucket) {
+        this.dogLayer.pickupHarvest(harvest);
+        this.farmLayer.removeHarvestFrom(harvest, bucket);
     }
 
     /**

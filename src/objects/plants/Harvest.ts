@@ -25,6 +25,10 @@ export class Harvest extends Phaser.GameObjects.Sprite {
         this.dog = dog;
     }
 
+    public dropMe() {
+        this.dog = null;
+    }
+
     private followDog() {
         this.dog && this.setX(this.dog.x);
         this.dog && this.setY(this.dog.y);
