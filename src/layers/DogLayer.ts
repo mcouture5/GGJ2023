@@ -83,16 +83,16 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     update() {
-        if (this.left && Phaser.Input.Keyboard.JustDown(this.left)) {
+        if (this.left && this.left.isDown) {
             this.moveDogLeft();
         }
-        if (this.right && Phaser.Input.Keyboard.JustDown(this.right)) {
+        if (this.right && this.right.isDown) {
             this.moveDogRight();
         }
-        if (this.up && Phaser.Input.Keyboard.JustDown(this.up)) {
+        if (this.up && this.up.isDown) {
             this.moveDogUp();
         }
-        if (this.down && Phaser.Input.Keyboard.JustDown(this.down)) {
+        if (this.down && this.down.isDown) {
             this.moveDogDown();
         }
         if (this.space && Phaser.Input.Keyboard.JustDown(this.space)) {
