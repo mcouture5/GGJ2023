@@ -1,4 +1,4 @@
-import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../constants';
+import { BACKGROUND_RBG, DISPLAY_SIZE, GOAL, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
 import { DogLayer } from '../layers/DogLayer';
 import { FarmLayer } from '../layers/FarmLayer';
@@ -19,6 +19,10 @@ export class GameScene extends Phaser.Scene {
 
     // Wallet
     private walletText: Phaser.GameObjects.Text;
+    private previousWallet: number = 0;
+
+    private progress: Phaser.GameObjects.Graphics;
+    private magicParticles: Phaser.GameObjects.Particles.ParticleEmitterManager;
 
     constructor() {
         super({
@@ -92,11 +96,41 @@ export class GameScene extends Phaser.Scene {
 
         let trees = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'trees').setDepth(20);
         this.add.existing(trees);
+/*
+        this.magicParticles = this.add.particles('flares', 3);
+        this.add.existing(this.magicParticles);
+        let emitter = this.magicParticles.createEmitter({
+            x: 300,
+            y: 300,
+            bounds: {x: 0, y: 0, width: DISPLAY_SIZE.width, height: DISPLAY_SIZE.height},
+            radial: true,
+            lifespan: 100000,
+            speed: { min: 150, max: 200 },
+            angle: { min: 0, max: 360 },
+            scale: { start: 0.4, end: 0 },
+            quantity: 1,
+            tint: 0xC4A484, // light brown
+            blendMode: Phaser.BlendModes.SKIP_CHECK
+        }).start();
+*/
+        let pointsbar = new Phaser.GameObjects.Sprite(this, 0, 0, 'pointsbar').setOrigin(0,0).setDepth(25);
+        this.add.existing(pointsbar);
 
-        this.walletText = new Phaser.GameObjects.Text(this, 50, 45, '' + GameManager.getInstance().wallet + '', {
-            fontFamily: 'Digital',
+        let progressbar = new Phaser.GameObjects.Sprite(this, 180, 30, 'progressbar').setOrigin(0,0).setDepth(25);
+        this.add.existing(progressbar);
+
+        this.progress = new Phaser.GameObjects.Graphics(this).setDepth(25);
+        //this.progress.fillStyle(0x0000FF, 1);
+        //this.progress.fillRect(192, 45, 470, 30);
+        this.add.existing(this.progress);
+
+        let coin = new Phaser.GameObjects.Sprite(this, 30, 30, 'coin').setOrigin(0,0).setDepth(25);
+        this.add.existing(coin);
+
+        this.walletText = new Phaser.GameObjects.Text(this, 90, 45, '' + GameManager.getInstance().wallet + '', {
+            fontFamily: 'Ace',
             fontSize: '2rem',
-            color: '#00FF00'
+            color: '0x000'
         }).setOrigin(0, 0).setDepth(30);
         this.add.existing(this.walletText);
 
@@ -114,5 +148,15 @@ export class GameScene extends Phaser.Scene {
         this.farmLayer.update();
         this.dogLayer.update();
         this.walletText.setText(GameManager.getInstance().wallet + '');
+        if (this.previousWallet !== GameManager.getInstance().wallet) {
+            this.updateProgress();
+            this.previousWallet = GameManager.getInstance().wallet;
+        }
+    }
+
+    private updateProgress() {
+        this.progress.clear();
+        this.progress.fillStyle(0x0000FF, 1);
+        this.progress.fillRect(192, 45, 470 * (GameManager.getInstance().wallet / GOAL), 30);
     }
 }

@@ -13,6 +13,8 @@ export const BACKGROUND_RBG = {
 
 export const TILE_SIZE = 120;
 
+export const GOAL: number = 2500;
+
 // 16 by 9 matrix of 120px squares
 export const MATRIX: number[][] = [
     [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], //0

@@ -14,7 +14,7 @@ export interface PlantParams {
 export class Plant extends Phaser.GameObjects.Container {
     matrixPosition:number[];
     private growTimer: Phaser.Time.TimerEvent;
-    private rowTimer: Phaser.Time.TimerEvent;
+    private rotTimer: Phaser.Time.TimerEvent;
     private growthStage: number = 0;
     private plantSprite: Phaser.GameObjects.Sprite;
     private text: Phaser.GameObjects.Text;
@@ -94,6 +94,7 @@ export class Plant extends Phaser.GameObjects.Container {
      */
     public harvest(playSound: boolean) {
         this.growTimer.destroy();
+        this.rotTimer.destroy();
         if (playSound) {
             this.harvestSound.play();
         }
@@ -109,9 +110,9 @@ export class Plant extends Phaser.GameObjects.Container {
         this.growSound.play();
         this.growthStage >= 2 && this.text.setVisible(true);
         if (this.growthStage >= 2) {
-            this.rowTimer && this.rowTimer.destroy();
+            this.rotTimer && this.rotTimer.destroy();
             // Begin the process of rotting, such is life.
-            this.rowTimer = this.scene.time.delayedCall((Math.random() * 20000) + 20000,
+            this.rotTimer = this.scene.time.delayedCall((Math.random() * 20000) + 20000,
                 () => {
                     this.rot();
                 }
@@ -127,8 +128,8 @@ export class Plant extends Phaser.GameObjects.Container {
     private rot() {
         this.prefix = '';
         this.suffix = '';
-        this.plantSprite.setTexture('hero');
-        this.text.setVisible(false);
+        this.plantSprite && this.plantSprite.setTexture('hero');
+        this.text && this.text.setVisible(false);
         this.isRot = true;
     }
 }

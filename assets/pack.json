@@ -166,6 +166,21 @@
                 "url": "./assets/images/veggiecrate.png"
             },
             {
+                "type": "image",
+                "key": "pointsbar",
+                "url": "./assets/images/pointsbar.png"
+            },
+            {
+                "type": "image",
+                "key": "progressbar",
+                "url": "./assets/images/progressbar.png"
+            },
+            {
+                "type": "image",
+                "key": "coin",
+                "url": "./assets/images/coin.png"
+            },
+            {
                 "type": "spritesheet",
                 "key": "hero",
                 "url": "./assets/images/hero.png",
