@@ -5,12 +5,14 @@ import { Obstacle } from "./obstacles/Obstacle";
 export interface ITicket {
     type: ROOT_TYPE;
     time: number;
+    cost: number;
 }
 
 export class Board extends Obstacle {
     private timer: Phaser.Time.TimerEvent;
     private progress: Phaser.GameObjects.Graphics;
     private remaining: number = 100;
+    private nextTicketTimer: Phaser.Time.TimerEvent;
 
     constructor(scene: Phaser.Scene) {
         super(scene, [6, 2], BOARD_POS, 'orderboard-empty');
@@ -71,6 +73,13 @@ export class Board extends Obstacle {
     public failed() {
         this.clear();
         GameManager.getInstance().ticketFailed();
+        this.nextTicketTimer = this.scene.time.addEvent({
+            callback: () => {
+                GameManager.getInstance().nextTicket();
+            },
+            delay: 3000,
+            repeat: 0
+        });
     }
 
 }

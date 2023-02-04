@@ -11,7 +11,6 @@ import { ShipButton } from '../objects/obstacles/ShipButton';
 
 export class PlantLayer extends Phaser.GameObjects.Container {
     private availablePlots = [...PLOTS];
-    private sowTimer: Phaser.Time.TimerEvent;
     private plants: Array<new (scene: Phaser.Scene, x: number, y: number, isPrefix: boolean) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
     private shipButton: ShipButton;
 
@@ -23,22 +22,17 @@ export class PlantLayer extends Phaser.GameObjects.Container {
         this.shipButton = new ShipButton(this.scene);
         this.add(this.shipButton);
         GameManager.getInstance().registerObstacle(this.shipButton);
-
-        this.sowIfAvailable();
+        this.sowPlant();
     }
 
     update() {
     }
 
-    private sowIfAvailable() {
-        // Timer will run the entire game scene.
-        this.sowTimer = this.scene.time.delayedCall((Math.random() * 1000) + 1000,
-            () => {
-                this.growPlant();
-                this.sowTimer.destroy();
-                this.sowIfAvailable();
-            }
-        )
+    private sowPlant() {
+        let delay = (Math.random() * 1000) + Math.max(750, (15 - this.availablePlots.length) * 200);
+        setTimeout(() => {
+            this.growPlant()
+        }, delay);
     }
 
     private growPlant() {
@@ -51,13 +45,16 @@ export class PlantLayer extends Phaser.GameObjects.Container {
             plant.create();
             GameManager.getInstance().registerPlant(plant);
             plant.grow();
+            this.sowPlant();
         }
     }
 
     public plantRemoved(plant: Plant, playHarvestSound: boolean) {
+        let hadFullField = this.availablePlots.length === 0;
         plant.harvest(playHarvestSound);
         this.availablePlots.push([...plant.matrixPosition]);
         this.remove(plant, true);
+        if (hadFullField) this.sowPlant();
     }
 
     private getRandomPlant() {

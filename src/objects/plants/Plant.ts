@@ -14,6 +14,7 @@ export interface PlantParams {
 export class Plant extends Phaser.GameObjects.Container {
     matrixPosition:number[];
     private growTimer: Phaser.Time.TimerEvent;
+    private rowTimer: Phaser.Time.TimerEvent;
     private growthStage: number = 0;
     private plantSprite: Phaser.GameObjects.Sprite;
     private text: Phaser.GameObjects.Text;
@@ -23,6 +24,7 @@ export class Plant extends Phaser.GameObjects.Container {
     suffix: string;
     key: string;
     isPrefix: boolean;
+    isRot: boolean = false;
 
     // sounds
     private growSound: Phaser.Sound.BaseSound;
@@ -106,9 +108,27 @@ export class Plant extends Phaser.GameObjects.Container {
         this.plantSprite.setFrame(this.growthStage, false, false);
         this.growSound.play();
         this.growthStage >= 2 && this.text.setVisible(true);
+        if (this.growthStage >= 2) {
+            this.rowTimer && this.rowTimer.destroy();
+            // Begin the process of rotting, such is life.
+            this.rowTimer = this.scene.time.delayedCall((Math.random() * 20000) + 20000,
+                () => {
+                    this.rot();
+                }
+            )
+            return;
+        }
     }
 
     private canBeHarvested() {
         return this.growthStage > 0;
+    }
+
+    private rot() {
+        this.prefix = '';
+        this.suffix = '';
+        this.plantSprite.setTexture('hero');
+        this.text.setVisible(false);
+        this.isRot = true;
     }
 }

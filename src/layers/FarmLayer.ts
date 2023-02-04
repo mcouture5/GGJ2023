@@ -65,6 +65,7 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     }
 
     update() {
+        this.root && this.wordService && this.root.setText(this.wordService.currentRoot);
     }
 
     private createMatrix() {
@@ -100,15 +101,10 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         //this.remove(harvest, false);
         this.prefixBucket.clear();
         this.suffixBucket.clear();
-        this.board.clear();
     }
 
     public newTicket(ticket: ITicket) {
+        this.board.clear();
         this.board.newTicket(ticket);
-        this.onNextRoot();
-    }
-    
-    public onNextRoot() {
-        this.root.setText(this.wordService.currentRoot);
     }
 }

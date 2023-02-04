@@ -52,22 +52,18 @@ export default class WordService {
     public testWord(prefix: string, suffix: string) {
         let word = prefix + this.currentRoot + suffix;
         console.log(word);
-        // The shape of the word has to match what we expect
-        if ((this.currentTicket.type === ROOT_TYPE.PREFIXABLE && (!prefix || !!suffix)) ||
-            (this.currentTicket.type === ROOT_TYPE.SUFFIXABLE && (!suffix || !!prefix) || 
-            (this.currentTicket.type === ROOT_TYPE.BOTHABLE && (!prefix || !suffix)))) {
-            this.fail();
-            return;
-        }
+        let matchesTicket = (this.currentTicket.type === ROOT_TYPE.PREFIXABLE && (!!prefix && !suffix)) ||
+            (this.currentTicket.type === ROOT_TYPE.SUFFIXABLE && (!!suffix || !prefix) || 
+            (this.currentTicket.type === ROOT_TYPE.BOTHABLE && (!!prefix || !!suffix)));
         if (WORDS.indexOf(word) >= 0) {
-            this.success();
+            this.success(matchesTicket);
         } else {
             this.fail();
         }
     }
 
-    private success() {
-        GameManager.getInstance().wordSuccess();
+    private success(matchesTicket: boolean) {
+        GameManager.getInstance().wordSuccess(matchesTicket);
     }
 
     private fail() {

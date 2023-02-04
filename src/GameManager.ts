@@ -30,6 +30,7 @@ export class GameManager {
     private ticket: ITicket;
     private ticketsWon: number = 0;
     private ticketsLost: number = 0;
+    public wallet: number = 0;
 
     // Singleton baby
     public static getInstance() {
@@ -143,6 +144,7 @@ export class GameManager {
 
     public beginTickets() {
         this.nextTicket(true);
+        this.wordService.getNextRoot(this.ticket);
     }
 
     public nextTicket(forcedType?: boolean) {
@@ -160,13 +162,12 @@ export class GameManager {
         if (forcedType) type = ROOT_TYPE.PREFIXABLE;
 
         // Adust the time for this ticket, no more than 500 and no less than 100
-        let time = 300 - (this.ticketsWon * 40) + (this.ticketsLost * 40);
-        if (time < 100) time = 100;
-        if (time > 500) time = 500;
+        let time = 200 - (this.ticketsWon * 40) + (this.ticketsLost * 40);
+        if (time < 60) time = 60;
+        if (time > 300) time = 300;
 
         // New ticket
-        this.ticket = { type: type, time: time };
-        this.wordService.getNextRoot(this.ticket);
+        this.ticket = { type: type, time: time, cost: 300 };
         this.farmLayer.newTicket(this.ticket);
     }
 
@@ -175,11 +176,17 @@ export class GameManager {
         this.farmLayer.testWord();
     }
 
-    public wordSuccess() {
-        this.ticketsWon++;
+    public wordSuccess(matchesTicket: boolean) {
+        if (matchesTicket) {
+            this.ticketsWon++;
+            this.wallet += this.ticket.cost;
+            this.nextTicket();
+        } else {
+            this.wallet += 50;
+        }
         // Do something to other layers on success...
+        this.wordService.getNextRoot(this.ticket);
         this.farmLayer.wordSuccess();
-        this.nextTicket();
     }
 
     public wordFail() {
@@ -188,7 +195,5 @@ export class GameManager {
 
     public ticketFailed() {
         this.ticketsLost++;
-        this.nextTicket();
     }
-
 }

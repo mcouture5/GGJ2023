@@ -7,7 +7,6 @@ export class Harvest extends Phaser.GameObjects.Container {
     private textObject: Phaser.GameObjects.Text;
     // Properties from the now destroyed plant
     text: string;
-    key: string;
 
     // Dog reference, after all, it is holding me...
     dog: Dog;
@@ -15,8 +14,7 @@ export class Harvest extends Phaser.GameObjects.Container {
     constructor(scene: Phaser.Scene, x: number, y: number, plant: Plant) {
         super(scene, x * TILE_SIZE, y * TILE_SIZE);
         this.text = plant.isPrefix ? plant.prefix : plant.suffix;
-        this.key = plant.key;
-        this.sprite = new Phaser.GameObjects.Sprite(this.scene, 0, -30, 'harvest').setOrigin(0.5,0.5).setScale(0.75, 0.75);
+        this.sprite = new Phaser.GameObjects.Sprite(this.scene, 0, -30, plant.isRot ? 'hero' : 'harvest').setOrigin(0.5,0.5).setScale(0.75, 0.75);
         this.add(this.sprite);
         
         this.textObject = new Phaser.GameObjects.Text(this.scene, 0, -40, this.text, {

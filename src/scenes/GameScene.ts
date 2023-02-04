@@ -17,6 +17,9 @@ export class GameScene extends Phaser.Scene {
     // Starting board timer
     private boardStartTimer: Phaser.Time.TimerEvent;
 
+    // Wallet
+    private walletText: Phaser.GameObjects.Text;
+
     constructor() {
         super({
             key: 'GameScene'
@@ -90,6 +93,13 @@ export class GameScene extends Phaser.Scene {
         let trees = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'trees').setDepth(20);
         this.add.existing(trees);
 
+        this.walletText = new Phaser.GameObjects.Text(this, 50, 45, '' + GameManager.getInstance().wallet + '', {
+            fontFamily: 'Digital',
+            fontSize: '2rem',
+            color: '#00FF00'
+        }).setOrigin(0, 0).setDepth(30);
+        this.add.existing(this.walletText);
+
         // Start the ticketing system
         this.boardStartTimer = this.time.addEvent({
             callback: () => {
@@ -103,5 +113,6 @@ export class GameScene extends Phaser.Scene {
     update(): void {
         this.farmLayer.update();
         this.dogLayer.update();
+        this.walletText.setText(GameManager.getInstance().wallet + '');
     }
 }
