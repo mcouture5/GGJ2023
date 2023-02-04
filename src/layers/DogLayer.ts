@@ -19,6 +19,8 @@ export class DogLayer extends Phaser.GameObjects.Container {
 
     private dog: Dog;
     private heldHarvest: Harvest;
+    // Need to keep a copy of the one being composted so we dont try to trash the one we just trashed. WHAT.
+    private compostingHarvest: Harvest;
 
     // From the top left of the matrix
     private dogPosition: number[] = [7,7];
@@ -212,9 +214,11 @@ export class DogLayer extends Phaser.GameObjects.Container {
      * Destroys the harvest, bye bye.
      */
     public compostHarvest() {
-        this.heldHarvest.dropMe();
+        this.compostingHarvest = this.heldHarvest;
+        this.heldHarvest = null;
+        this.compostingHarvest.dropMe();
         this.scene.tweens.add({
-            targets: this.heldHarvest,
+            targets: this.compostingHarvest,
             x: Math.random() * (4 * TILE_SIZE - 2 * TILE_SIZE) + 2 * TILE_SIZE, // random spot in the middle of the compost
             y: Math.random() * (8 * TILE_SIZE - 7 * TILE_SIZE) + 7 * TILE_SIZE, // random spot in the middle of the compost
             rotation: -0.3,
@@ -223,13 +227,12 @@ export class DogLayer extends Phaser.GameObjects.Container {
             onComplete: () => {
                 this.compostSound.play();
                 this.scene.tweens.add({
-                    targets: this.heldHarvest,
+                    targets: this.compostingHarvest,
                     alpha: 0,
                     delay: 350,
                     duration: 600,
                     onComplete: () => {
-                        this.heldHarvest.destroy();
-                        this.heldHarvest = null;
+                        this.compostingHarvest.destroy();
                     }
                 });
             }

@@ -117,6 +117,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
      * Triggered when the SHIP button is interacted with.
      */
     public testWord() {
+        if (!this.canMove()) return;
         // Jump to press the button
         this.waitingToMove = {x: this.x, y: this.y - 40};
         this.scene.tweens.add({
