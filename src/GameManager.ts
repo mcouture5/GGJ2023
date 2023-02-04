@@ -8,7 +8,7 @@ import { Plant } from "./objects/plants/Plant";
 import { Harvest } from "./objects/plants/Harvest";
 import { ROOT_TYPE } from "./constants";
 import WordService from "./WordService";
-import { ITicket } from "./objects/Ticket";
+import { ITicket } from "./objects/Board";
 
 /**
  * Responsible for handling interactions between all layers.
@@ -104,8 +104,8 @@ export class GameManager {
         this.neighbors?.under?.kickDirtOnPlant();
     }
 
-    public destroyHarvest(harvest: Harvest) {
-        this.dogLayer.destroyHarvest();
+    public compostHarvest(harvest: Harvest) {
+        this.dogLayer.compostHarvest();
     }
 
     public checkNeighbors() {
@@ -130,7 +130,6 @@ export class GameManager {
                 this.neighbors.under = plant;
             }
         }
-        console.log("Neighbors", this.neighbors);
     }
 
     public interactWith(harvest?: Harvest) {
@@ -152,7 +151,7 @@ export class GameManager {
     }
 
     public testWord() {
-        this.dogLayer.tetWord();
+        this.dogLayer.testWord();
         this.farmLayer.testWord();
     }
 

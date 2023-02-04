@@ -33,6 +33,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private walkSound: Phaser.Sound.BaseSound;
     private peeSound: Phaser.Sound.BaseSound;
     private kickDirtSound: Phaser.Sound.BaseSound;
+    private compostSound: Phaser.Sound.BaseSound;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -80,6 +81,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.walkSound = this.scene.sound.add('walk', {volume: 0.05});
         this.peeSound = this.scene.sound.add('pee-2', {volume: 1});
         this.kickDirtSound = this.scene.sound.add('kick-dirt', {volume: 0.6});
+        this.compostSound = this.scene.sound.add('compost', {volume: 0.4});
     }
 
     update() {
@@ -126,7 +128,6 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private requestMove(x: number, y: number) {
         if (!this.canMove(x, y)) {
             this.lookAt(x, y);
-            console.log("No move!");
             return;
         }
         this.dogPosition = [x, y];
@@ -210,10 +211,29 @@ export class DogLayer extends Phaser.GameObjects.Container {
     /**
      * Destroys the harvest, bye bye.
      */
-    public destroyHarvest() {
+    public compostHarvest() {
         this.heldHarvest.dropMe();
-        this.heldHarvest.destroy();
-        this.heldHarvest = null;
+        this.scene.tweens.add({
+            targets: this.heldHarvest,
+            x: Math.random() * (4 * TILE_SIZE - 2 * TILE_SIZE) + 2 * TILE_SIZE, // random spot in the middle of the compost
+            y: Math.random() * (8 * TILE_SIZE - 7 * TILE_SIZE) + 7 * TILE_SIZE, // random spot in the middle of the compost
+            rotation: -0.3,
+            scale: 0.6,
+            duration: 275,
+            onComplete: () => {
+                this.compostSound.play();
+                this.scene.tweens.add({
+                    targets: this.heldHarvest,
+                    alpha: 0,
+                    delay: 350,
+                    duration: 600,
+                    onComplete: () => {
+                        this.heldHarvest.destroy();
+                        this.heldHarvest = null;
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -225,7 +245,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.heldHarvest = null;
     }
 
-    public tetWord() {
+    public testWord() {
         this.dog.testWord();
     }
 }

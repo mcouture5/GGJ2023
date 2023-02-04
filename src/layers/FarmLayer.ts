@@ -61,7 +61,7 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.root);
 
         // The matrix is always there, you just need to see it.
-        this.createMatrix();
+        //this.createMatrix();
     }
 
     update() {

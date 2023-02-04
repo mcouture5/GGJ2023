@@ -69,6 +69,11 @@ export class GameScene extends Phaser.Scene {
         let farm = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'farm');
         this.add.existing(farm);
         
+        this.farmLayer = new FarmLayer(this);
+        this.add.existing(this.farmLayer);
+        this.farmLayer.create();
+        GameManager.getInstance().farmLayer = this.farmLayer;
+        
         this.plantLayer = new PlantLayer(this);
         this.add.existing(this.plantLayer);
         this.plantLayer.create();
@@ -79,12 +84,7 @@ export class GameScene extends Phaser.Scene {
         this.dogLayer.create();
         GameManager.getInstance().dogLayer = this.dogLayer;
 
-        this.farmLayer = new FarmLayer(this);
-        this.add.existing(this.farmLayer);
-        this.farmLayer.create();
-        GameManager.getInstance().farmLayer = this.farmLayer;
-        
-        let trees = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'trees');
+        let trees = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'trees').setDepth(20);
         this.add.existing(trees);
 
         // Start the ticketing system

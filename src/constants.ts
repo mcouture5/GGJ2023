@@ -41,7 +41,8 @@ export const SHIP_POS: number[][] = [
     [3,2]
 ];
 export const BOARD_POS: number[][] = [
-    [7,2]
+    [6,1],[7,1],
+    [6,2],[7,2]
 ];
 
 
@@ -223,5 +224,6 @@ export const WORDS: string[] = [
     'resoak',
     'resoaking',
     'soakable',
-    'unsoakable'
+    'unsoakable',
+    'preread'
 ];
