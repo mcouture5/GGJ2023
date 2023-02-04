@@ -48,8 +48,8 @@ export class PlantLayer extends Phaser.GameObjects.Container {
         }
     }
 
-    public plantRemoved(plant: Plant) {
-        plant.harvest();
+    public plantRemoved(plant: Plant, playHarvestSound: boolean) {
+        plant.harvest(playHarvestSound);
         this.availablePlots.push([...plant.matrixPosition]);
         this.remove(plant, true);
     }

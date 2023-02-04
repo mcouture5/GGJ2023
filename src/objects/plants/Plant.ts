@@ -84,9 +84,11 @@ export class Plant extends Phaser.GameObjects.Container {
     /**
      * Do anything here that should be done when the plant gets pulled.
      */
-    public harvest() {
+    public harvest(playSound: boolean) {
         this.growTimer.destroy();
-        this.harvestSound.play();
+        if (playSound) {
+            this.harvestSound.play();
+        }
     }
 
     private makeGrowthHappen() {

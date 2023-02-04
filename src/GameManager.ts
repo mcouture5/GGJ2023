@@ -71,7 +71,7 @@ export class GameManager {
         this.dogLayer.setHoldingPlant(plant);
         this.neighbors.under = undefined;
         this.plants.splice(this.plants.indexOf(plant), 1);
-        this.plantLayer.plantRemoved(plant);
+        this.plantLayer.plantRemoved(plant, true);
     }
 
     public destroyHarvest(harvest: Harvest) {
@@ -112,10 +112,15 @@ export class GameManager {
     }
 
     public peeOnPlant() {
-        //this.neighbors?.under?.peeOnPlant();
+        // if plant underneath dog, remove plant without playing harvest sound
+        let plant: Plant = this.neighbors?.under;
+        if (plant) {
+            this.plantLayer.plantRemoved(plant, false);
+        }
     }
 
     public kickDirtOnPlant() {
+        // TODO
         //this.neighbors?.under?.kickDirtOnPlant();
     }
 }
