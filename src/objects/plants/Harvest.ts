@@ -16,6 +16,7 @@ export class Harvest extends Phaser.GameObjects.Sprite {
         this.text = plant.isPrefix ? plant.prefix : plant.suffix;
         this.key = plant.key;
         this.setScale(0.5, 0.5);
+        this.setDepth(20);
     }
 
     update(): void {
@@ -31,7 +32,7 @@ export class Harvest extends Phaser.GameObjects.Sprite {
     }
 
     private followDog() {
-        this.dog && this.setX(this.dog.x);
+        this.dog && this.setX(this.dog.x + 60);
         this.dog && this.setY(this.dog.y);
     }
 }

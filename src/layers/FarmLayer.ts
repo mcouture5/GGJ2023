@@ -16,7 +16,6 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     private well: Well;
     private prefixBucket: PrefixBucket;
     private suffixBucket: SuffixBucket;
-    private shipButton: ShipButton;
 
     // Words and stuff
     private root: Phaser.GameObjects.Text;
@@ -48,10 +47,6 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.suffixBucket);
         GameManager.getInstance().registerObstacle(this.suffixBucket);
 
-        this.shipButton = new ShipButton(this.scene);
-        this.add(this.shipButton);
-        GameManager.getInstance().registerObstacle(this.shipButton);
-
         this.root = new Phaser.GameObjects.Text(this.scene, 3 * TILE_SIZE + 60, TILE_SIZE + 60, this.wordService.currentRoot, {
             fontFamily: 'Ace',
             fontSize: '50px',
@@ -60,7 +55,7 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.root);
 
         // The matrix is always there, you just need to see it.
-        this.createMatrix();
+        //this.createMatrix();
     }
 
     update() {
@@ -91,16 +86,6 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         }
     }
 
-    public placeHarvestOnto(harvest: Harvest, bucket: Bucket) {
-       // this.add(harvest);
-       // harvest.setX(bucket.x);
-        //harvest.setY(bucket.y);
-    }
-    
-    public removeHarvestFrom(harvest: Harvest, bucket: Bucket) {
-        //this.remove(harvest, false); // no destroy!
-    }
-
     public testWord() {
         this.wordService.testWord(this.prefixBucket.getText(), this.suffixBucket.getText());
     }
@@ -109,5 +94,9 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         //this.remove(harvest, false);
         this.prefixBucket.clear();
         this.suffixBucket.clear();
+    }
+
+    public onNextRoot() {
+        this.root.setText(this.wordService.currentRoot);
     }
 }

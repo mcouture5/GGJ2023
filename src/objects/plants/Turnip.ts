@@ -8,7 +8,7 @@ export class Turnip extends Plant {
             position: [x,y],
             key: 'turnip',
             prefix: 'un',
-            suffix: 'ness',
+            suffix: 'ly',
             isPrefix: isPrefix
         });
     }

@@ -202,7 +202,8 @@ export class DogLayer extends Phaser.GameObjects.Container {
 
     public pickupHarvest(harvest: Harvest) {
         this.heldHarvest = harvest;
-        this.add(this.heldHarvest);
+        this.scene.add.existing(this.heldHarvest);
+        this.heldHarvest.setActive(true);
         this.heldHarvest.holdMe(this.dog);
     }
     
@@ -211,7 +212,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
      */
     public destroyHarvest() {
         this.heldHarvest.dropMe();
-        this.remove(this.heldHarvest, true);
+        this.heldHarvest.destroy();
         this.heldHarvest = null;
     }
 
@@ -220,7 +221,11 @@ export class DogLayer extends Phaser.GameObjects.Container {
      */
     public dropHarvest() {
         this.heldHarvest.dropMe();
-        this.remove(this.heldHarvest, false);
+        this.heldHarvest.setActive(false);
         this.heldHarvest = null;
+    }
+
+    public tetWord() {
+        this.dog.testWord();
     }
 }

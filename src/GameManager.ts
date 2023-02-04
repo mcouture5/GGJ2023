@@ -8,7 +8,7 @@ import { PrefixBucket } from "./objects/obstacles/PrefixBucket";
 import { SuffixBucket } from "./objects/obstacles/SuffixBucket";
 import { Plant } from "./objects/plants/Plant";
 import { Harvest } from "./objects/plants/Harvest";
-import { ROOTS, WORDS } from "./constants";
+import { ROOTS, ROOT_TYPE, WORDS } from "./constants";
 import WordService from "./WordService";
 
 /**
@@ -65,12 +65,10 @@ export class GameManager {
 
     public placeHarvestOntoBucket(harvest: Harvest, bucket: Bucket) {
         this.dogLayer.dropHarvest();
-        this.farmLayer.placeHarvestOnto(harvest, bucket);
     }
 
     public pickupHarvestFromBucket(harvest: Harvest, bucket: Bucket) {
         this.dogLayer.pickupHarvest(harvest);
-        this.farmLayer.removeHarvestFrom(harvest, bucket);
     }
 
     /**
@@ -144,12 +142,15 @@ export class GameManager {
     }
 
     public testWord() {
+        this.dogLayer.tetWord();
         this.farmLayer.testWord();
     }
 
     public wordSuccess() {
         // Do something to other layers on success...
         this.farmLayer.wordSuccess();
+        this.wordService.getNextRoot(ROOT_TYPE.PREFIXABLE);
+        this.farmLayer.onNextRoot();
     }
 
     public wordFail() {

@@ -60,6 +60,14 @@ export const PLOTS: number[][] = [
 
 export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SHIP_POS, ...COMPOST, ...WATERING_HOLE];
 
+export enum ROOT_TYPE {
+    PREFIXABLE, SUFFIXABLE, BOTHABLE
+};
+
+export const PREFIXABLES: string[] = ['appear', 'break', 'build', 'comfort', 'fear', 'friend', 'joy', 'kind', 'play', 'read', 'act', 'fix', 'list', 'trust', 'soak'];
+export const SUFFIXABLES: string[] = ['appear', 'break', 'build', 'comfort', 'faith', 'fear', 'friend', 'joy', 'kind', 'play', 'read', 'act', 'fix', 'light', 'list', 'trust', 'soak'];
+export const BOTHABLES = ['appear', 'break', 'build', 'comfort', 'faith', 'joy', 'kind', 'play', 'act', 'trust', 'soak'];
+
 export const ROOTS: string[] = [
     'appear',
     'break',
@@ -74,7 +82,6 @@ export const ROOTS: string[] = [
     'read',
     'act',
     'fix',
-    'normal',
     'light',
     'list',
     'trust',
@@ -197,5 +204,20 @@ export const WORDS: string[] = [
     'unbuildable',
     'unfixable',
     'unlightable',
-    'untrustable'
+    'untrustable',
+    'uncomfortable',
+    'unread',
+    'unfaithful',
+    'unfearful',
+    'unplayful',
+    'unkindly',
+    'kindly',
+    'friendly',
+    'normally',
+    'lightly',
+    'unfriendly',
+    'resoak',
+    'resoaking',
+    'soakable',
+    'unsoakable'
 ];

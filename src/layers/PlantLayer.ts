@@ -7,17 +7,23 @@ import { Leek } from '../objects/plants/Leek';
 import { Onion } from '../objects/plants/Onion';
 import { Potato } from '../objects/plants/Potato';
 import { Turnip } from '../objects/plants/Turnip';
+import { ShipButton } from '../objects/obstacles/ShipButton';
 
 export class PlantLayer extends Phaser.GameObjects.Container {
     private availablePlots = [...PLOTS];
     private sowTimer: Phaser.Time.TimerEvent;
     private plants: Array<new (scene: Phaser.Scene, x: number, y: number, isPrefix: boolean) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
+    private shipButton: ShipButton;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
     }
 
     create() {
+        this.shipButton = new ShipButton(this.scene);
+        this.add(this.shipButton);
+        GameManager.getInstance().registerObstacle(this.shipButton);
+
         this.sowIfAvailable();
     }
 

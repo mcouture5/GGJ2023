@@ -110,4 +110,28 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             this.setFlipX(false);
         }
     }
+
+    /**
+     * Triggered when the SHIP button is interacted with.
+     */
+    public testWord() {
+        // Jump to press the button
+        this.waitingToMove = {x: this.x, y: this.y - 40};
+        this.scene.tweens.add({
+            targets: this,
+            y: { from: this.y, to: this.waitingToMove.y },
+            duration: 50,
+            onComplete: () => {
+                this.waitingToMove = {x: this.x, y: this.y + 40};
+                this.scene.tweens.add({
+                    targets: this,
+                    y: { from: this.y, to: this.waitingToMove.y },
+                    duration: 50,
+                    onComplete: () => {
+                        this.waitingToMove = null;
+                    }
+                });
+            }
+        });
+    }
 }
