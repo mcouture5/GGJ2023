@@ -110,4 +110,12 @@ export class GameManager {
         this.neighbors?.below?.interactWith(harvest);
         this.neighbors?.under?.interactWith(harvest);
     }
+
+    public peeOnPlant() {
+        this.neighbors?.under?.peeOnPlant();
+    }
+
+    public kickDirtOnPlant() {
+        this.neighbors?.under?.kickDirtOnPlant();
+    }
 }
