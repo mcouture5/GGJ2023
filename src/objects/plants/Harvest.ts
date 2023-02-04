@@ -12,9 +12,10 @@ export class Harvest extends Phaser.GameObjects.Sprite {
     dog: Dog;
 
     constructor(scene: Phaser.Scene, x: number, y: number, plant: Plant) {
-        super(scene, x * TILE_SIZE, y * TILE_SIZE, '');
+        super(scene, x * TILE_SIZE, y * TILE_SIZE, 'harvest');
         this.text = plant.isPrefix ? plant.prefix : plant.suffix;
         this.key = plant.key;
+        this.setScale(0.5, 0.5);
     }
 
     update(): void {

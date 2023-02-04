@@ -4,9 +4,11 @@ import { Bucket } from '../objects/obstacles/Bucket';
 import { Compost } from '../objects/obstacles/Compost';
 import { House } from '../objects/obstacles/House';
 import { PrefixBucket } from '../objects/obstacles/PrefixBucket';
+import { ShipButton } from '../objects/obstacles/ShipButton';
 import { SuffixBucket } from '../objects/obstacles/SuffixBucket';
 import { Well } from '../objects/obstacles/Well';
 import { Harvest } from '../objects/plants/Harvest';
+import WordService from '../WordService';
 
 export class FarmLayer extends Phaser.GameObjects.Container {
     private house: House;
@@ -14,12 +16,15 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     private well: Well;
     private prefixBucket: PrefixBucket;
     private suffixBucket: SuffixBucket;
+    private shipButton: ShipButton;
 
     // Words and stuff
     private root: Phaser.GameObjects.Text;
+    private wordService: WordService;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
+        this.wordService = GameManager.getInstance().getWordService();
     }
 
     create() {
@@ -43,7 +48,11 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.suffixBucket);
         GameManager.getInstance().registerObstacle(this.suffixBucket);
 
-        this.root = new Phaser.GameObjects.Text(this.scene, 3 * TILE_SIZE + 60, TILE_SIZE + 60, 'comfort', {
+        this.shipButton = new ShipButton(this.scene);
+        this.add(this.shipButton);
+        GameManager.getInstance().registerObstacle(this.shipButton);
+
+        this.root = new Phaser.GameObjects.Text(this.scene, 3 * TILE_SIZE + 60, TILE_SIZE + 60, this.wordService.currentRoot, {
             fontFamily: 'Ace',
             fontSize: '50px',
             color: '#000'
@@ -83,12 +92,22 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     }
 
     public placeHarvestOnto(harvest: Harvest, bucket: Bucket) {
-        this.add(harvest);
-        harvest.setX(bucket.x);
-        harvest.setY(bucket.y);
+       // this.add(harvest);
+       // harvest.setX(bucket.x);
+        //harvest.setY(bucket.y);
     }
     
     public removeHarvestFrom(harvest: Harvest, bucket: Bucket) {
-        this.remove(harvest, false); // no destroy!
+        //this.remove(harvest, false); // no destroy!
+    }
+
+    public testWord() {
+        this.wordService.testWord(this.prefixBucket.getText(), this.suffixBucket.getText());
+    }
+
+    public wordSuccess() {
+        //this.remove(harvest, false);
+        this.prefixBucket.clear();
+        this.suffixBucket.clear();
     }
 }

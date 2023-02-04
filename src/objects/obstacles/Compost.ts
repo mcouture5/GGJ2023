@@ -12,7 +12,6 @@ export class Compost extends Obstacle {
         super(scene, [1,6], COMPOST, 'compost');
 
         this.compostSound = this.scene.sound.add('compost', {volume: 0.4});
-        this.setDepth(500);
     }
 
     update(): void {

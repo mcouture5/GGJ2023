@@ -126,6 +126,21 @@
                 "url": "./assets/images/table.png"
             },
             {
+                "type": "image",
+                "key": "ship",
+                "url": "./assets/images/shipbutton.png"
+            },
+            {
+                "type": "image",
+                "key": "ticket",
+                "url": "./assets/images/ticket.png"
+            },
+            {
+                "type": "image",
+                "key": "harvest",
+                "url": "./assets/images/harvest.png"
+            },
+            {
                 "type": "spritesheet",
                 "key": "hero",
                 "url": "./assets/images/hero.png",

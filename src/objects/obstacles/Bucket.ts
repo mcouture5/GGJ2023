@@ -4,17 +4,19 @@ import { Harvest } from "../plants/Harvest";
 import { Obstacle } from "./Obstacle";
 
 export class Bucket extends Obstacle {
-    protected text: Phaser.GameObjects.Text;
+    protected textObject: Phaser.GameObjects.Text;
+    private text: string = '';
     placedHarvest: Harvest;
 
     constructor(scene: Phaser.Scene, position: number[], matrix: number[][], key: string, textX: number) {
         super(scene, position, matrix, key);
-        this.setVisible(false);
-        this.text = this.scene.add.text( textX, TILE_SIZE + 60, '', {
+        this.sprite.setVisible(false);
+        this.textObject = new Phaser.GameObjects.Text(this.scene, textX, -60, 'test', {
             fontFamily: 'Ace',
             fontSize: '50px',
             color: '#000'
         }).setOrigin(0.5, 0);
+        this.add(this.textObject);
     }
 
     update(): void {
@@ -31,12 +33,25 @@ export class Bucket extends Obstacle {
     public addHarvest(harvest: Harvest) {
         GameManager.getInstance().placeHarvestOntoBucket(harvest, this);
         this.placedHarvest = harvest;
-        this.text.setText(harvest.text);
+        this.textObject.setText(harvest.text);
+        this.text = harvest.text;
     }
 
     public removeHarvest(harvest: Harvest) {
         GameManager.getInstance().pickupHarvestFromBucket(this.placedHarvest, this);
         this.placedHarvest = null;
-        this.text.setText('');
+        this.textObject.setText('');
+        this.text = '';
+    }
+
+    public getText() {
+        return this.text;
+    }
+
+    public clear() {
+        this.placedHarvest.destroy();
+        this.placedHarvest = null;
+        this.text = '';
+        this.textObject.setText('');
     }
 }

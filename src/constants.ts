@@ -37,8 +37,8 @@ export const PREFIX_POS: number[][] = [
 export const SUFFIX_POS: number[][] = [
     [4,2],[5,2]
 ];
-export const SUBMIT_POS: number[][] = [
-    [2,2],[3,2],[4,2]
+export const SHIP_POS: number[][] = [
+    [3,2]
 ];
 
 export const COMPOST: number[][] = [
@@ -58,7 +58,7 @@ export const PLOTS: number[][] = [
     [9,6], [11,6], [13,6]
 ];
 
-export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SUBMIT_POS, ...COMPOST, ...WATERING_HOLE];
+export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SHIP_POS, ...COMPOST, ...WATERING_HOLE];
 
 export const ROOTS: string[] = [
     'appear',

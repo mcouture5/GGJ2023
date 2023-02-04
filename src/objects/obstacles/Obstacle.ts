@@ -11,15 +11,18 @@ export interface IObstacle {
 }
 
 
-export class Obstacle extends Phaser.GameObjects.Sprite implements IObstacle {
-    private position: number[];
+export class Obstacle extends Phaser.GameObjects.Container implements IObstacle {
+    protected sprite: Phaser.GameObjects.Sprite;
+    private spritePosition: number[];
     private matrix: number[][];
 
     constructor(scene: Phaser.Scene, position: number[], matrix: number[][], key: string) {
-        super(scene, position[0] * TILE_SIZE, position[1] * TILE_SIZE, key);
-        this.setOrigin(0, 0);
-        this.position = position;
+        super(scene, position[0] * TILE_SIZE, position[1] * TILE_SIZE);
+        this.spritePosition = position;
         this.matrix = matrix;
+
+        this.sprite = new Phaser.GameObjects.Sprite(this.scene, 0, 0, key).setOrigin(0,0);
+        this.add(this.sprite);
     }
 
     update(): void {

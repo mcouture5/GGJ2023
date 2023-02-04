@@ -8,6 +8,8 @@ import { PrefixBucket } from "./objects/obstacles/PrefixBucket";
 import { SuffixBucket } from "./objects/obstacles/SuffixBucket";
 import { Plant } from "./objects/plants/Plant";
 import { Harvest } from "./objects/plants/Harvest";
+import { ROOTS, WORDS } from "./constants";
+import WordService from "./WordService";
 
 /**
  * Responsible for handling interactions between all layers.
@@ -25,13 +27,20 @@ export class GameManager {
     public dogLayer: DogLayer;
 
     public dog: Dog;
-    
+    private wordService;
+
     // Singleton baby
     public static getInstance() {
         if (!GameManager.instance) {
             GameManager.instance = new GameManager();
+            GameManager.instance.wordService = new WordService();
+            GameManager.instance.wordService.begin();
         }
         return GameManager.instance;
+    }
+
+    public getWordService() {
+        return this.wordService;
     }
 
     public set dogPosition(val: number[]) {
@@ -133,4 +142,18 @@ export class GameManager {
         this.neighbors?.below?.interactWith(harvest);
         this.neighbors?.under?.interactWith(harvest);
     }
+
+    public testWord() {
+        this.farmLayer.testWord();
+    }
+
+    public wordSuccess() {
+        // Do something to other layers on success...
+        this.farmLayer.wordSuccess();
+    }
+
+    public wordFail() {
+        // Do something to other layers if a failure...
+    }
+
 }
