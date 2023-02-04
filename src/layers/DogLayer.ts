@@ -147,10 +147,12 @@ export class DogLayer extends Phaser.GameObjects.Container {
 
     private pee() {
         this.peeSound.play();
+        GameManager.getInstance().peeOnPlant();
     }
 
     private kickDirt() {
         this.kickDirtSound.play();
+        GameManager.getInstance().kickDirtOnPlant();
     }
 
     public setHoldingPlant(plant: Plant) {
