@@ -4,6 +4,7 @@ import { Dog } from '../objects/Dog';
 import { Plant } from '../objects/Plant';
 import { Harvest } from '../objects/plants/Harvest';
 import { GameScene } from "../scenes/GameScene";
+import P = Phaser.Input.Keyboard.KeyCodes.P;
 
 export class DogLayer extends Phaser.GameObjects.Container {
 
@@ -13,6 +14,8 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private up: Phaser.Input.Keyboard.Key;
     private down: Phaser.Input.Keyboard.Key;
     private space: Phaser.Input.Keyboard.Key;
+    private oneKey: Phaser.Input.Keyboard.Key;
+    private twoKey: Phaser.Input.Keyboard.Key;
 
     private dog: Dog;
     private heldHarvest: Harvest;
@@ -24,7 +27,9 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private movePending: boolean;
 
     // sounds
-    private walk: Phaser.Sound.BaseSound;
+    private walkSound: Phaser.Sound.BaseSound;
+    private peeSound: Phaser.Sound.BaseSound;
+    private kickDirtSound: Phaser.Sound.BaseSound;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -54,8 +59,16 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.space = this.scene.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.SPACE
         );
+        this.oneKey = this.scene.input.keyboard.addKey(
+            Phaser.Input.Keyboard.KeyCodes.ONE
+        );
+        this.twoKey = this.scene.input.keyboard.addKey(
+            Phaser.Input.Keyboard.KeyCodes.TWO
+        );
 
-        this.walk = this.scene.sound.add('walk', {volume: 0.05});
+        this.walkSound = this.scene.sound.add('walk', {volume: 0.05});
+        this.peeSound = this.scene.sound.add('pee-2', {volume: 1});
+        this.kickDirtSound = this.scene.sound.add('kick-dirt', {volume: 0.6});
     }
 
     update() {
@@ -73,6 +86,12 @@ export class DogLayer extends Phaser.GameObjects.Container {
         }
         if (this.space && Phaser.Input.Keyboard.JustDown(this.space)) {
             this.interactWith();
+        }
+        if (this.oneKey && Phaser.Input.Keyboard.JustDown(this.oneKey)) {
+            this.pee();
+        }
+        if (this.twoKey && Phaser.Input.Keyboard.JustDown(this.twoKey)) {
+            this.kickDirt();
         }
         this.heldHarvest?.update();
     }
@@ -103,7 +122,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private doMove() {
-        this.walk.play();
+        this.walkSound.play();
         this.dog.moveTo(this.dogPosition[0], this.dogPosition[1], false);
         GameManager.getInstance().dogPosition = [...this.dogPosition];
     }
@@ -125,7 +144,15 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private interactWith() {
         GameManager.getInstance().interactWith(this.heldHarvest);
     }
-    
+
+    private pee() {
+        this.peeSound.play();
+    }
+
+    private kickDirt() {
+        this.kickDirtSound.play();
+    }
+
     public setHoldingPlant(plant: Plant) {
         this.pickupHarvest(new Harvest(this.scene, this.dogPosition[0], this.dogPosition[1], plant));
     }
