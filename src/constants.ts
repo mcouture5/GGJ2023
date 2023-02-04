@@ -40,6 +40,10 @@ export const SUFFIX_POS: number[][] = [
 export const SHIP_POS: number[][] = [
     [3,2]
 ];
+export const BOARD_POS: number[][] = [
+    [7,2]
+];
+
 
 export const COMPOST: number[][] = [
     [1,7], [2,7], [3,7], [4,7],
@@ -58,7 +62,7 @@ export const PLOTS: number[][] = [
     [9,6], [11,6], [13,6]
 ];
 
-export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SHIP_POS, ...COMPOST, ...WATERING_HOLE];
+export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SHIP_POS, ...BOARD_POS, ...COMPOST, ...WATERING_HOLE];
 
 export enum ROOT_TYPE {
     PREFIXABLE, SUFFIXABLE, BOTHABLE

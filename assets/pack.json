@@ -132,8 +132,28 @@
             },
             {
                 "type": "image",
-                "key": "ticket",
-                "url": "./assets/images/ticket.png"
+                "key": "orderboard-all",
+                "url": "./assets/images/orderboard-all.png"
+            },
+            {
+                "type": "image",
+                "key": "orderboard-prefix",
+                "url": "./assets/images/orderboard-prefix.png"
+            },
+            {
+                "type": "image",
+                "key": "orderboard-suffix",
+                "url": "./assets/images/orderboard-suffix.png"
+            },
+            {
+                "type": "image",
+                "key": "juice",
+                "url": "./assets/images/juice.png"
+            },
+            {
+                "type": "image",
+                "key": "sando",
+                "url": "./assets/images/sando.png"
             },
             {
                 "type": "image",

@@ -8,6 +8,7 @@ import { ShipButton } from '../objects/obstacles/ShipButton';
 import { SuffixBucket } from '../objects/obstacles/SuffixBucket';
 import { Well } from '../objects/obstacles/Well';
 import { Harvest } from '../objects/plants/Harvest';
+import { Board, ITicket } from '../objects/Board';
 import WordService from '../WordService';
 
 export class FarmLayer extends Phaser.GameObjects.Container {
@@ -16,6 +17,7 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     private well: Well;
     private prefixBucket: PrefixBucket;
     private suffixBucket: SuffixBucket;
+    private board: Board;
 
     // Words and stuff
     private root: Phaser.GameObjects.Text;
@@ -47,6 +49,10 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.suffixBucket);
         GameManager.getInstance().registerObstacle(this.suffixBucket);
 
+        this.board = new Board(this.scene);
+        this.add(this.board);
+        GameManager.getInstance().registerObstacle(this.board);
+
         this.root = new Phaser.GameObjects.Text(this.scene, 3 * TILE_SIZE + 60, TILE_SIZE + 60, this.wordService.currentRoot, {
             fontFamily: 'Ace',
             fontSize: '50px',
@@ -55,7 +61,7 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.add(this.root);
 
         // The matrix is always there, you just need to see it.
-        //this.createMatrix();
+        this.createMatrix();
     }
 
     update() {
@@ -94,9 +100,14 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         //this.remove(harvest, false);
         this.prefixBucket.clear();
         this.suffixBucket.clear();
+        this.board.clear();
     }
 
     public onNextRoot() {
         this.root.setText(this.wordService.currentRoot);
+    }
+
+    public newTicket(ticket: ITicket) {
+        this.board.newTicket(ticket);
     }
 }

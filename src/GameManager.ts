@@ -4,12 +4,11 @@ import { PlantLayer } from "./layers/PlantLayer";
 import { Dog } from "./objects/Dog";
 import { Bucket } from "./objects/obstacles/Bucket";
 import { IObstacle } from "./objects/obstacles/Obstacle";
-import { PrefixBucket } from "./objects/obstacles/PrefixBucket";
-import { SuffixBucket } from "./objects/obstacles/SuffixBucket";
 import { Plant } from "./objects/plants/Plant";
 import { Harvest } from "./objects/plants/Harvest";
-import { ROOTS, ROOT_TYPE, WORDS } from "./constants";
+import { ROOT_TYPE } from "./constants";
 import WordService from "./WordService";
+import { ITicket } from "./objects/Ticket";
 
 /**
  * Responsible for handling interactions between all layers.
@@ -28,6 +27,7 @@ export class GameManager {
 
     public dog: Dog;
     private wordService;
+    private ticket: ITicket;
 
     // Singleton baby
     public static getInstance() {
@@ -139,6 +139,16 @@ export class GameManager {
         this.neighbors?.above?.interactWith(harvest);
         this.neighbors?.below?.interactWith(harvest);
         this.neighbors?.under?.interactWith(harvest);
+    }
+
+    public beginTickets() {
+        this.ticket = { type: ROOT_TYPE.PREFIXABLE };
+        this.farmLayer.newTicket(this.ticket);
+    }
+
+    public nextTicket() {
+        this.ticket = { type: ROOT_TYPE.PREFIXABLE };
+        this.farmLayer.newTicket(this.ticket);
     }
 
     public testWord() {

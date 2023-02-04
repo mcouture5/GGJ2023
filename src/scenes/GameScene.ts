@@ -74,12 +74,13 @@ export class GameScene extends Phaser.Scene {
         
         let trees = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'trees');
         this.add.existing(trees);
-        
+
+        // Start the ticketing system
+        GameManager.getInstance().beginTickets();
     }
 
     update(): void {
         this.farmLayer.update();
         this.dogLayer.update();
     }
-
 }
