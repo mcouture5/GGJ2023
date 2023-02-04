@@ -38,13 +38,6 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         this.tileY = params.tileY;
         this.dogId = params.id;
         this.setOrigin(0, 0);
-
-        this.scene.anims.create({
-            key: 'lab_walk',
-            frames: this.scene.anims.generateFrameNumbers('lab-walk', { start: 0, end: 7 }),
-            frameRate: 8,
-            repeat: -1
-        });
     }
 
     update(): void {
@@ -64,11 +57,13 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     public moveTo(x: number, y: number, playAnimation: boolean, callback?: () => void) {
         this.waitingToMove = { x: x, y: y };
 
+        /*
         if (this.tileX < this.waitingToMove.x) {
             this.setFlipX(true);
         } else if (this.tileX > this.waitingToMove.x) {
             this.setFlipX(false);
         }
+         */
 
         if (!playAnimation) {
             this.doMove();

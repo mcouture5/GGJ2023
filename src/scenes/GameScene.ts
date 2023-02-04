@@ -20,6 +20,15 @@ export class GameScene extends Phaser.Scene {
         });
     }
 
+    init() {
+        this.anims.create({
+            key: 'lab_walk',
+            frames: this.anims.generateFrameNumbers('lab-walk', { start: 0, end: 7 }),
+            frameRate: 8,
+            repeat: -1
+        });
+    }
+
     create(): void {
         let centerX = DISPLAY_SIZE.width / 2;
         let centerY = DISPLAY_SIZE.height / 2;
