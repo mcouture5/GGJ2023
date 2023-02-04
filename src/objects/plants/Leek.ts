@@ -7,8 +7,8 @@ export class Leek extends Plant {
             scene: scene,
             position: [x,y],
             key: 'leek',
-            prefix: 'pre',
-            suffix: 'ly',
+            prefix: 'over',
+            suffix: 'able',
             isPrefix: isPrefix
         });
     }

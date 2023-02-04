@@ -7,8 +7,8 @@ export class Onion extends Plant {
             scene: scene,
             position: [x,y],
             key: 'onion',
-            prefix: 'pre',
-            suffix: 'ly',
+            prefix: 're',
+            suffix: 'less',
             isPrefix: isPrefix
         });
     }

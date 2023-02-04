@@ -15,17 +15,14 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     private prefixBucket: PrefixBucket;
     private suffixBucket: SuffixBucket;
 
+    // Words and stuff
+    private root: Phaser.GameObjects.Text;
+
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
     }
 
     create() {
-        let centerX = DISPLAY_SIZE.width / 2;
-        let centerY = DISPLAY_SIZE.height / 2;
-
-        let farm = new Phaser.GameObjects.Sprite(this.scene, centerX, centerY, 'farm');
-        this.add(farm);
-        
         this.house = new House(this.scene);
         this.add(this.house);
         GameManager.getInstance().registerObstacle(this.house);
@@ -45,6 +42,13 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.suffixBucket = new SuffixBucket(this.scene);
         this.add(this.suffixBucket);
         GameManager.getInstance().registerObstacle(this.suffixBucket);
+
+        this.root = new Phaser.GameObjects.Text(this.scene, 3 * TILE_SIZE + 60, TILE_SIZE + 60, 'comfort', {
+            fontFamily: 'Ace',
+            fontSize: '50px',
+            color: '#000'
+        }).setOrigin(0.5, 0);
+        this.add(this.root);
 
         // The matrix is always there, you just need to see it.
         this.createMatrix();

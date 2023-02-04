@@ -5,7 +5,7 @@ import { Harvest } from '../plants/Harvest';
 export class House extends Obstacle {
 
     constructor(scene: Phaser.Scene) {
-        super(scene, {x: 1, y: 1}, FARMHOUSE, 'house');
+        super(scene, [1,1], FARMHOUSE, 'house');
     }
 
     update(): void {

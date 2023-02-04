@@ -5,17 +5,15 @@ import { Plant } from './Plant';
 export class Harvest extends Phaser.GameObjects.Sprite {
 
     // Properties from the now destroyed plant
-    prefix: string;
-    suffix: string;
+    text: string;
     key: string;
 
     // Dog reference, after all, it is holding me...
     dog: Dog;
 
     constructor(scene: Phaser.Scene, x: number, y: number, plant: Plant) {
-        super(scene, x * TILE_SIZE, y * TILE_SIZE, `${plant.key}-harvested`);
-        this.prefix = plant.prefix;
-        this.suffix = plant.suffix;
+        super(scene, x * TILE_SIZE, y * TILE_SIZE, '');
+        this.text = plant.isPrefix ? plant.prefix : plant.suffix;
         this.key = plant.key;
     }
 

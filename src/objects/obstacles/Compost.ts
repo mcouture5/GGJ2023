@@ -9,9 +9,10 @@ export class Compost extends Obstacle {
     private compostSound: Phaser.Sound.BaseSound;
 
     constructor(scene: Phaser.Scene) {
-        super(scene, {x: 1, y: 7}, COMPOST, 'compost');
+        super(scene, [1,6], COMPOST, 'compost');
 
         this.compostSound = this.scene.sound.add('compost', {volume: 0.4});
+        this.setDepth(500);
     }
 
     update(): void {

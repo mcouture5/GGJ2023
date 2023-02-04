@@ -7,7 +7,7 @@ export class Beet extends Plant {
             scene: scene,
             position: [x,y],
             key: 'beet',
-            prefix: 'en',
+            prefix: 'dis',
             suffix: 'ed',
             isPrefix: isPrefix
         });

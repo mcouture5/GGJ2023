@@ -8,7 +8,7 @@ export class Potato extends Plant {
             position: [x,y],
             key: 'potato',
             prefix: 'pre',
-            suffix: 'ly',
+            suffix: 'ing',
             isPrefix: isPrefix
         });
     }

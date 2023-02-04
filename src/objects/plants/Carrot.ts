@@ -7,8 +7,8 @@ export class Carrot extends Plant {
             scene: scene,
             position: [x,y],
             key: 'carrot',
-            prefix: 'pre',
-            suffix: 'ly',
+            prefix: 'en',
+            suffix: 'ful',
             isPrefix: isPrefix
         });
     }

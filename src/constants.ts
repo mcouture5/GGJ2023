@@ -32,18 +32,18 @@ export const FARMHOUSE: number[][] = [
 ];
 
 export const PREFIX_POS: number[][] = [
-    [1,2]
+    [1,2],[2,2]
 ];
 export const SUFFIX_POS: number[][] = [
-    [5,2]
+    [4,2],[5,2]
 ];
 export const SUBMIT_POS: number[][] = [
     [2,2],[3,2],[4,2]
 ];
 
 export const COMPOST: number[][] = [
-    [1,7], [2,7], [3,7],
-    [1,8], [2,8], [3,8]
+    [1,7], [2,7], [3,7], [4,7],
+    [1,8], [2,8], [3,8], [4,8]
 ];
 
 export const WATERING_HOLE: number[][] = [
@@ -59,3 +59,143 @@ export const PLOTS: number[][] = [
 ];
 
 export const OBSTACLES: number[][] = [...FARMHOUSE, ...PREFIX_POS, ...SUFFIX_POS, ...SUBMIT_POS, ...COMPOST, ...WATERING_HOLE];
+
+export const ROOTS: string[] = [
+    'appear',
+    'break',
+    'build',
+    'comfort',
+    'faith',
+    'fear',
+    'friend',
+    'joy',
+    'kind',
+    'play',
+    'read',
+    'act',
+    'fix',
+    'normal',
+    'light',
+    'list',
+    'trust',
+    'soak'
+];
+
+export const WORDS: string[] = [
+    'disappear',
+    'discomfort',
+    'distrust',
+    'display',
+    'enjoy',
+    'enact',
+    'entrust',
+    'enlight',
+    'overbuild',
+    'overjoy',
+    'overplay',
+    'overread',
+    'overact',
+    'overbreak',
+    'overfear',
+    'overkind',
+    'reappear',
+    'rebuild',
+    'replay',
+    'reread',
+    'react',
+    'refix',
+    'relight',
+    'prebreak',
+    'prefix',
+    'presoak',
+    'unbreak',
+    'unbuild',
+    'unfriend',
+    'unkind',
+    'unfix',
+    'unlight',
+    'untrust',
+    'appearable',
+    'breakable',
+    'buildable',
+    'comfortable',
+    'fearable',
+    'playable',
+    'readable',
+    'fixable',
+    'lightable',
+    'listable',
+    'trustable',
+    'appeared',
+    'comforted',
+    'feared',
+    'friended',
+    'played',
+    'acted',
+    'fixed',
+    'lighted',
+    'listed',
+    'trusted',
+    'faithful',
+    'joyful',
+    'fearful',
+    'playful',
+    'trustful',
+    'appearing',
+    'breaking',
+    'building',
+    'comforting',
+    'fearing',
+    'playing',
+    'reading',
+    'acting',
+    'fixing',
+    'lighting',
+    'listing',
+    'trusting',
+    'soaking',
+    'breakless',
+    'comfortless',
+    'faithless',
+    'fearless',
+    'friendless',
+    'joyless',
+    'kindless',
+    'playless',
+    'lightless',
+    'listless',
+    'trustless',
+    'disappearing',
+    'discomforting',
+    'disappeared',
+    'distrusting',
+    'distrusted',
+    'enjoying',
+    'enacting',
+    'enacted',
+    'entrusting',
+    'entrusted',
+    'overbuilding',
+    'overjoyed',
+    'overreading',
+    'overacting',
+    'overacted',
+    'overfearing',
+    'overfeared',
+    'reappearing',
+    'rebuilding',
+    'reappeared',
+    'replaying',
+    'replayed',
+    'rereading',
+    'rebuildable',
+    'replayable',
+    'refixed',
+    'presoaking',
+    'presoaked',
+    'unbreakable',
+    'unbuildable',
+    'unfixable',
+    'unlightable',
+    'untrustable'
+];

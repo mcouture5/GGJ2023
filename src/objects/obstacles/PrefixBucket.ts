@@ -1,10 +1,11 @@
-import { PREFIX_POS } from '../../constants';
+import { PREFIX_POS, TILE_SIZE } from '../../constants';
+import { Harvest } from '../plants/Harvest';
 import { Bucket } from './Bucket';
 
 export class PrefixBucket extends Bucket {
-    
+
     constructor(scene: Phaser.Scene) {
-        super(scene, {x: 1, y: 2}, PREFIX_POS, '');
+        super(scene, [1,2], PREFIX_POS, '', TILE_SIZE + 102);
     }
 
     update(): void {

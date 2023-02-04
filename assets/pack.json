@@ -103,12 +103,17 @@
             {
                 "type": "image",
                 "key": "farm",
-                "url": "./assets/images/Background.png"
+                "url": "./assets/images/farm.png"
+            },
+            {
+                "type": "image",
+                "key": "trees",
+                "url": "./assets/images/foreground.png"
             },
             {
                 "type": "image",
                 "key": "house",
-                "url": "./assets/images/house.png"
+                "url": "./assets/images/barn.png"
             },
             {
                 "type": "image",
@@ -117,8 +122,8 @@
             },
             {
                 "type": "image",
-                "key": "well",
-                "url": "./assets/images/well.png"
+                "key": "table",
+                "url": "./assets/images/table.png"
             },
             {
                 "type": "spritesheet",
