@@ -69,9 +69,9 @@ export enum ROOT_TYPE {
     PREFIXABLE, SUFFIXABLE, BOTHABLE
 };
 
-export const PREFIXABLES: string[] = ['appear', 'break', 'build', 'comfort', 'fear', 'friend', 'joy', 'kind', 'play', 'read', 'act', 'fix', 'list', 'trust', 'soak'];
+export const PREFIXABLES: string[] = ['appear', 'break', 'build', 'friend', 'joy', 'kind', 'play', 'read', 'act', 'fix', 'list', 'trust', 'soak'];
 export const SUFFIXABLES: string[] = ['appear', 'break', 'build', 'comfort', 'faith', 'fear', 'friend', 'joy', 'kind', 'play', 'read', 'act', 'fix', 'light', 'list', 'trust', 'soak'];
-export const BOTHABLES = ['appear', 'break', 'build', 'comfort', 'faith', 'joy', 'kind', 'play', 'act', 'trust', 'soak'];
+export const BOTHABLES = ['appear', 'break', 'build', 'comfort', 'faith', 'joy', 'play', 'act', 'trust', 'soak'];
 
 export const ROOTS: string[] = [
     'appear',
@@ -225,5 +225,7 @@ export const WORDS: string[] = [
     'resoaking',
     'soakable',
     'unsoakable',
-    'preread'
+    'preread',
+    'soaked',
+    'oversoaked'
 ];

@@ -1,5 +1,6 @@
 import { BOTHABLES, PREFIXABLES, ROOTS, ROOT_TYPE, SUFFIXABLES, WORDS } from "./constants";
 import { GameManager } from "./GameManager";
+import { ITicket } from "./objects/Board";
 
 export default class WordService {
 
@@ -11,17 +12,15 @@ export default class WordService {
     public currentPrefixableRoot: string;
     public currentSuffixableRoot: string;
     public currentBothableRoot: string;
+    private currentTicket: ITicket;
     
-    public begin() {
-        this.getNextRoot(ROOT_TYPE.PREFIXABLE);
-    }
-
-    public getNextRoot(type: ROOT_TYPE) {
-        if (type == ROOT_TYPE.PREFIXABLE) {
+    public getNextRoot(ticket: ITicket) {
+        this.currentTicket = ticket;
+        if (ticket.type == ROOT_TYPE.PREFIXABLE) {
             this.getPrefixable();
-        } else if (type == ROOT_TYPE.SUFFIXABLE) {
+        } else if (ticket.type == ROOT_TYPE.SUFFIXABLE) {
             this.getSuffixable();
-        } else if (type == ROOT_TYPE.BOTHABLE) {
+        } else if (ticket.type == ROOT_TYPE.BOTHABLE) {
             this.getBothable();
         } 
     }
@@ -53,6 +52,13 @@ export default class WordService {
     public testWord(prefix: string, suffix: string) {
         let word = prefix + this.currentRoot + suffix;
         console.log(word);
+        // The shape of the word has to match what we expect
+        if ((this.currentTicket.type === ROOT_TYPE.PREFIXABLE && (!prefix || !!suffix)) ||
+            (this.currentTicket.type === ROOT_TYPE.SUFFIXABLE && (!suffix || !!prefix) || 
+            (this.currentTicket.type === ROOT_TYPE.BOTHABLE && (!prefix || !suffix)))) {
+            this.fail();
+            return;
+        }
         if (WORDS.indexOf(word) >= 0) {
             this.success();
         } else {

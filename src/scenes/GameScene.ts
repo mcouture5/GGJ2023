@@ -14,6 +14,9 @@ export class GameScene extends Phaser.Scene {
     // sounds
     private music: Phaser.Sound.BaseSound;
 
+    // Starting board timer
+    private boardStartTimer: Phaser.Time.TimerEvent;
+
     constructor() {
         super({
             key: 'GameScene'
@@ -88,7 +91,13 @@ export class GameScene extends Phaser.Scene {
         this.add.existing(trees);
 
         // Start the ticketing system
-        GameManager.getInstance().beginTickets();
+        this.boardStartTimer = this.time.addEvent({
+            callback: () => {
+                GameManager.getInstance().beginTickets();
+            },
+            delay: 3000,
+            repeat: 0
+        });
     }
 
     update(): void {

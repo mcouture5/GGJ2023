@@ -147,6 +147,11 @@
             },
             {
                 "type": "image",
+                "key": "orderboard-empty",
+                "url": "./assets/images/board-empty.png"
+            },
+            {
+                "type": "image",
                 "key": "juice",
                 "url": "./assets/images/juice.png"
             },

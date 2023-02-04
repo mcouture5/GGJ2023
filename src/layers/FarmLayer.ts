@@ -103,11 +103,12 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.board.clear();
     }
 
-    public onNextRoot() {
-        this.root.setText(this.wordService.currentRoot);
-    }
-
     public newTicket(ticket: ITicket) {
         this.board.newTicket(ticket);
+        this.onNextRoot();
+    }
+    
+    public onNextRoot() {
+        this.root.setText(this.wordService.currentRoot);
     }
 }

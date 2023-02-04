@@ -26,15 +26,16 @@ export class GameManager {
     public dogLayer: DogLayer;
 
     public dog: Dog;
-    private wordService;
+    private wordService: WordService;
     private ticket: ITicket;
+    private ticketsWon: number = 0;
+    private ticketsLost: number = 0;
 
     // Singleton baby
     public static getInstance() {
         if (!GameManager.instance) {
             GameManager.instance = new GameManager();
             GameManager.instance.wordService = new WordService();
-            GameManager.instance.wordService.begin();
         }
         return GameManager.instance;
     }
@@ -141,12 +142,31 @@ export class GameManager {
     }
 
     public beginTickets() {
-        this.ticket = { type: ROOT_TYPE.PREFIXABLE };
-        this.farmLayer.newTicket(this.ticket);
+        this.nextTicket(true);
     }
 
-    public nextTicket() {
-        this.ticket = { type: ROOT_TYPE.PREFIXABLE };
+    public nextTicket(forcedType?: boolean) {
+        // Random type
+        let type: ROOT_TYPE;
+        let random = Math.random();
+        if (random < 0.3) {
+            type = ROOT_TYPE.PREFIXABLE;
+        } else if (random < 0.6) {
+            type = ROOT_TYPE.SUFFIXABLE;
+        } else {
+            type = ROOT_TYPE.BOTHABLE;
+        }
+
+        if (forcedType) type = ROOT_TYPE.PREFIXABLE;
+
+        // Adust the time for this ticket, no more than 500 and no less than 100
+        let time = 300 - (this.ticketsWon * 40) + (this.ticketsLost * 40);
+        if (time < 100) time = 100;
+        if (time > 500) time = 500;
+
+        // New ticket
+        this.ticket = { type: type, time: time };
+        this.wordService.getNextRoot(this.ticket);
         this.farmLayer.newTicket(this.ticket);
     }
 
@@ -156,14 +176,19 @@ export class GameManager {
     }
 
     public wordSuccess() {
+        this.ticketsWon++;
         // Do something to other layers on success...
         this.farmLayer.wordSuccess();
-        this.wordService.getNextRoot(ROOT_TYPE.PREFIXABLE);
-        this.farmLayer.onNextRoot();
+        this.nextTicket();
     }
 
     public wordFail() {
         // Do something to other layers if a failure...
+    }
+
+    public ticketFailed() {
+        this.ticketsLost++;
+        this.nextTicket();
     }
 
 }

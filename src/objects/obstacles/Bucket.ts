@@ -38,7 +38,7 @@ export class Bucket extends Obstacle {
         this.textObject.setText(harvest.text);
         this.text = harvest.text;
         this.placedHarvest.setX(this.x + this.xOffset);
-        this.placedHarvest.setY(this.y + 65);
+        this.placedHarvest.setY(this.y + 75);
     }
 
     public removeHarvest(harvest: Harvest) {
