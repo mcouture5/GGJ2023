@@ -21,6 +21,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     init() {
+        // set up the global animations
         this.anims.create({
             key: 'lab_walk',
             frames: this.anims.generateFrameNumbers('lab-walk', { start: 0, end: 7 }),

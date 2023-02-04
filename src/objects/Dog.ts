@@ -57,13 +57,11 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     public moveTo(x: number, y: number, playAnimation: boolean, callback?: () => void) {
         this.waitingToMove = { x: x, y: y };
 
-        /*
         if (this.tileX < this.waitingToMove.x) {
             this.setFlipX(true);
         } else if (this.tileX > this.waitingToMove.x) {
             this.setFlipX(false);
         }
-         */
 
         if (!playAnimation) {
             this.doMove();
