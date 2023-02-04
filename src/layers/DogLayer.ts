@@ -26,6 +26,9 @@ export class DogLayer extends Phaser.GameObjects.Container {
     // whether a "move" socket event is currently pending, prevents duplicate events from being issued
     private movePending: boolean;
 
+    // kick dirt particle effect
+    private kickDirtParticles: Phaser.GameObjects.Particles.ParticleEmitterManager;
+
     // sounds
     private walkSound: Phaser.Sound.BaseSound;
     private peeSound: Phaser.Sound.BaseSound;
@@ -41,6 +44,12 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private createDog() {
+        // set up kick dirt particle effect. make sure it's underneath the dog.
+        this.scene.load.image('flares');
+        this.kickDirtParticles = this.scene.add.particles('flares', 3);
+        this.add(this.kickDirtParticles);
+
+        // set up dog
         this.dog = new Dog({ scene: this.scene, x: this.dogPosition[0] * TILE_SIZE, y: this.dogPosition[1] * TILE_SIZE, id: 0 });
         this.add(this.dog);
         GameManager.getInstance().registerDog(this.dog);
@@ -66,6 +75,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
             Phaser.Input.Keyboard.KeyCodes.TWO
         );
 
+        // set up sounds
         this.walkSound = this.scene.sound.add('walk', {volume: 0.05});
         this.peeSound = this.scene.sound.add('pee-2', {volume: 1});
         this.kickDirtSound = this.scene.sound.add('kick-dirt', {volume: 0.6});
@@ -151,7 +161,29 @@ export class DogLayer extends Phaser.GameObjects.Container {
     }
 
     private kickDirt() {
+        // play sound
         this.kickDirtSound.play();
+        // play particle effect
+        let dogCenter: {x: number, y: number} = this.dog.getCenter();
+        let emitter = this.kickDirtParticles.createEmitter({
+            x: dogCenter.x,
+            y: dogCenter.y,
+            lifespan: 1000,
+            speed: { min: 150, max: 200 },
+            angle: { min: 300, max: 310 },
+            gravityY: 300,
+            scale: { start: 0.4, end: 0 },
+            quantity: 1,
+            tint: 0xC4A484, // light brown
+            blendMode: Phaser.BlendModes.SKIP_CHECK
+        });
+        let emitterTimer = this.scene.time.delayedCall(250,
+            () => {
+                emitter.stop();
+                emitterTimer.destroy();
+            }
+        );
+        // tell game manager we're kicking dirt on the plant underneath us
         GameManager.getInstance().kickDirtOnPlant();
     }
 
