@@ -57,6 +57,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     public moveTo(x: number, y: number, playAnimation: boolean, callback?: () => void) {
         this.waitingToMove = { x: x, y: y };
 
+        // flip dog if needed
         if (this.tileX < this.waitingToMove.x) {
             this.setFlipX(true);
         } else if (this.tileX > this.waitingToMove.x) {
@@ -64,43 +65,49 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         }
 
         if (!playAnimation) {
-            this.doMove();
+            // instantly teleport to the new position
+            this.setX(this.waitingToMove.x * TILE_SIZE);
+            this.setY(this.waitingToMove.y * TILE_SIZE);
+            this.tileX = this.waitingToMove.x;
+            this.tileY = this.waitingToMove.y;
+            // done moving
+            this.waitingToMove = null;
             callback && callback();
         } else {
-            this.play('lab_walk', true);
-            this.doMove();
-            callback && callback();
-            //this.play(Dog.DOG_CONTEXT[this.dogId].dig);
+            // switch to walk animation
+            this.play('lab-walk', true);
+            //this.play(Dog.DOG_CONTEXT[this.dogId].walk);
+            // tween over to the new position
+            this.scene.tweens.add({
+                targets: this,
+                x: { from: this.x, to: this.waitingToMove.x * TILE_SIZE },
+                y: { from: this.y, to: this.waitingToMove.y * TILE_SIZE },
+                duration: 250,
+                onComplete: () => {
+                    // update tileX/tileY
+                    this.tileX = this.waitingToMove.x;
+                    this.tileY = this.waitingToMove.y;
+                    // switch to idle animation
+                    this.play('lab-idle', true);
+                    //this.play(Dog.DOG_CONTEXT[this.dogId].idle);
+                    // done moving
+                    this.waitingToMove = null;
+                    callback && callback();
+                }
+            });
         }
     }
 
-    private doMove() {
-        this.setX(this.waitingToMove.x * TILE_SIZE);
-        this.setY(this.waitingToMove.y * TILE_SIZE);
-        this.tileX = this.waitingToMove.x;
-        this.tileY = this.waitingToMove.y;
-
-        // Done moving
-        this.waitingToMove = null;
-
-        // Start idling
-        //this.play(Dog.DOG_CONTEXT[this.dogId].idle);
+    /**
+     * When the player wants to move to x,y but are currently not allowed,
+     * the dog should at least look in the direction of x,y.
+     */
+    public lookAt(x: number, y: number) {
+        // flip dog if needed
+        if (this.tileX < x) {
+            this.setFlipX(true);
+        } else if (this.tileX > x) {
+            this.setFlipX(false);
+        }
     }
-
-    public faceLeft() {
-
-    }
-    
-    public faceRight() {
-        
-    }
-
-    public faceUp() {
-        
-    }
-
-    public faceDown() {
-        
-    }
-
 }

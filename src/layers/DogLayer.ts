@@ -125,6 +125,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
 
     private requestMove(x: number, y: number) {
         if (!this.canMove(x, y)) {
+            this.lookAt(x, y);
             console.log("No move!");
             return;
         }
@@ -138,7 +139,14 @@ export class DogLayer extends Phaser.GameObjects.Container {
         GameManager.getInstance().dogPosition = [...this.dogPosition];
     }
 
+    private lookAt(x: number, y: number) {
+        this.dog.lookAt(x, y);
+    }
+
     private canMove(x: number, y: number): boolean {
+        if (!this.dog.canMove()) {
+            return false;
+        }
         const outOfBounds = x < 0 || x >= 16 || y < 0 || y >= 9;
         if (outOfBounds) return false;
         let obstacleInTheWay = false;
