@@ -3,7 +3,7 @@ import { Plant } from './plants/Plant';
 
 interface DogContext {
     idle: string;
-    dig: string;
+    walk: string;
 }
 
 export interface IDog {
@@ -23,21 +23,23 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     // Dog info
     public static DOG_CONTEXT: { [key: number ]: DogContext} = {
         0: {
-            idle: 'orange_idle',
-            dig: 'orange_dig'
+            idle: 'lab-idle',
+            walk: 'lab-walk'
         },
         1: {
-            idle: 'white_idle',
-            dig: 'white_dig'
-        },
+            idle: 'phin-idle',
+            walk: 'phin-walk'
+        }
     };
     
     constructor(params: IDog) {
-        super(params.scene, params.tileX * TILE_SIZE, params.tileY * TILE_SIZE, 'lab-walk', 0);
+        super(params.scene, params.tileX * TILE_SIZE, params.tileY * TILE_SIZE, Dog.DOG_CONTEXT[params.id].walk, 0);
         this.tileX = params.tileX;
         this.tileY = params.tileY;
         this.dogId = params.id;
         this.setOrigin(0, 0);
+        // switch to idle animation
+        this.play(Dog.DOG_CONTEXT[this.dogId].idle, true);
     }
 
     update(): void {
@@ -75,7 +77,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             callback && callback();
         } else {
             // switch to walk animation
-            this.play('lab-walk', true);
+            this.play(Dog.DOG_CONTEXT[this.dogId].walk, true);
             //this.play(Dog.DOG_CONTEXT[this.dogId].walk);
             // tween over to the new position
             this.scene.tweens.add({
@@ -88,7 +90,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
                     this.tileX = this.waitingToMove.x;
                     this.tileY = this.waitingToMove.y;
                     // switch to idle animation
-                    this.play('lab-idle', true);
+                    this.play(Dog.DOG_CONTEXT[this.dogId].idle, true);
                     //this.play(Dog.DOG_CONTEXT[this.dogId].idle);
                     // done moving
                     this.waitingToMove = null;

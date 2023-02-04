@@ -34,6 +34,18 @@ export class GameScene extends Phaser.Scene {
             frameRate: 8,
             repeat: -1
         });
+        this.anims.create({
+            key: 'phin-walk',
+            frames: this.anims.generateFrameNumbers('phin-walk', { start: 0, end: 7 }),
+            frameRate: 30,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'phin-idle',
+            frames: this.anims.generateFrameNumbers('phin-walk', { frames: [0] }),
+            frameRate: 8,
+            repeat: -1
+        });
     }
 
     create(): void {

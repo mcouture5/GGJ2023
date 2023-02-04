@@ -50,7 +50,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.add(this.kickDirtParticles);
 
         // set up dog
-        this.dog = new Dog({ scene: this.scene, tileX: this.dogPosition[0], tileY: this.dogPosition[1], id: 0 });
+        this.dog = new Dog({ scene: this.scene, tileX: this.dogPosition[0], tileY: this.dogPosition[1], id: 1 });
         this.scene.add.existing(this.dog);
         this.add(this.dog);
         GameManager.getInstance().registerDog(this.dog);

@@ -180,6 +180,51 @@
             },
             {
                 "type": "spritesheet",
+                "key": "lab-carry",
+                "url": "./assets/images/lab-carry-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-pee",
+                "url": "./assets/images/lab-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-walk",
+                "url": "./assets/images/phin-walk-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-carry",
+                "url": "./assets/images/phin-carry-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-pee",
+                "url": "./assets/images/phin-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
                 "key": "potato",
                 "url": "./assets/images/potato.png",
                 "frameConfig": {
