@@ -44,17 +44,18 @@ export class Plant extends Phaser.GameObjects.Container {
     
     create() {
         this.plantSprite = new Phaser.GameObjects.Sprite(this.scene, 0, 0, this.key);
-        this.plantSprite.setOrigin(this.isPrefix ? 0 : 1, 0);
-        this.plantSprite.setScale(this.isPrefix ? 1 : -1, 1);
+        this.plantSprite.setOrigin(this.isPrefix ? 1 : 0, 0);
+        this.plantSprite.setScale(this.isPrefix ? -1 : 1, 1);
         this.plantSprite.setFrame(0, false, false);
         this.add(this.plantSprite);
-/*
-        this.text = new Phaser.GameObjects.Text(this, 150, 80, this.gameState.bandName, {
+
+        this.text = new Phaser.GameObjects.Text(this.scene, TILE_SIZE / 2, TILE_SIZE - 50, this.isPrefix ? this.prefix : this.suffix, {
             fontFamily: 'Ace',
-            fontSize: getTruckFontSize(this.gameState.bandName),
-            color: '#fff',
-            wordWrap: { width: 2*30, useAdvancedWrap: true }
-        }).setOrigin(0, 0);*/
+            fontSize: '36px',
+            color: '#000'
+        }).setOrigin(0.5, 0);
+        this.text.setVisible(false);
+        this.add(this.text);
     }
 
     update(): void {
@@ -104,6 +105,7 @@ export class Plant extends Phaser.GameObjects.Container {
         this.growthStage++;
         this.plantSprite.setFrame(this.growthStage, false, false);
         this.growSound.play();
+        this.growthStage >= 2 && this.text.setVisible(true);
     }
 
     private canBeHarvested() {
