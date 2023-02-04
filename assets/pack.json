@@ -198,11 +198,6 @@
                 }
             },
             {
-                "type": "image",
-                "key": "potato-harvested",
-                "url": "./assets/images/potato-harvested.png"
-            },
-            {
                 "type": "spritesheet",
                 "key": "flares",
                 "url": "./assets/images/flares.png",
