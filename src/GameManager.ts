@@ -112,10 +112,10 @@ export class GameManager {
     }
 
     public peeOnPlant() {
-        this.neighbors?.under?.peeOnPlant();
+        //this.neighbors?.under?.peeOnPlant();
     }
 
     public kickDirtOnPlant() {
-        this.neighbors?.under?.kickDirtOnPlant();
+        //this.neighbors?.under?.kickDirtOnPlant();
     }
 }
