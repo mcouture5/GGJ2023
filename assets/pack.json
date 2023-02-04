@@ -200,6 +200,24 @@
             },
             {
                 "type": "spritesheet",
+                "key": "lab-pee",
+                "url": "./assets/images/lab-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-kick",
+                "url": "./assets/images/lab-kick-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
                 "key": "lab-carry",
                 "url": "./assets/images/lab-carry-sprite-sheet.png",
                 "frameConfig": {
@@ -209,8 +227,17 @@
             },
             {
                 "type": "spritesheet",
-                "key": "lab-pee",
-                "url": "./assets/images/lab-pee-sprite-sheet.png",
+                "key": "lab-pee-carry",
+                "url": "./assets/images/lab-carry-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-kick-carry",
+                "url": "./assets/images/lab-carry-kick-sprite-sheet.png",
                 "frameConfig": {
                     "frameWidth": 120,
                     "frameHeight": 120
@@ -227,6 +254,24 @@
             },
             {
                 "type": "spritesheet",
+                "key": "phin-pee",
+                "url": "./assets/images/phin-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-kick",
+                "url": "./assets/images/phin-kick-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
                 "key": "phin-carry",
                 "url": "./assets/images/phin-carry-sprite-sheet.png",
                 "frameConfig": {
@@ -236,8 +281,17 @@
             },
             {
                 "type": "spritesheet",
-                "key": "phin-pee",
-                "url": "./assets/images/phin-pee-sprite-sheet.png",
+                "key": "phin-pee-carry",
+                "url": "./assets/images/phin-carry-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-kick-carry",
+                "url": "./assets/images/phin-carry-kick-sprite-sheet.png",
                 "frameConfig": {
                     "frameWidth": 120,
                     "frameHeight": 120

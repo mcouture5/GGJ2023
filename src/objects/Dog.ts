@@ -4,6 +4,12 @@ import { Plant } from './plants/Plant';
 interface DogContext {
     idle: string;
     walk: string;
+    pee: string;
+    kick: string;
+    'idle-carry': string;
+    'walk-carry': string;
+    'pee-carry': string;
+    'kick-carry': string;
 }
 
 export interface IDog {
@@ -19,16 +25,30 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     private tileY;
     private dogId = 0;
     private waitingToMove: any;
+    private isCarrying: boolean;
+    private currentAnim: 'idle' | 'walk' | 'pee' | 'kick';
 
     // Dog info
     public static DOG_CONTEXT: { [key: number ]: DogContext} = {
         0: {
             idle: 'lab-idle',
-            walk: 'lab-walk'
+            walk: 'lab-walk',
+            pee: 'lab-pee',
+            kick: 'lab-kick',
+            'idle-carry': 'lab-idle-carry',
+            'walk-carry': 'lab-walk-carry',
+            'pee-carry': 'lab-pee-carry',
+            'kick-carry': 'lab-kick-carry'
         },
         1: {
             idle: 'phin-idle',
-            walk: 'phin-walk'
+            walk: 'phin-walk',
+            pee: 'phin-pee',
+            kick: 'phin-kick',
+            'idle-carry': 'phin-idle-carry',
+            'walk-carry': 'phin-walk-carry',
+            'pee-carry': 'phin-pee-carry',
+            'kick-carry': 'phin-kick-carry'
         }
     };
     
@@ -39,7 +59,13 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         this.dogId = params.id;
         this.setOrigin(0, 0);
         // switch to idle animation
-        this.play(Dog.DOG_CONTEXT[this.dogId].idle, true);
+        this.playAnim('idle');
+
+        this.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            if (this.currentAnim === 'pee' || this.currentAnim === 'kick') {
+                this.playAnim('idle');
+            }
+        });
     }
 
     update(): void {
@@ -77,8 +103,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             callback && callback();
         } else {
             // switch to walk animation
-            this.play(Dog.DOG_CONTEXT[this.dogId].walk, true);
-            //this.play(Dog.DOG_CONTEXT[this.dogId].walk);
+            this.playAnim('walk');
             // tween over to the new position
             this.scene.tweens.add({
                 targets: this,
@@ -90,8 +115,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
                     this.tileX = this.waitingToMove.x;
                     this.tileY = this.waitingToMove.y;
                     // switch to idle animation
-                    this.play(Dog.DOG_CONTEXT[this.dogId].idle, true);
-                    //this.play(Dog.DOG_CONTEXT[this.dogId].idle);
+                    this.playAnim('idle');
                     // done moving
                     this.waitingToMove = null;
                     callback && callback();
@@ -111,6 +135,26 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         } else if (this.tileX > x) {
             this.setFlipX(false);
         }
+    }
+
+    public pee() {
+        this.playAnim('pee');
+    }
+
+    public kickDirt() {
+        this.playAnim('kick');
+    }
+
+    /**
+     * Updates this.isCarrying and tweaks the this.currentAnim to the proper animation.
+     */
+    public setIsCarrying(isCarrying: boolean) {
+        if (this.isCarrying === isCarrying) {
+            return;
+        }
+        this.isCarrying = isCarrying;
+        // refresh current animation
+        this.playAnim(this.currentAnim);
     }
 
     /**
@@ -136,5 +180,13 @@ export class Dog extends Phaser.GameObjects.Sprite  {
                 });
             }
         });
+    }
+
+    private playAnim(animKey: 'idle' | 'walk' | 'pee' | 'kick') {
+        this.currentAnim = animKey;
+        if (this.isCarrying) {
+            animKey += '-carry';
+        }
+        this.play(Dog.DOG_CONTEXT[this.dogId][animKey], true);
     }
 }

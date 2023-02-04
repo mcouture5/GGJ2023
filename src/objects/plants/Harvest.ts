@@ -33,11 +33,13 @@ export class Harvest extends Phaser.GameObjects.Container {
         // Scale the whole thing to include the text
         this.setScale(1, 1);
         this.dog = dog;
+        this.dog.setIsCarrying(true);
     }
 
     public dropMe() {
         // Scale the whole thing to include the text
         this.setScale(0.7, 0.7);
+        this.dog.setIsCarrying(false);
         this.dog = null;
     }
 

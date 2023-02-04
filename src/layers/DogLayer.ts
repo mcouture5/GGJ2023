@@ -169,13 +169,17 @@ export class DogLayer extends Phaser.GameObjects.Container {
 
     private pee() {
         this.peeSound.play();
+        this.dog.pee();
         GameManager.getInstance().peeOnPlant();
     }
 
     private kickDirt() {
         // play sound
         this.kickDirtSound.play();
+        // play animation
+        this.dog.kickDirt();
         // play particle effect
+        /*
         let dogCenter: {x: number, y: number} = this.dog.getCenter();
         let emitter = this.kickDirtParticles.createEmitter({
             x: dogCenter.x,
@@ -195,6 +199,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
                 emitterTimer.destroy();
             }
         );
+        */
         // tell game manager we're kicking dirt on the plant underneath us
         GameManager.getInstance().kickDirtOnPlant();
     }
