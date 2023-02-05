@@ -25,14 +25,11 @@ export class GameOver extends Phaser.Scene {
         this.awooSound = this.sound.add('awoo', {volume: 0.2});
         this.awooSound.play();
 
-        this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.4,
-            'You won! You saved the family farm!',
-            {
-                fontFamily: 'Ace',
-                fontSize: '5rem',
-                color: '#000' // black
-            }
-        ).setOrigin(0.5, 0.5);
+        // load background image
+        let bg = this.add.sprite(0, 0, 'win').setOrigin(0, 0);
+        bg.displayWidth = DISPLAY_SIZE.width;
+        bg.displayHeight = DISPLAY_SIZE.height;
+
         this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.6,
             'Press Space to return to the menu',
             {
