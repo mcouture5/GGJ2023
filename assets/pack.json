@@ -8,6 +8,11 @@
             },
             {
                 "type": "audio",
+                "key": "awoo",
+                "url": "./assets/sounds/Awoo.mp3"
+            },
+            {
+                "type": "audio",
                 "key": "compost",
                 "url": "./assets/sounds/compost.mp3"
             },
