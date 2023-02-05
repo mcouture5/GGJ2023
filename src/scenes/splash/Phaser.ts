@@ -21,7 +21,7 @@ export class PhaserSplash extends Phaser.Scene {
         });
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
             setTimeout(() => {
-                this.scene.start('MainMenu');
+                this.scene.start('DogSelection');
             }, 500);
         });
     }

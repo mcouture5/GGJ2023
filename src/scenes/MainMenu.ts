@@ -27,7 +27,7 @@ export class MainMenu extends Phaser.Scene {
         let playButton = this.add.rectangle(235, 735, 360, 155, 0xFF0000, 0).setOrigin(0,0);
         playButton.setInteractive({cursor: 'pointer'});
         playButton.on('pointerup', () => {
-            this.scene.start('DogSelection');
+            this.scene.start('Company');
         });
         let tutorialButton = this.add.rectangle(675, 735, 543, 155, 0xFF0000, 0).setOrigin(0,0);
         tutorialButton.setInteractive({cursor: 'pointer'});
