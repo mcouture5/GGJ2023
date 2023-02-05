@@ -97,6 +97,11 @@
         "files": [
             {
                 "type": "image",
+                "key": "main-menu",
+                "url": "./assets/images/MAIN MENU.png"
+            },
+            {
+                "type": "image",
                 "key": "company",
                 "url": "./assets/images/company.png"
             },

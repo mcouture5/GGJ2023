@@ -13,15 +13,32 @@ export class MainMenu extends Phaser.Scene {
         this.cameras.main.setBackgroundColor("#FFFFFF");
     }
 
-    init() {}
+    init() {
+        // TODO: use custom cursor
+        //this.input.setDefaultCursor('url(assets/input/cursors/blue.cur), pointer');
+    }
 
     create() {
-        this.text = new Phaser.GameObjects.Text(this, DISPLAY_SIZE.width / 2, DISPLAY_SIZE.height / 2, 'Game over.', {
-            fontFamily: 'Ace',
-            fontSize: '5rem',
-            color: '0x000'
-        }).setOrigin(0.5, 0.5);
-        this.add.existing(this.text);
+        // load background image
+        let bg = this.add.sprite(0, 0, 'main-menu').setOrigin(0, 0);
+        bg.displayWidth = DISPLAY_SIZE.width;
+        bg.displayHeight = DISPLAY_SIZE.height;
+
+        let playButton = this.add.rectangle(235, 735, 360, 155, 0xFF0000, 0).setOrigin(0,0);
+        playButton.setInteractive({cursor: 'pointer'});
+        playButton.on('pointerup', () => {
+            this.scene.start('DogSelection');
+        });
+        let tutorialButton = this.add.rectangle(675, 735, 543, 155, 0xFF0000, 0).setOrigin(0,0);
+        tutorialButton.setInteractive({cursor: 'pointer'});
+        tutorialButton.on('pointerup', () => {
+            this.scene.start('Tutorial');
+        });
+        let creditsButton = this.add.rectangle(1297, 735, 440, 155, 0xFF0000, 0).setOrigin(0,0);
+        creditsButton.setInteractive({cursor: 'pointer'});
+        creditsButton.on('pointerup', () => {
+            this.scene.start('Tutorial');
+        });
     }
 
     update() {
