@@ -3,6 +3,11 @@
         "files": [
             {
                 "type": "audio",
+                "key": "main-menu",
+                "url": "./assets/sounds/main-menu.mp3"
+            },
+            {
+                "type": "audio",
                 "key": "ruff-ruff-root",
                 "url": "./assets/sounds/ruff-ruff-root.mp3"
             },
