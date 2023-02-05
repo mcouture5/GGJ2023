@@ -2,7 +2,7 @@ import { BACKGROUND_RBG, DISPLAY_SIZE } from '../constants';
 
 const { r, g, b } = BACKGROUND_RBG;
 export class MainMenu extends Phaser.Scene {
-    private text: Phaser.GameObjects.Text;
+
     constructor() {
         super({
             key: 'MainMenu'
@@ -37,7 +37,7 @@ export class MainMenu extends Phaser.Scene {
         let creditsButton = this.add.rectangle(1297, 735, 440, 155, 0xFF0000, 0).setOrigin(0,0);
         creditsButton.setInteractive({cursor: 'pointer'});
         creditsButton.on('pointerup', () => {
-            this.scene.start('Tutorial');
+            this.scene.start('Credits');
         });
     }
 
