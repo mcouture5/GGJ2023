@@ -42,7 +42,7 @@ export class Plant extends Phaser.GameObjects.Container {
         this.isPrefix = params.isPrefix;
 
         this.growSound = this.scene.sound.add('grow', {volume: 0.005});
-        this.harvestSound = this.scene.sound.add('harvest', {volume: 0.35});
+        this.harvestSound = this.scene.sound.add('harvest', {volume: 0.25});
         this.rotSound = this.scene.sound.add('rot', {volume: 0.1});
     }
     

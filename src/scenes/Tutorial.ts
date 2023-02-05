@@ -22,7 +22,7 @@ export class Tutorial extends Phaser.Scene {
 
     create() {
         // fade in camera
-        this.cameras.main.fadeIn(1250, r, g, b);
+        this.cameras.main.fadeIn(500, r, g, b);
 
         // load background image
         let bg = this.add.sprite(0, 0, 'tutorial').setOrigin(0, 0);
@@ -54,7 +54,7 @@ export class Tutorial extends Phaser.Scene {
 
     private fadeBackToMainMenu() {
         // fade out camera
-        this.cameras.main.fadeOut(1250, r, g, b);
+        this.cameras.main.fadeOut(500, r, g, b);
         // once fade out is complete...
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
             // switch back to main menu

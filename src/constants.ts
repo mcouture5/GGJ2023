@@ -3,12 +3,12 @@ export const DISPLAY_SIZE = {
     height: 1080
 };
 
-export const BACKGROUND_COLOR = '#f8f6f2';
-export const BACKGROUND_HEX_COLOR = 0xf8f6f2;
+export const BACKGROUND_COLOR = '#4a5652';
+export const BACKGROUND_HEX_COLOR = 0x4a5652;
 export const BACKGROUND_RBG = {
-    r: 248,
-    g: 246,
-    b: 242
+    r: 74,
+    g: 86,
+    b: 82
 };
 
 export const TILE_SIZE = 120;

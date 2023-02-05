@@ -66,14 +66,14 @@ export class MainMenu extends Phaser.Scene {
 
     private fadeToScene(sceneKey: string, keepMusicPlaying: boolean) {
         // fade out camera
-        this.cameras.main.fadeOut(1250, r, g, b);
+        this.cameras.main.fadeOut(500, r, g, b);
         // fade out music if needed
         if (!keepMusicPlaying) {
             this.add.tween({
                 targets: this.mainMenuSong,
                 volume: {from: 0.1, to: 0},
                 ease: 'Linear',
-                duration: 1250,
+                duration: 500,
                 onComplete: () => {
                     this.mainMenuSong.stop();
                 }

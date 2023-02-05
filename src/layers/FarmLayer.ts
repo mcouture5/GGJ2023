@@ -33,7 +33,7 @@ export class FarmLayer extends Phaser.GameObjects.Container {
 
         // create sounds
         this.successSound = this.scene.sound.add('ka-ching', {volume: 0.15});
-        this.failureSound = this.scene.sound.add('wrong', {volume: 0.2});
+        this.failureSound = this.scene.sound.add('wrong', {volume: 0.1});
     }
 
     create() {
