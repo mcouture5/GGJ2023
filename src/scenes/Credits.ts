@@ -21,47 +21,26 @@ export class Credits extends Phaser.Scene {
     }
 
     create() {
-        this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.4,
-            'CREDITS',
-            {
-                fontFamily: 'Ace',
-                fontSize: '5rem',
-                color: '#000' // black
-            }
-        ).setOrigin(0.5, 0.5);
-        this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.6,
-            'Press Space to return to the menu',
-            {
-                fontFamily: 'Ace',
-                fontSize: '3rem',
-                color: '#000' // black
-            }
-        ).setOrigin(0.5, 0.5);
-
         // load background image
-        /*
-        let bg = this.add.sprite(0, 0, 'tutorial').setOrigin(0, 0);
+        let bg = this.add.sprite(0, 0, 'credits').setOrigin(0, 0);
         bg.displayWidth = DISPLAY_SIZE.width;
         bg.displayHeight = DISPLAY_SIZE.height;
-        */
 
-        /*
-        let playButton = this.add.rectangle(235, 735, 360, 155, 0xFF0000, 0).setOrigin(0,0);
-        playButton.setInteractive({cursor: 'pointer'});
-        playButton.on('pointerup', () => {
-            this.scene.start('DogSelection');
+        let mainMenuButton = this.add.text(DISPLAY_SIZE.width * 0.7,DISPLAY_SIZE.height * 0.55,
+            'Return to Main Menu',
+            {
+                fontFamily: 'Ace',
+                fontSize: '4rem',
+                color: '#FFE016' // yellow
+            }
+        ).setOrigin(0.5, 0.5);
+        mainMenuButton.setInteractive({cursor: 'pointer'});
+        mainMenuButton.on('pointerup', () => {
+            this.scene.start('MainMenu');
         });
-        let tutorialButton = this.add.rectangle(675, 735, 543, 155, 0xFF0000, 0).setOrigin(0,0);
-        tutorialButton.setInteractive({cursor: 'pointer'});
-        tutorialButton.on('pointerup', () => {
-            this.scene.start('Tutorial');
-        });
-        let creditsButton = this.add.rectangle(1297, 735, 440, 155, 0xFF0000, 0).setOrigin(0,0);
-        creditsButton.setInteractive({cursor: 'pointer'});
-        creditsButton.on('pointerup', () => {
-            this.scene.start('Tutorial');
-        });
-        */
+        let mainMenuButtonBorder = this.add.graphics();
+        mainMenuButtonBorder.lineStyle(5, 0xFFE016);
+        mainMenuButtonBorder.strokeRect(mainMenuButton.x - (mainMenuButton.width / 2) - 10, mainMenuButton.y - (mainMenuButton.height / 2) - 10, mainMenuButton.width + 20, mainMenuButton.height + 20);
     }
 
     update() {
