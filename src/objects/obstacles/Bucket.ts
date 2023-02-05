@@ -63,7 +63,7 @@ export class Bucket extends Obstacle {
             numParticles = 40;
             count = 3;
         }
-        this.coinParticles.createEmitter({
+        this.placedHarvest && this.coinParticles.createEmitter({
             x: {min: 100, max: 120},
             y: 75,
             lifespan: 2200,
