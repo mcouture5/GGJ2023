@@ -1,4 +1,5 @@
 import {BACKGROUND_COLOR, BACKGROUND_RBG, DISPLAY_SIZE} from '../constants';
+import { GameManager } from '../GameManager';
 
 const { r, g, b } = BACKGROUND_RBG;
 export class MainMenu extends Phaser.Scene {
@@ -22,6 +23,7 @@ export class MainMenu extends Phaser.Scene {
     }
 
     create() {
+        GameManager.getInstance().reset();
         // fade in camera
         this.cameras.main.fadeIn(1250, r, g, b);
 

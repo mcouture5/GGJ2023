@@ -47,6 +47,30 @@ export class GameManager {
         return GameManager.instance;
     }
 
+    public reset() {
+        this._dogPosition = [3,4];
+        this.dogId = 0;
+        this.neighbors = {};
+        this.obstacles = [];
+        this.plants = [];
+
+        this.farmLayer = null;
+        this.plantLayer = null;
+        this.dogLayer = null;
+
+        this.dog = null;
+        this.wordService = new WordService();
+        this.ticket = null;
+        this.ticketsWon = 0;
+        this.ticketsLost = 0;
+        this.wallet = 0;
+        this.drink = 0;
+        this.food = 0;
+        this.maxDrink = 0;
+        this.maxFood = 0;
+        this.gameOver = false;
+    }
+
     public getWordService() {
         return this.wordService;
     }

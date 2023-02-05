@@ -26,6 +26,7 @@ export class DogSelection extends Phaser.Scene {
     }
 
     init() {
+        this.transitioning = false;
         this.anims.create({
             key: 'lab_idle_selection',
             frames: this.anims.generateFrameNumbers('lab-idle-selection', { frames: [0] }),

@@ -16,6 +16,7 @@ export class PlantLayer extends Phaser.GameObjects.Container {
 
     // sounds
     private seedingSound: Phaser.Sound.BaseSound;
+    private timeout;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -33,9 +34,14 @@ export class PlantLayer extends Phaser.GameObjects.Container {
     update() {
     }
 
+    destroy() {
+        clearTimeout(this.timeout);
+        super.destroy();
+    }
+
     private sowPlant() {
         let delay = (Math.random() * 1000) + Math.max(750, (15 - this.availablePlots.length) * 200);
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             this.growPlant()
         }, delay);
     }

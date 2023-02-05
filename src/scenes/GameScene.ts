@@ -44,6 +44,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     init() {
+        this.previousWallet = 0;
         this.sound.pauseOnBlur = false;
         // set up the global animations
         //=====
