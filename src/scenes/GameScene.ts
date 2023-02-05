@@ -25,8 +25,12 @@ export class GameScene extends Phaser.Scene {
     private magicParticles: Phaser.GameObjects.Particles.ParticleEmitterManager;
 
     // foodmeter
+    private previousDrink: number;
     private drinkText: Phaser.GameObjects.Text;
+    private previousFood: number;
     private foodText: Phaser.GameObjects.Text;
+    private drinkProgress: Phaser.GameObjects.Graphics;
+    private foodProgress: Phaser.GameObjects.Graphics;
 
     constructor() {
         super({
@@ -255,6 +259,10 @@ export class GameScene extends Phaser.Scene {
             backgroundColor: '#CDCDCD' // off-white
         }).setOrigin(0, 0).setDepth(30);
         this.add.existing(this.foodText);
+        this.foodProgress = new Phaser.GameObjects.Graphics(this).setDepth(25);
+        this.add.existing(this.foodProgress);
+        this.drinkProgress = new Phaser.GameObjects.Graphics(this).setDepth(25);
+        this.add.existing(this.drinkProgress);
     }
 
     update(): void {
@@ -268,11 +276,35 @@ export class GameScene extends Phaser.Scene {
             this.updateProgress();
             this.previousWallet = GameManager.getInstance().wallet;
         }
+
+        // update foodmeter
+        this.drinkText.setText(GameManager.getInstance().drink + '');
+        if (this.previousDrink !== GameManager.getInstance().drink) {
+            this.updateDrinkProgress();
+            this.previousDrink = GameManager.getInstance().drink;
+        }
+        this.foodText.setText(GameManager.getInstance().food + '');
+        if (this.previousFood !== GameManager.getInstance().food) {
+            this.updateFoodProgress();
+            this.previousFood = GameManager.getInstance().food;
+        }
     }
 
     private updateProgress() {
         this.progress.clear();
         this.progress.fillStyle(0xFFFFFF, 0.7);
         this.progress.fillRect(192, 45, 470 * (GameManager.getInstance().wallet / GOAL), 30);
+    }
+
+    private updateDrinkProgress() {
+        this.drinkProgress.clear();
+        this.drinkProgress.fillStyle(0xFFFFFF, 0.7);
+        this.drinkProgress.fillRect(1322, 1005, 220 * (GameManager.getInstance().drink / GameManager.getInstance().maxDrink), 30);
+    }
+
+    private updateFoodProgress() {
+        this.foodProgress.clear();
+        this.foodProgress.fillStyle(0xFFFFFF, 0.7);
+        this.foodProgress.fillRect(1680, 1005, 220 * (GameManager.getInstance().food / GameManager.getInstance().maxFood), 30);
     }
 }

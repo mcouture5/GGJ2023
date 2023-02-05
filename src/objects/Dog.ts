@@ -1,5 +1,6 @@
 import { BACKGROUND_RBG, DISPLAY_SIZE, TILE_SIZE } from '../constants';
 import { Plant } from './plants/Plant';
+import {GameManager} from "../GameManager";
 
 interface DogContext {
     idle: string;
@@ -30,6 +31,8 @@ export class Dog extends Phaser.GameObjects.Sprite  {
     private waitingToMove: any;
     private isCarrying: boolean;
     private currentAnim: 'idle' | 'walk' | 'pee' | 'kick';
+    public bladderMax: number;
+    public pooMax: number;
 
     // Dog info
     public static DOG_CONTEXT: { [key: number ]: DogContext} = {
@@ -42,9 +45,9 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             'walk-carry': 'lab-walk-carry',
             'pee-carry': 'lab-pee-carry',
             'kick-carry': 'lab-kick-carry',
-            speed: 130,
-            bladder: 80,
-            poo: 80
+            speed: 130, // fast
+            bladder: 3, // not so much pee
+            poo: 3 // not so much poo
         },
         1: {
             idle: 'phin-idle',
@@ -55,9 +58,9 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             'walk-carry': 'phin-walk-carry',
             'pee-carry': 'phin-pee-carry',
             'kick-carry': 'phin-kick-carry',
-            speed: 220,
-            bladder: 200,
-            poo: 200
+            speed: 220, // slow
+            bladder: 5, // lots o pee
+            poo: 5 // lots o poo
         }
     };
     
@@ -66,6 +69,12 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         this.tileX = params.tileX;
         this.tileY = params.tileY;
         this.dogId = params.id;
+        this.bladderMax = Dog.DOG_CONTEXT[this.dogId].bladder;
+        this.pooMax = Dog.DOG_CONTEXT[this.dogId].poo;
+        GameManager.getInstance().drink = this.bladderMax;
+        GameManager.getInstance().food = this.pooMax;
+        GameManager.getInstance().maxDrink = this.bladderMax;
+        GameManager.getInstance().maxFood = this.pooMax;
         this.setOrigin(0, 0);
         // switch to idle animation
         this.playAnim('idle');
@@ -146,12 +155,22 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         }
     }
 
+    public canPee(): boolean {
+        return GameManager.getInstance().drink > 0;
+    }
+
     public pee() {
         this.playAnim('pee');
+        GameManager.getInstance().drink = Math.max(0, GameManager.getInstance().drink - 1);
+    }
+
+    public canKickDirt(): boolean {
+        return GameManager.getInstance().food > 0;
     }
 
     public kickDirt() {
         this.playAnim('kick');
+        GameManager.getInstance().food = Math.max(0, GameManager.getInstance().food - 1);
     }
 
     /**
