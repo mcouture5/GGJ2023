@@ -117,6 +117,11 @@
             },
             {
                 "type": "image",
+                "key": "win",
+                "url": "./assets/images/win.png"
+            },
+            {
+                "type": "image",
                 "key": "company",
                 "url": "./assets/images/company.png"
             },
