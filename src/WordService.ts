@@ -67,6 +67,6 @@ export default class WordService {
     }
 
     private fail() {
-
+        GameManager.getInstance().wordFail();
     }
 }

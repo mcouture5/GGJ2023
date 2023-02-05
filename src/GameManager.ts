@@ -194,7 +194,7 @@ export class GameManager {
     }
 
     public wordFail() {
-        // Do something to other layers if a failure...
+        this.farmLayer.wordFail();
     }
 
     public ticketFailed() {

@@ -23,9 +23,17 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     private root: Phaser.GameObjects.Text;
     private wordService: WordService;
 
+    // sounds
+    private successSound: Phaser.Sound.BaseSound;
+    private failureSound: Phaser.Sound.BaseSound;
+
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
         this.wordService = GameManager.getInstance().getWordService();
+
+        // create sounds
+        this.successSound = this.scene.sound.add('ka-ching', {volume: 0.5});
+        this.failureSound = this.scene.sound.add('wrong', {volume: 0.2});
     }
 
     create() {
@@ -98,9 +106,14 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     }
 
     public wordSuccess() {
+        this.successSound.play();
         //this.remove(harvest, false);
         this.prefixBucket.clear();
         this.suffixBucket.clear();
+    }
+
+    public wordFail() {
+        this.failureSound.play();
     }
 
     public newTicket(ticket: ITicket) {
