@@ -32,6 +32,5 @@ export class Well extends Obstacle {
         if (GameManager.getInstance().food !== prevFood) {
             this.eatSound.play();
         }
-        console.log("Well!!!");
     }
 }

@@ -86,6 +86,5 @@ export class Obstacle extends Phaser.GameObjects.Container implements IObstacle 
 
     public interactWith(harvest?: Harvest) {
         // Override me!
-        console.log("Interaction!");
     }
 }
