@@ -81,7 +81,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         );
 
         // set up sounds
-        this.walkSound = this.scene.sound.add('walk', {volume: 0.05});
+        this.walkSound = this.scene.sound.add('walk', {volume: 0.15});
         this.peeSound = this.scene.sound.add('pee-2', {volume: 1});
         this.kickDirtSound = this.scene.sound.add('kick-dirt', {volume: 0.6});
         this.compostSound = this.scene.sound.add('compost', {volume: 0.4});
