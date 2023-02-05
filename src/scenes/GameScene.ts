@@ -198,7 +198,7 @@ export class GameScene extends Phaser.Scene {
         this.add.existing(progressbar);
 
         this.progress = new Phaser.GameObjects.Graphics(this).setDepth(25);
-        //this.progress.fillStyle(0x0000FF, 1);
+        //this.progress.fillStyle(0xFFFFFF, 0.7);
         //this.progress.fillRect(192, 45, 470, 30);
         this.add.existing(this.progress);
 
@@ -223,6 +223,9 @@ export class GameScene extends Phaser.Scene {
     }
 
     update(): void {
+        if (GameManager.getInstance().gameOver) {
+            this.scene.start('MainMenu');
+        }
         this.farmLayer.update();
         this.dogLayer.update();
         this.walletText.setText(GameManager.getInstance().wallet + '');
@@ -234,7 +237,7 @@ export class GameScene extends Phaser.Scene {
 
     private updateProgress() {
         this.progress.clear();
-        this.progress.fillStyle(0x0000FF, 1);
+        this.progress.fillStyle(0xFFFFFF, 0.7);
         this.progress.fillRect(192, 45, 470 * (GameManager.getInstance().wallet / GOAL), 30);
     }
 }

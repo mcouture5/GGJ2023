@@ -6,7 +6,7 @@ import { Bucket } from "./objects/obstacles/Bucket";
 import { IObstacle } from "./objects/obstacles/Obstacle";
 import { Plant } from "./objects/plants/Plant";
 import { Harvest } from "./objects/plants/Harvest";
-import { ROOT_TYPE } from "./constants";
+import { GOAL, ROOT_TYPE } from "./constants";
 import WordService from "./WordService";
 import { ITicket } from "./objects/Board";
 
@@ -31,6 +31,7 @@ export class GameManager {
     private ticketsWon: number = 0;
     private ticketsLost: number = 0;
     public wallet: number = 0;
+    public gameOver: boolean = false;
 
     // Singleton baby
     public static getInstance() {
@@ -183,6 +184,9 @@ export class GameManager {
             this.nextTicket();
         } else {
             this.wallet += 50;
+        }
+        if (this.wallet >= GOAL) {
+            this.gameOver = true;
         }
         // Do something to other layers on success...
         this.wordService.getNextRoot(this.ticket);

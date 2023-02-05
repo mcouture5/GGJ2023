@@ -114,7 +114,7 @@ export class Plant extends Phaser.GameObjects.Container {
         if (this.growthStage >= 2) {
             this.rotTimer && this.rotTimer.destroy();
             // Begin the process of rotting, such is life.
-            this.rotTimer = this.scene.time.delayedCall((Math.random() * 20000) + 20000,
+            this.rotTimer = this.scene.time.delayedCall((Math.random() * 40000) + 40000,
                 () => {
                     this.rot();
                 }
