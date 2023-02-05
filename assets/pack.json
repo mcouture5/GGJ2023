@@ -191,13 +191,9 @@
                 "url": "./assets/images/foodmeter.png"
             },
             {
-                "type": "spritesheet",
-                "key": "hero",
-                "url": "./assets/images/hero.png",
-                "frameConfig": {
-                    "frameWidth": 120,
-                    "frameHeight": 120
-                }
+                "type": "image",
+                "key": "rot",
+                "url": "./assets/images/rot-pile.png"
             },
             {
                 "type": "spritesheet",

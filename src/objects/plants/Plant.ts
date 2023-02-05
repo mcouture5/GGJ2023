@@ -130,7 +130,7 @@ export class Plant extends Phaser.GameObjects.Container {
     private rot() {
         this.prefix = '';
         this.suffix = '';
-        this.plantSprite && this.plantSprite.setTexture('hero');
+        this.plantSprite && this.plantSprite.setTexture('rot');
         this.text && this.text.setVisible(false);
         this.isRot = true;
         this.rotSound.play();
