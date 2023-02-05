@@ -1,4 +1,4 @@
-import { BACKGROUND_RBG, DISPLAY_SIZE } from '../constants';
+import {BACKGROUND_COLOR, BACKGROUND_RBG, DISPLAY_SIZE} from '../constants';
 
 const { r, g, b } = BACKGROUND_RBG;
 export class MainMenu extends Phaser.Scene {
@@ -12,7 +12,7 @@ export class MainMenu extends Phaser.Scene {
     }
 
     preload() {
-        this.cameras.main.setBackgroundColor("#FFFFFF");
+        this.cameras.main.setBackgroundColor(BACKGROUND_COLOR);
     }
 
     init() {
@@ -21,6 +21,9 @@ export class MainMenu extends Phaser.Scene {
     }
 
     create() {
+        // fade in camera
+        this.cameras.main.fadeIn(1250, r, g, b);
+
         // start playing music if not already playing. fade it in.
         if (!this.mainMenuSong || !this.mainMenuSong.isPlaying) {
             let startVolume: number = 0.05;
@@ -43,23 +46,41 @@ export class MainMenu extends Phaser.Scene {
         let playButton = this.add.rectangle(235, 735, 360, 155, 0xFF0000, 0).setOrigin(0,0);
         playButton.setInteractive({cursor: 'pointer'});
         playButton.on('pointerup', () => {
-            this.mainMenuSong.stop();
-            this.scene.start('Company');
+            this.fadeToScene('Company');
         });
         let tutorialButton = this.add.rectangle(675, 735, 543, 155, 0xFF0000, 0).setOrigin(0,0);
         tutorialButton.setInteractive({cursor: 'pointer'});
         tutorialButton.on('pointerup', () => {
-            this.mainMenuSong.stop();
-            this.scene.start('Tutorial');
+            this.fadeToScene('Tutorial');
         });
         let creditsButton = this.add.rectangle(1297, 735, 440, 155, 0xFF0000, 0).setOrigin(0,0);
         creditsButton.setInteractive({cursor: 'pointer'});
         creditsButton.on('pointerup', () => {
-            this.mainMenuSong.stop();
-            this.scene.start('Credits');
+            this.fadeToScene('Credits');
         });
     }
 
     update() {
+    }
+
+    private fadeToScene(sceneKey: string) {
+        // fade out camera
+        this.cameras.main.fadeOut(1250, r, g, b);
+        // fade out music
+        this.add.tween({
+            targets: this.mainMenuSong,
+            volume: {from: 0.1, to: 0},
+            ease: 'Linear',
+            duration: 1250,
+            onComplete: () => {
+                this.mainMenuSong.stop();
+            }
+        });
+        // once fade out is complete...
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+            // stop music and switch scene
+            this.mainMenuSong.stop();
+            this.scene.start(sceneKey);
+        });
     }
 }
