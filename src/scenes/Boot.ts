@@ -51,7 +51,7 @@ export class Boot extends Phaser.Scene {
 
     create() {
         //this.scene.start('Company');
-        this.scene.start('GameScene');
+        this.scene.start('DogSelection');
     }
 
     private createLoadingbar() {

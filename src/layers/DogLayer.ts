@@ -23,7 +23,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
     private compostingHarvest: Harvest;
 
     // From the top left of the matrix
-    private dogPosition: number[] = [7,7];
+    private dogPosition: number[];
 
     // whether a "move" socket event is currently pending, prevents duplicate events from being issued
     private movePending: boolean;
@@ -53,7 +53,8 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.add(this.kickDirtParticles);
 
         // set up dog
-        this.dog = new Dog({ scene: this.scene, tileX: this.dogPosition[0], tileY: this.dogPosition[1], id: 1 });
+        this.dogPosition = [...GameManager.getInstance().dogPosition];
+        this.dog = new Dog({ scene: this.scene, tileX: this.dogPosition[0], tileY: this.dogPosition[1], id: GameManager.getInstance().dogId });
         this.scene.add.existing(this.dog);
         this.add(this.dog);
         GameManager.getInstance().registerDog(this.dog);

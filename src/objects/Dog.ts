@@ -10,6 +10,9 @@ interface DogContext {
     'walk-carry': string;
     'pee-carry': string;
     'kick-carry': string;
+    speed: number; // lower is faster
+    bladder: number;
+    poo: number;
 }
 
 export interface IDog {
@@ -38,7 +41,10 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             'idle-carry': 'lab-idle-carry',
             'walk-carry': 'lab-walk-carry',
             'pee-carry': 'lab-pee-carry',
-            'kick-carry': 'lab-kick-carry'
+            'kick-carry': 'lab-kick-carry',
+            speed: 130,
+            bladder: 80,
+            poo: 80
         },
         1: {
             idle: 'phin-idle',
@@ -48,7 +54,10 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             'idle-carry': 'phin-idle-carry',
             'walk-carry': 'phin-walk-carry',
             'pee-carry': 'phin-pee-carry',
-            'kick-carry': 'phin-kick-carry'
+            'kick-carry': 'phin-kick-carry',
+            speed: 220,
+            bladder: 200,
+            poo: 200
         }
     };
     
@@ -109,7 +118,7 @@ export class Dog extends Phaser.GameObjects.Sprite  {
                 targets: this,
                 x: { from: this.x, to: this.waitingToMove.x * TILE_SIZE },
                 y: { from: this.y, to: this.waitingToMove.y * TILE_SIZE },
-                duration: 250,
+                duration: Dog.DOG_CONTEXT[this.dogId].speed,
                 onComplete: () => {
                     // update tileX/tileY
                     this.tileX = this.waitingToMove.x;

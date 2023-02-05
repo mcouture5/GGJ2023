@@ -5,6 +5,7 @@ import { Company } from './scenes/splash/Company';
 import { PhaserSplash } from './scenes/splash/Phaser';
 import { DISPLAY_SIZE } from './constants';
 import { GameScene } from './scenes/GameScene';
+import { DogSelection } from './scenes/DogSelection';
 
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -16,7 +17,7 @@ const config: Phaser.Types.Core.GameConfig = {
         height: DISPLAY_SIZE.height
     },
     parent: 'game',
-    scene: [Boot, Company, PhaserSplash, MainMenu, GameScene],
+    scene: [Boot, Company, PhaserSplash, MainMenu, DogSelection, GameScene],
     input: {
         keyboard: true,
         mouse: true,
@@ -24,7 +25,7 @@ const config: Phaser.Types.Core.GameConfig = {
         gamepad: false
     },
     physics: null,
-    backgroundColor: '#000000',// '#e4e4eb',
+    backgroundColor: '#0x000000',// '#e4e4eb',
     render: { pixelArt: false, antialias: true },
     dom: {
         createContainer: true

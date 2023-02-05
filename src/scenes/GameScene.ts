@@ -49,7 +49,7 @@ export class GameScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'lab-pee',
-            frames: this.anims.generateFrameNumbers('lab-pee', { start: 0, end: 15 }),
+            frames: this.anims.generateFrameNumbers('lab-pee', { start: 5, end: 15 }),
             frameRate: 30,
             repeat: 0
         });
@@ -73,7 +73,7 @@ export class GameScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'lab-pee-carry',
-            frames: this.anims.generateFrameNumbers('lab-pee-carry', { start: 0, end: 15 }),
+            frames: this.anims.generateFrameNumbers('lab-pee-carry', { start: 5, end: 15 }),
             frameRate: 30,
             repeat: 0
         });
@@ -100,7 +100,7 @@ export class GameScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'phin-pee',
-            frames: this.anims.generateFrameNumbers('phin-pee', { start: 0, end: 15 }),
+            frames: this.anims.generateFrameNumbers('phin-pee', { start: 5, end: 15 }),
             frameRate: 30,
             repeat: 0
         });
@@ -124,7 +124,7 @@ export class GameScene extends Phaser.Scene {
         });
         this.anims.create({
             key: 'phin-pee-carry',
-            frames: this.anims.generateFrameNumbers('phin-pee-carry', { start: 0, end: 15 }),
+            frames: this.anims.generateFrameNumbers('phin-pee-carry', { start: 5, end: 15 }),
             frameRate: 30,
             repeat: 0
         });

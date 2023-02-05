@@ -15,7 +15,8 @@ import { ITicket } from "./objects/Board";
  */
 export class GameManager {
     private static instance: GameManager;
-    private _dogPosition: number[] = [7,7];
+    private _dogPosition: number[] = [3,4];
+    public dogId: number = 0;
 
     private neighbors: {left?: IObstacle, right?: IObstacle, above?: IObstacle, below?: IObstacle, under?: Plant} = {};
     private obstacles: IObstacle[] = [];

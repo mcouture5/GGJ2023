@@ -3,12 +3,12 @@ export const DISPLAY_SIZE = {
     height: 1080
 };
 
-export const BACKGROUND_COLOR = '#e4e4eb';
-export const BACKGROUND_HEX_COLOR = 0xe4e4eb;
+export const BACKGROUND_COLOR = '#f8f6f2';
+export const BACKGROUND_HEX_COLOR = 0xf8f6f2;
 export const BACKGROUND_RBG = {
-    r: 228,
-    g: 228,
-    b: 235
+    r: 248,
+    g: 246,
+    b: 242
 };
 
 export const TILE_SIZE = 120;
@@ -229,5 +229,6 @@ export const WORDS: string[] = [
     'unsoakable',
     'preread',
     'soaked',
-    'oversoaked'
+    'oversoaked',
+    'unplayable'
 ];
