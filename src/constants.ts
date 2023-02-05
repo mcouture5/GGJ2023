@@ -263,5 +263,8 @@ export const WORDS: string[] = [
     'unorderly',
     'preorderly',
     'disorderly',
-    'unorderable'
+    'unorderable',
+    'relist',
+    'relisted',
+    'relisting'
 ];
