@@ -274,7 +274,7 @@ export class GameScene extends Phaser.Scene {
 
     update(): void {
         if (GameManager.getInstance().gameOver) {
-            this.scene.start('MainMenu');
+            this.scene.start('GameOver');
         }
         this.farmLayer.update();
         this.dogLayer.update();
