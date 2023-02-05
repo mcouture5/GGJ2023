@@ -7,6 +7,8 @@ import { DISPLAY_SIZE } from './constants';
 import { GameScene } from './scenes/GameScene';
 import { DogSelection } from './scenes/DogSelection';
 import { GameOver } from "./scenes/GameOver";
+import { Tutorial } from "./scenes/Tutorial";
+import { Credits } from "./scenes/Credits";
 
 // main game configuration
 const config: Phaser.Types.Core.GameConfig = {
@@ -18,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
         height: DISPLAY_SIZE.height
     },
     parent: 'game',
-    scene: [Boot, Company, PhaserSplash, MainMenu, DogSelection, GameScene, GameOver],
+    scene: [Boot, Company, PhaserSplash, MainMenu, Tutorial, Credits, DogSelection, GameScene, GameOver],
     input: {
         keyboard: true,
         mouse: true,

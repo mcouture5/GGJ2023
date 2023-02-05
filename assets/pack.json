@@ -97,6 +97,16 @@
         "files": [
             {
                 "type": "image",
+                "key": "main-menu",
+                "url": "./assets/images/MAIN MENU.png"
+            },
+            {
+                "type": "image",
+                "key": "tutorial",
+                "url": "./assets/images/tutorial-amy-text.jpg"
+            },
+            {
+                "type": "image",
                 "key": "company",
                 "url": "./assets/images/company.png"
             },

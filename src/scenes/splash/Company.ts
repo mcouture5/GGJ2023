@@ -3,6 +3,7 @@ import { BACKGROUND_COLOR, BACKGROUND_RBG } from '../../constants';
 const { r, g, b } = BACKGROUND_RBG;
 
 export class Company extends Phaser.Scene {
+
     constructor() {
         super({
             key: 'Company'
