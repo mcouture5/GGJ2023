@@ -50,7 +50,7 @@ export class Boot extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('GameScene');
+        this.scene.start('MainMenu');
     }
 
     private createLoadingbar() {

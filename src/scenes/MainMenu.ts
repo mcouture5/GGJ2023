@@ -16,6 +16,7 @@ export class MainMenu extends Phaser.Scene {
     }
 
     init() {
+        this.sound.pauseOnBlur = false;
         // TODO: use custom cursor
         //this.input.setDefaultCursor('url(assets/input/cursors/blue.cur), pointer');
     }

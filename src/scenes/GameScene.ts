@@ -39,6 +39,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     init() {
+        this.sound.pauseOnBlur = false;
         // set up the global animations
         //=====
         // LAB

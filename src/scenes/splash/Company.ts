@@ -16,6 +16,10 @@ export class Company extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(BACKGROUND_COLOR);
     }
 
+    init() {
+        this.sound.pauseOnBlur = false;
+    }
+
     create() {
         this.awooSound = this.sound.add('awoo', {volume: 0.2});
         this.awooSound.play();

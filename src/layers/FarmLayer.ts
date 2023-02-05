@@ -68,7 +68,6 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.memagee.play('memagee-turn', true);
         
         this.memagee.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
-            console.log('anim complete');
             if (Math.random() < 0.15) {
                 this.memagee.play('memagee-sweat', true);
             } else {
