@@ -220,6 +220,9 @@ export class GameScene extends Phaser.Scene {
             delay: 3000,
             repeat: 0
         });
+
+        let foodmeter = new Phaser.GameObjects.Sprite(this, 1200, 960, 'foodmeter').setOrigin(0,0).setDepth(25);
+        this.add.existing(foodmeter);
     }
 
     update(): void {

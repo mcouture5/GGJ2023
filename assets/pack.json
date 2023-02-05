@@ -186,6 +186,11 @@
                 "url": "./assets/images/coin.png"
             },
             {
+                "type": "image",
+                "key": "foodmeter",
+                "url": "./assets/images/foodmeter.png"
+            },
+            {
                 "type": "spritesheet",
                 "key": "hero",
                 "url": "./assets/images/hero.png",
