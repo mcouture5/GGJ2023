@@ -73,6 +73,12 @@ export class DogSelection extends Phaser.Scene {
             color: '0x000'
         }).setOrigin(0.5, 0.5);
         this.add.existing(this.text);
+        this.text = new Phaser.GameObjects.Text(this, DISPLAY_SIZE.width / 2, DISPLAY_SIZE.height * 0.75, 'Use left/right keys to select. Space to confirm.', {
+            fontFamily: 'Ace',
+            fontSize: '2rem',
+            color: '0x000'
+        }).setOrigin(0.5, 0.5);
+        this.add.existing(this.text);
     }
 
     update() {
