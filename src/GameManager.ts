@@ -148,7 +148,7 @@ export class GameManager {
 
     public beginTickets() {
         this.nextTicket(true);
-        this.wordService.getNextRoot(this.ticket);
+        this.wordService.getNextRoot();
     }
 
     public nextTicket(forcedType?: boolean) {
@@ -173,6 +173,7 @@ export class GameManager {
         // New ticket
         this.ticket = { type: type, time: time, cost: 300 };
         this.farmLayer.newTicket(this.ticket);
+        this.wordService.newTicket(this.ticket);
     }
 
     public testWord() {
@@ -192,8 +193,8 @@ export class GameManager {
             this.gameOver = true;
         }
         // Do something to other layers on success...
-        this.wordService.getNextRoot(this.ticket);
-        this.farmLayer.wordSuccess();
+        this.wordService.getNextRoot();
+        this.farmLayer.wordSuccess(matchesTicket);
     }
 
     public wordFail() {
@@ -202,5 +203,7 @@ export class GameManager {
 
     public ticketFailed() {
         this.ticketsLost++;
+        this.ticket = null;
+        this.wordService.newTicket(this.ticket);
     }
 }

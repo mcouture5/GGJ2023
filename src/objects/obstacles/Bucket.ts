@@ -8,6 +8,7 @@ export class Bucket extends Obstacle {
     private text: string = '';
     private xOffset: number = 0;
     placedHarvest: Harvest;
+    private coinParticles: Phaser.GameObjects.Particles.ParticleEmitterManager;
 
     constructor(scene: Phaser.Scene, position: number[], matrix: number[][], key: string, textX: number) {
         super(scene, position, matrix, key);
@@ -19,6 +20,9 @@ export class Bucket extends Obstacle {
         }).setOrigin(0.5, 0);
         this.add(this.textObject);
         this.xOffset = textX;
+        
+        this.coinParticles = this.scene.add.particles('coin');
+        this.add(this.coinParticles);
     }
 
     update(): void {
@@ -52,7 +56,27 @@ export class Bucket extends Obstacle {
         return this.text;
     }
 
-    public clear() {
+    public wordSuccess(matchesTicket?: boolean) {
+        let numParticles: number = 10;
+        let count: number = 1;
+        if (matchesTicket) {
+            numParticles = 40;
+            count = 3;
+        }
+        this.coinParticles.createEmitter({
+            x: {min: 100, max: 120},
+            y: 75,
+            lifespan: 2200,
+            bounce: 0.2,
+            gravityY: 100,
+            accelerationX: 0,
+            maxVelocityX: 12,
+            bounds: {x: -1000, y: 0, width: 2000, height: 120},
+            speed: { min: 100, max: 150 },
+            angle: { min: 70, max: 110 },
+            scale: { start: 0.25, end: 0.15 },
+            maxParticles: numParticles
+        }).flow(60, count);
         this.placedHarvest && this.placedHarvest.destroy();
         this.placedHarvest = null;
         this.text = '';

@@ -365,6 +365,15 @@
                     "frameWidth": 132,
                     "frameHeight": 132
                 }
+            },
+            {
+                "type": "spritesheet",
+                "key": "coin-shine",
+                "url": "./assets/images/coin-shine-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 60,
+                    "frameHeight": 60
+                }
             }
         ]
     }

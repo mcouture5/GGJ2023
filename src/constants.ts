@@ -230,5 +230,7 @@ export const WORDS: string[] = [
     'preread',
     'soaked',
     'oversoaked',
-    'unplayable'
+    'unplayable',
+    'reacted',
+    'reacting'
 ];

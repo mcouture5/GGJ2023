@@ -138,6 +138,14 @@ export class GameScene extends Phaser.Scene {
             frameRate: 30,
             repeat: 0
         });
+        // Coin
+        this.anims.create({
+            key: 'coin-shine-anim',
+            frames: this.anims.generateFrameNumbers('coin-shine', { start: 0, end: 11 }),
+            frameRate: 24,
+            repeat: -1,
+            repeatDelay: 2000
+        });
     }
 
     create(): void {
@@ -206,9 +214,10 @@ export class GameScene extends Phaser.Scene {
         //this.progress.fillRect(192, 45, 470, 30);
         this.add.existing(this.progress);
 
-        let coin = new Phaser.GameObjects.Sprite(this, 30, 30, 'coin').setOrigin(0,0).setDepth(25);
+        let coin = new Phaser.GameObjects.Sprite(this, 30, 30, 'coin-shine').setOrigin(0,0).setDepth(25);
         this.add.existing(coin);
-
+        coin.play('coin-shine-anim');
+        
         this.walletText = new Phaser.GameObjects.Text(this, 90, 45, '' + GameManager.getInstance().wallet + '', {
             fontFamily: 'Ace',
             fontSize: '2rem',

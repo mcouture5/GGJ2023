@@ -4,9 +4,10 @@ import { ITicket } from "./objects/Board";
 
 export default class WordService {
 
-    private prefixables: string[] = [...PREFIXABLES];
-    private suffixables: string[] = [...SUFFIXABLES];
-    private bothables: string[] = [...BOTHABLES];
+    //private prefixables: string[] = [...PREFIXABLES];
+    //private suffixables: string[] = [...SUFFIXABLES];
+    //private bothables: string[] = [...BOTHABLES];
+    private allables: string[] = [...ROOTS];
 
     public currentRoot: string;
     public currentPrefixableRoot: string;
@@ -14,17 +15,28 @@ export default class WordService {
     public currentBothableRoot: string;
     private currentTicket: ITicket;
     
-    public getNextRoot(ticket: ITicket) {
+    public newTicket(ticket: ITicket) {
         this.currentTicket = ticket;
-        if (ticket.type == ROOT_TYPE.PREFIXABLE) {
-            this.getPrefixable();
-        } else if (ticket.type == ROOT_TYPE.SUFFIXABLE) {
-            this.getSuffixable();
-        } else if (ticket.type == ROOT_TYPE.BOTHABLE) {
-            this.getBothable();
-        } 
     }
 
+    public getNextRoot() {
+        // Avoids getting the same word twice in a row.
+        let previousRoot = this.currentRoot;
+        this.currentRoot = this.allables.splice(Math.floor(Math.random() * this.allables.length), 1)[0];
+        previousRoot && this.allables.push(previousRoot);
+        /*
+        if (this.currentTicket && this.currentTicket.type == ROOT_TYPE.PREFIXABLE) {
+            this.getPrefixable();
+        } else if (this.currentTicket && this.currentTicket.type == ROOT_TYPE.SUFFIXABLE) {
+            this.getSuffixable();
+        } else if (this.currentTicket && this.currentTicket.type == ROOT_TYPE.BOTHABLE) {
+            this.getBothable();
+        } else {
+            this.getAny();
+        }*/
+    }
+
+/*
     private getPrefixable() {
         // Avoids getting the same word twice in a row.
         let previousRoot = this.currentPrefixableRoot;
@@ -48,13 +60,13 @@ export default class WordService {
         previousRoot && this.bothables.push(previousRoot);
         this.currentRoot = this.currentBothableRoot;
     }
-    
+    */
     public testWord(prefix: string, suffix: string) {
         let word = prefix + this.currentRoot + suffix;
-        console.log(word);
-        let matchesTicket = (this.currentTicket.type === ROOT_TYPE.PREFIXABLE && (!!prefix && !suffix)) ||
-            (this.currentTicket.type === ROOT_TYPE.SUFFIXABLE && (!!suffix || !prefix) || 
-            (this.currentTicket.type === ROOT_TYPE.BOTHABLE && (!!prefix || !!suffix)));
+        console.log(this.currentTicket, word);
+        let matchesTicket = !!this.currentTicket && ((this.currentTicket.type === ROOT_TYPE.PREFIXABLE && (!!prefix && !suffix)) ||
+            (this.currentTicket.type === ROOT_TYPE.SUFFIXABLE && (!!suffix && !prefix) || 
+            (this.currentTicket.type === ROOT_TYPE.BOTHABLE && (!!prefix && !!suffix))));
         if (WORDS.indexOf(word) >= 0) {
             this.success(matchesTicket);
         } else {
