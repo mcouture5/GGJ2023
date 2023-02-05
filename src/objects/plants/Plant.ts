@@ -76,7 +76,7 @@ export class Plant extends Phaser.GameObjects.Container {
 
     public kickDirtOnPlant() {
         // speed up growth by making growth happen immediately
-        this.makeGrowthHappen();
+        this.growToMax();
     }
 
     public grow(rate?: number) {
@@ -102,6 +102,17 @@ export class Plant extends Phaser.GameObjects.Container {
         }
     }
 
+    private growToMax() {
+        if (this.growthStage >= 2) {
+            return;
+        }
+        this.growthStage++;
+        if (this.growthStage >= 2) {
+            this.growthStage = 1;
+        }
+        this.makeGrowthHappen();
+    }
+
     private makeGrowthHappen() {
         // SKIP if already at final growth state
         if (this.growthStage >= 2) {
@@ -124,7 +135,7 @@ export class Plant extends Phaser.GameObjects.Container {
     }
 
     private canBeHarvested() {
-        return this.growthStage > 0;
+        return this.growthStage > 1;
     }
 
     private rot() {

@@ -231,7 +231,7 @@ export class DogLayer extends Phaser.GameObjects.Container {
         this.compostingHarvest.dropMe();
         this.scene.tweens.add({
             targets: this.compostingHarvest,
-            x: Math.random() * (4 * TILE_SIZE - 2 * TILE_SIZE) + 2 * TILE_SIZE, // random spot in the middle of the compost
+            x: Math.random() * (3 * TILE_SIZE - 2 * TILE_SIZE) + 2 * TILE_SIZE, // random spot in the middle of the compost
             y: Math.random() * (8 * TILE_SIZE - 7 * TILE_SIZE) + 7 * TILE_SIZE, // random spot in the middle of the compost
             rotation: -0.3,
             scale: 0.6,

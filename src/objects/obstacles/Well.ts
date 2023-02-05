@@ -11,7 +11,7 @@ export class Well extends Obstacle {
     constructor(scene: Phaser.Scene) {
         super(scene, [6,8], WATERING_HOLE, 'table');
 
-        this.drinkSound = this.scene.sound.add('drink', {volume: 0.4});
+        this.drinkSound = this.scene.sound.add('drink', {volume: 0.15});
         this.eatSound = this.scene.sound.add('eat', {volume: 0.1});
 
         this.scene.add.sprite(this.x + 90, this.y + 60, 'juice');

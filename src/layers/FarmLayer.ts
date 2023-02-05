@@ -1,13 +1,10 @@
-import { DISPLAY_SIZE, MATRIX, OBSTACLES, TILE_SIZE } from '../constants';
+import { MATRIX, OBSTACLES, TILE_SIZE } from '../constants';
 import { GameManager } from '../GameManager';
-import { Bucket } from '../objects/obstacles/Bucket';
 import { Compost } from '../objects/obstacles/Compost';
 import { House } from '../objects/obstacles/House';
 import { PrefixBucket } from '../objects/obstacles/PrefixBucket';
-import { ShipButton } from '../objects/obstacles/ShipButton';
 import { SuffixBucket } from '../objects/obstacles/SuffixBucket';
 import { Well } from '../objects/obstacles/Well';
-import { Harvest } from '../objects/plants/Harvest';
 import { Board, ITicket } from '../objects/Board';
 import WordService from '../WordService';
 
@@ -26,6 +23,9 @@ export class FarmLayer extends Phaser.GameObjects.Container {
     // sounds
     private successSound: Phaser.Sound.BaseSound;
     private failureSound: Phaser.Sound.BaseSound;
+
+    // Compost dog
+    private memagee: Phaser.GameObjects.Sprite;
 
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
@@ -60,6 +60,21 @@ export class FarmLayer extends Phaser.GameObjects.Container {
         this.board = new Board(this.scene);
         this.add(this.board);
         GameManager.getInstance().registerObstacle(this.board);
+
+        this.memagee = new Phaser.GameObjects.Sprite(this.scene, 3 * TILE_SIZE, 7 * TILE_SIZE, 'memagee')
+            .setOrigin(0, 0);
+        this.scene.add.existing(this.memagee);
+        this.add(this.memagee);
+        this.memagee.play('memagee-turn', true);
+        
+        this.memagee.on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+            console.log('anim complete');
+            if (Math.random() < 0.15) {
+                this.memagee.play('memagee-sweat', true);
+            } else {
+                this.memagee.play('memagee-turn', true);
+            }
+        });
 
         this.root = new Phaser.GameObjects.Text(this.scene, 3 * TILE_SIZE + 60, TILE_SIZE + 60, this.wordService.currentRoot, {
             fontFamily: 'Ace',

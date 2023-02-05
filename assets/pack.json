@@ -335,6 +335,15 @@
             },
             {
                 "type": "spritesheet",
+                "key": "memagee",
+                "url": "./assets/images/memagee.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
                 "key": "potato",
                 "url": "./assets/images/potato.png",
                 "frameConfig": {

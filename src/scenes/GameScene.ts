@@ -150,6 +150,20 @@ export class GameScene extends Phaser.Scene {
             repeat: -1,
             repeatDelay: 2000
         });
+        // Memagee
+        this.anims.create({
+            key: 'memagee-turn',
+            frames: this.anims.generateFrameNumbers('memagee', { start: 0, end: 2 }),
+            frameRate: 3,
+            repeat: 0,
+            delay: 700
+        });
+        this.anims.create({
+            key: 'memagee-sweat',
+            frames: this.anims.generateFrameNumbers('memagee', { frames: [3,4,3]}),
+            frameRate: 3,
+            repeat: 0
+        });
     }
 
     create(): void {
