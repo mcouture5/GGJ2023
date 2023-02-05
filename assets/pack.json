@@ -221,6 +221,11 @@
                 "url": "./assets/images/magic.png"
             },
             {
+                "type": "image",
+                "key": "pickafarmer",
+                "url": "./assets/images/pickafarmer.png"
+            },
+            {
                 "type": "spritesheet",
                 "key": "lab-walk",
                 "url": "./assets/images/lab-walk-sprite-sheet.png",

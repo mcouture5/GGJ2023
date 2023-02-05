@@ -11,8 +11,10 @@ export class DogSelection extends Phaser.Scene {
     private right: Phaser.Input.Keyboard.Key;
     private space: Phaser.Input.Keyboard.Key;
 
-    private selectedDogId: number = -1;
+    private selectedDogId: number = 0;
     private transitioning: boolean = false;
+
+    private selectionRing: Phaser.GameObjects.Graphics;
     constructor() {
         super({
             key: 'DogSelection'
@@ -59,26 +61,28 @@ export class DogSelection extends Phaser.Scene {
             Phaser.Input.Keyboard.KeyCodes.SPACE
         );
 
-        this.lab = new Phaser.GameObjects.Sprite(this, DISPLAY_SIZE.width / 3, DISPLAY_SIZE.height / 2, 'lab-idle-selection')
+        this.add.sprite(0, 0, 'pickafarmer').setOrigin(0, 0);
+
+        this.lab = new Phaser.GameObjects.Sprite(this, DISPLAY_SIZE.width / 3, 530, 'lab-idle-selection')
             .setOrigin(0.5, 0.5);
         this.add.existing(this.lab);
 
-        this.phin = new Phaser.GameObjects.Sprite(this, (DISPLAY_SIZE.width / 2) + (DISPLAY_SIZE.width / 6), DISPLAY_SIZE.height / 2, 'phin-idle-selection')
+        this.phin = new Phaser.GameObjects.Sprite(this, 1320, 530, 'phin-idle-selection')
             .setOrigin(0.5, 0.5);
         this.add.existing(this.phin);
 
-        this.text = new Phaser.GameObjects.Text(this, DISPLAY_SIZE.width / 2, DISPLAY_SIZE.height / 4, 'Select a Farmer', {
+        this.selectionRing = this.add.graphics();
+        this.selectionRing.lineStyle(14, 0xFFFFFF, 0.75);
+        this.selectionRing.strokeRoundedRect(420, 250, 448, 750, 2);
+
+        this.text = new Phaser.GameObjects.Text(this, DISPLAY_SIZE.width / 2, 217, 'Use left/right keys to select. Space to confirm.', {
             fontFamily: 'Ace',
-            fontSize: '5rem',
+            fontSize: '2.5rem',
             color: '0x000'
         }).setOrigin(0.5, 0.5);
         this.add.existing(this.text);
-        this.text = new Phaser.GameObjects.Text(this, DISPLAY_SIZE.width / 2, DISPLAY_SIZE.height * 0.75, 'Use left/right keys to select. Space to confirm.', {
-            fontFamily: 'Ace',
-            fontSize: '2rem',
-            color: '0x000'
-        }).setOrigin(0.5, 0.5);
-        this.add.existing(this.text);
+
+        this.selectLab();
     }
 
     update() {
@@ -98,12 +102,20 @@ export class DogSelection extends Phaser.Scene {
         this.phin.play('phin_idle_selection', true);
         this.lab.play('lab_selected', true);
         this.selectedDogId = 0;
+        this.selectionRing.clear();
+        this.selectionRing.lineStyle(14, 0xFFFFFF, 0.75);
+        this.selectionRing.strokeRoundedRect(417, 246, 456, 760, 2);
+
     }
 
     private selectPhin() {
         this.lab.play('lab_idle_selection', true);
         this.phin.play('phin_selected', true);
         this.selectedDogId = 1;
+        this.selectionRing.clear();
+        this.selectionRing.lineStyle(14, 0xFFFFFF, 0.75);
+        this.selectionRing.strokeRoundedRect(1085, 246, 456, 760, 2);
+
     }
 
     private beginGame() {

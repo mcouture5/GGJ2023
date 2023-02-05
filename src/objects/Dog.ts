@@ -59,8 +59,8 @@ export class Dog extends Phaser.GameObjects.Sprite  {
             'pee-carry': 'phin-pee-carry',
             'kick-carry': 'phin-kick-carry',
             speed: 220, // slow
-            bladder: 5, // lots o pee
-            poo: 5 // lots o poo
+            bladder: 9, // lots o pee
+            poo: 9 // lots o poo
         }
     };
     
