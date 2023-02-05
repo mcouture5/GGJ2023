@@ -24,6 +24,10 @@ export class GameScene extends Phaser.Scene {
     private progress: Phaser.GameObjects.Graphics;
     private magicParticles: Phaser.GameObjects.Particles.ParticleEmitterManager;
 
+    // foodmeter
+    private drinkText: Phaser.GameObjects.Text;
+    private foodText: Phaser.GameObjects.Text;
+
     constructor() {
         super({
             key: 'GameScene'
@@ -220,6 +224,28 @@ export class GameScene extends Phaser.Scene {
             delay: 3000,
             repeat: 0
         });
+
+        // create foodmeter stuff
+        let foodmeter = new Phaser.GameObjects.Sprite(this, 1200, 960, 'foodmeter').setOrigin(0,0).setDepth(25);
+        this.add.existing(foodmeter);
+        this.drinkText = new Phaser.GameObjects.Text(this, 1284, 1005, GameManager.getInstance().drink + '', {
+            fontFamily: 'Ace',
+            fontSize: '1.6rem',
+            color: '#000000', // black
+            backgroundColor: '#CDCDCD' // off-white
+        }).setOrigin(0, 0).setDepth(30);
+        this.add.existing(this.drinkText);
+        let foodTextBackground = new Phaser.GameObjects.Graphics(this).setDepth(25);
+        foodTextBackground.fillStyle(0xCDCDCD); // off-white
+        foodTextBackground.fillRect(1635, 1005, 24, 24);
+        this.add.existing(foodTextBackground);
+        this.foodText = new Phaser.GameObjects.Text(this, 1640, 1005, GameManager.getInstance().food + '', {
+            fontFamily: 'Ace',
+            fontSize: '1.6rem',
+            color: '#000000', // black
+            backgroundColor: '#CDCDCD' // off-white
+        }).setOrigin(0, 0).setDepth(30);
+        this.add.existing(this.foodText);
     }
 
     update(): void {
