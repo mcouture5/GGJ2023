@@ -112,6 +112,11 @@
             },
             {
                 "type": "image",
+                "key": "credits",
+                "url": "./assets/images/credits.png"
+            },
+            {
+                "type": "image",
                 "key": "company",
                 "url": "./assets/images/company.png"
             },
