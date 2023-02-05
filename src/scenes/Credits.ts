@@ -3,6 +3,8 @@ import { BACKGROUND_RBG, DISPLAY_SIZE } from '../constants';
 const { r, g, b } = BACKGROUND_RBG;
 export class Credits extends Phaser.Scene {
 
+    private spaceKey: Phaser.Input.Keyboard.Key;
+
     constructor() {
         super({key: 'Credits'});
     }
@@ -14,14 +16,24 @@ export class Credits extends Phaser.Scene {
     init() {
         // TODO: use custom cursor
         //this.input.setDefaultCursor('url(assets/input/cursors/blue.cur), pointer');
+
+        this.spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     create() {
-        this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height / 2,
+        this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.4,
             'CREDITS',
             {
                 fontFamily: 'Ace',
                 fontSize: '5rem',
+                color: '#000' // black
+            }
+        ).setOrigin(0.5, 0.5);
+        this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.6,
+            'Press Space to return to the menu',
+            {
+                fontFamily: 'Ace',
+                fontSize: '3rem',
                 color: '#000' // black
             }
         ).setOrigin(0.5, 0.5);
@@ -53,5 +65,8 @@ export class Credits extends Phaser.Scene {
     }
 
     update() {
+        if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
+            this.scene.start('MainMenu');
+        }
     }
 }
