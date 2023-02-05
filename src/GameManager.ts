@@ -34,6 +34,8 @@ export class GameManager {
     public wallet: number = 0;
     public drink: number = 0;
     public food: number = 0;
+    public maxDrink: number = 0;
+    public maxFood: number = 0;
     public gameOver: boolean = false;
 
     // Singleton baby

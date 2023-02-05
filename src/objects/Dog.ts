@@ -73,6 +73,8 @@ export class Dog extends Phaser.GameObjects.Sprite  {
         this.pooMax = Dog.DOG_CONTEXT[this.dogId].poo;
         GameManager.getInstance().drink = this.bladderMax;
         GameManager.getInstance().food = this.pooMax;
+        GameManager.getInstance().maxDrink = this.bladderMax;
+        GameManager.getInstance().maxFood = this.pooMax;
         this.setOrigin(0, 0);
         // switch to idle animation
         this.playAnim('idle');
