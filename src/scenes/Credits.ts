@@ -29,7 +29,7 @@ export class Credits extends Phaser.Scene {
         bg.displayWidth = DISPLAY_SIZE.width;
         bg.displayHeight = DISPLAY_SIZE.height;
 
-        let mainMenuButton = this.add.text(DISPLAY_SIZE.width * 0.7,DISPLAY_SIZE.height * 0.55,
+        let mainMenuButton = this.add.text(DISPLAY_SIZE.width - 340, 70,
             'Return to Main Menu',
             {
                 fontFamily: 'Ace',
