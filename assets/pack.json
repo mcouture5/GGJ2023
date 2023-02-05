@@ -1,0 +1,442 @@
+{
+    "audio": {
+        "files": [
+            {
+                "type": "audio",
+                "key": "main-menu",
+                "url": "./assets/sounds/main-menu.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "ruff-ruff-root",
+                "url": "./assets/sounds/ruff-ruff-root.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "awoo",
+                "url": "./assets/sounds/Awoo.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "compost",
+                "url": "./assets/sounds/compost.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "drink",
+                "url": "./assets/sounds/drink.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "eat",
+                "url": "./assets/sounds/eat.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "grow",
+                "url": "./assets/sounds/grow.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "harvest",
+                "url": "./assets/sounds/harvest.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "ka-ching",
+                "url": "./assets/sounds/ka-ching.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "kick-dirt",
+                "url": "./assets/sounds/kick-dirt.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "pee",
+                "url": "./assets/sounds/pee.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "pee-2",
+                "url": "./assets/sounds/pee-2.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "placement-screwdriver",
+                "url": "./assets/sounds/placement-screwdriver.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "rot",
+                "url": "./assets/sounds/rot.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "seeding",
+                "url": "./assets/sounds/seeding.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "seeding-2",
+                "url": "./assets/sounds/seeding-2.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "success",
+                "url": "./assets/sounds/success.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "walk",
+                "url": "./assets/sounds/walk-2.mp3"
+            },
+            {
+                "type": "audio",
+                "key": "wrong",
+                "url": "./assets/sounds/wrong.mp3"
+            }
+        ]
+    },
+    "images": {
+        "files": [
+            {
+                "type": "image",
+                "key": "main-menu",
+                "url": "./assets/images/MAIN MENU.png"
+            },
+            {
+                "type": "image",
+                "key": "tutorial",
+                "url": "./assets/images/tutorial.png"
+            },
+            {
+                "type": "image",
+                "key": "credits",
+                "url": "./assets/images/credits.png"
+            },
+            {
+                "type": "image",
+                "key": "win",
+                "url": "./assets/images/win.png"
+            },
+            {
+                "type": "image",
+                "key": "company",
+                "url": "./assets/images/company.png"
+            },
+            {
+                "type": "image",
+                "key": "phaser",
+                "url": "./assets/images/phaser.png"
+            },
+            {
+                "type": "image",
+                "key": "farm",
+                "url": "./assets/images/farm.png"
+            },
+            {
+                "type": "image",
+                "key": "trees",
+                "url": "./assets/images/foreground.png"
+            },
+            {
+                "type": "image",
+                "key": "house",
+                "url": "./assets/images/barn.png"
+            },
+            {
+                "type": "image",
+                "key": "compost",
+                "url": "./assets/images/compost.png"
+            },
+            {
+                "type": "image",
+                "key": "table",
+                "url": "./assets/images/table.png"
+            },
+            {
+                "type": "image",
+                "key": "ship",
+                "url": "./assets/images/shipbutton.png"
+            },
+            {
+                "type": "image",
+                "key": "orderboard-all",
+                "url": "./assets/images/orderboard-all.png"
+            },
+            {
+                "type": "image",
+                "key": "orderboard-prefix",
+                "url": "./assets/images/orderboard-prefix.png"
+            },
+            {
+                "type": "image",
+                "key": "orderboard-suffix",
+                "url": "./assets/images/orderboard-suffix.png"
+            },
+            {
+                "type": "image",
+                "key": "orderboard-empty",
+                "url": "./assets/images/board-empty.png"
+            },
+            {
+                "type": "image",
+                "key": "juice",
+                "url": "./assets/images/juice.png"
+            },
+            {
+                "type": "image",
+                "key": "sando",
+                "url": "./assets/images/sando.png"
+            },
+            {
+                "type": "image",
+                "key": "harvest",
+                "url": "./assets/images/veggiecrate.png"
+            },
+            {
+                "type": "image",
+                "key": "pointsbar",
+                "url": "./assets/images/pointsbar.png"
+            },
+            {
+                "type": "image",
+                "key": "progressbar",
+                "url": "./assets/images/progressbar.png"
+            },
+            {
+                "type": "image",
+                "key": "coin",
+                "url": "./assets/images/coin.png"
+            },
+            {
+                "type": "image",
+                "key": "foodmeter",
+                "url": "./assets/images/foodmeter.png"
+            },
+            {
+                "type": "image",
+                "key": "rot",
+                "url": "./assets/images/rot-pile.png"
+            },
+            {
+                "type": "image",
+                "key": "magic",
+                "url": "./assets/images/magic.png"
+            },
+            {
+                "type": "image",
+                "key": "pickafarmer",
+                "url": "./assets/images/pickafarmer.png"
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-walk",
+                "url": "./assets/images/lab-walk-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-pee",
+                "url": "./assets/images/lab-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-kick",
+                "url": "./assets/images/lab-kick-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-carry",
+                "url": "./assets/images/lab-carry-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-pee-carry",
+                "url": "./assets/images/lab-carry-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-kick-carry",
+                "url": "./assets/images/lab-carry-kick-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-walk",
+                "url": "./assets/images/phin-walk-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-pee",
+                "url": "./assets/images/phin-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-kick",
+                "url": "./assets/images/phin-kick-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-carry",
+                "url": "./assets/images/phin-carry-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-pee-carry",
+                "url": "./assets/images/phin-carry-pee-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-kick-carry",
+                "url": "./assets/images/phin-carry-kick-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "memagee",
+                "url": "./assets/images/memagee.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "potato",
+                "url": "./assets/images/potato.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "carrot",
+                "url": "./assets/images/carrot.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "onion",
+                "url": "./assets/images/onion.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "leek",
+                "url": "./assets/images/leek.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "beet",
+                "url": "./assets/images/beet.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "turnip",
+                "url": "./assets/images/turnip.png",
+                "frameConfig": {
+                    "frameWidth": 120,
+                    "frameHeight": 120
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "flares",
+                "url": "./assets/images/flares.png",
+                "frameConfig": {
+                    "frameWidth": 132,
+                    "frameHeight": 132
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "coin-shine",
+                "url": "./assets/images/coin-shine-sprite-sheet.png",
+                "frameConfig": {
+                    "frameWidth": 60,
+                    "frameHeight": 60
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-idle-selection",
+                "url": "./assets/images/labidle.png",
+                "frameConfig": {
+                    "frameWidth": 333,
+                    "frameHeight": 333
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-idle-selection",
+                "url": "./assets/images/phinidle.png",
+                "frameConfig": {
+                    "frameWidth": 333,
+                    "frameHeight": 333
+                }
+            }
+        ]
+    }
+}
