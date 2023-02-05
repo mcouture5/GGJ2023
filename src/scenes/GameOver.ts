@@ -6,6 +6,9 @@ export class GameOver extends Phaser.Scene {
 
     private spaceKey: Phaser.Input.Keyboard.Key;
 
+    // sounds
+    private awooSound: Phaser.Sound.BaseSound;
+
     constructor() {
         super({key: 'GameOver'});
     }
@@ -19,6 +22,9 @@ export class GameOver extends Phaser.Scene {
     }
 
     create() {
+        this.awooSound = this.sound.add('awoo', {volume: 0.2});
+        this.awooSound.play();
+
         this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.4,
             'GAME OVER',
             {
@@ -39,6 +45,7 @@ export class GameOver extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
+            this.awooSound && this.awooSound.stop();
             this.scene.start('MainMenu');
         }
     }
