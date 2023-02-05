@@ -46,40 +46,44 @@ export class MainMenu extends Phaser.Scene {
         let playButton = this.add.rectangle(235, 735, 360, 155, 0xFF0000, 0).setOrigin(0,0);
         playButton.setInteractive({cursor: 'pointer'});
         playButton.on('pointerup', () => {
-            this.fadeToScene('Company');
+            this.fadeToScene('Company', false);
         });
         let tutorialButton = this.add.rectangle(675, 735, 543, 155, 0xFF0000, 0).setOrigin(0,0);
         tutorialButton.setInteractive({cursor: 'pointer'});
         tutorialButton.on('pointerup', () => {
-            this.fadeToScene('Tutorial');
+            this.fadeToScene('Tutorial', true);
         });
         let creditsButton = this.add.rectangle(1297, 735, 440, 155, 0xFF0000, 0).setOrigin(0,0);
         creditsButton.setInteractive({cursor: 'pointer'});
         creditsButton.on('pointerup', () => {
-            this.fadeToScene('Credits');
+            this.fadeToScene('Credits', true);
         });
     }
 
     update() {
     }
 
-    private fadeToScene(sceneKey: string) {
+    private fadeToScene(sceneKey: string, keepMusicPlaying: boolean) {
         // fade out camera
         this.cameras.main.fadeOut(1250, r, g, b);
-        // fade out music
-        this.add.tween({
-            targets: this.mainMenuSong,
-            volume: {from: 0.1, to: 0},
-            ease: 'Linear',
-            duration: 1250,
-            onComplete: () => {
-                this.mainMenuSong.stop();
-            }
-        });
+        // fade out music if needed
+        if (!keepMusicPlaying) {
+            this.add.tween({
+                targets: this.mainMenuSong,
+                volume: {from: 0.1, to: 0},
+                ease: 'Linear',
+                duration: 1250,
+                onComplete: () => {
+                    this.mainMenuSong.stop();
+                }
+            });
+        }
         // once fade out is complete...
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-            // stop music and switch scene
-            this.mainMenuSong.stop();
+            // stop music if needed and switch scene
+            if (!keepMusicPlaying) {
+                this.mainMenuSong.stop();
+            }
             this.scene.start(sceneKey);
         });
     }
