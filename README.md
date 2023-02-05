@@ -1,5 +1,5 @@
-# GGJ2022
-Global Game Jam 2022 Fpoons
+# GGJ2023
+Global Game Jam 2023
 
 ## Setup Instructions
 We are using Typescript with webpack.

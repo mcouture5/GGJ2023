@@ -25,7 +25,6 @@ export default class WordService {
 
     public testWord(prefix: string, suffix: string) {
         let word = prefix + this.currentRoot + suffix;
-        console.log(this.currentTicket, word);
         let matchesTicket = !!this.currentTicket && ((this.currentTicket.type === ROOT_TYPE.PREFIXABLE && (!!prefix && !suffix)) ||
             (this.currentTicket.type === ROOT_TYPE.SUFFIXABLE && (!!suffix && !prefix) || 
             (this.currentTicket.type === ROOT_TYPE.BOTHABLE && (!!prefix && !!suffix))));
