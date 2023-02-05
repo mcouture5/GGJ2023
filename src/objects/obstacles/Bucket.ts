@@ -74,7 +74,7 @@ export class Bucket extends Obstacle {
             bounds: {x: -1000, y: 0, width: 2000, height: 120},
             speed: { min: 100, max: 150 },
             angle: { min: 70, max: 110 },
-            scale: { start: 0.25, end: 0.15 },
+            scale: 0.25,
             maxParticles: numParticles
         }).flow(60, count);
         this.placedHarvest && this.placedHarvest.destroy();

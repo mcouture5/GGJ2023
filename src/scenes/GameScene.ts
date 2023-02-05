@@ -190,23 +190,30 @@ export class GameScene extends Phaser.Scene {
 
         let trees = new Phaser.GameObjects.Sprite(this, centerX, centerY, 'trees').setDepth(20);
         this.add.existing(trees);
-/*
-        this.magicParticles = this.add.particles('flares', 3);
+
+        this.magicParticles = this.add.particles('magic');
         this.add.existing(this.magicParticles);
-        let emitter = this.magicParticles.createEmitter({
-            x: 300,
-            y: 300,
+        this.magicParticles.createEmitter({
+            x: {min: 0, max: DISPLAY_SIZE.width},
+            y: {min: 0, max: DISPLAY_SIZE.height},
             bounds: {x: 0, y: 0, width: DISPLAY_SIZE.width, height: DISPLAY_SIZE.height},
             radial: true,
-            lifespan: 100000,
-            speed: { min: 150, max: 200 },
+            alpha: 0.6,
+            lifespan: [2000, 6000],
+            speed: { min: 10, max: 50 },
             angle: { min: 0, max: 360 },
-            scale: { start: 0.4, end: 0 },
+            scale: { start: 0, end: 1, ease: (a) => {
+                let val = a;
+                if (val >= 0.5) val = 1 - a;
+                if (val > 0.25) val = 0.25;
+                return val;
+            } },
+            maxVelocityX: [10, 100],
+            maxVelocityY: [10, 100],
             quantity: 1,
-            tint: 0xC4A484, // light brown
             blendMode: Phaser.BlendModes.SKIP_CHECK
-        }).start();
-*/
+        }).flow(300, 1);
+
         let pointsbar = new Phaser.GameObjects.Sprite(this, 0, 0, 'pointsbar').setOrigin(0,0).setDepth(25);
         this.add.existing(pointsbar);
 

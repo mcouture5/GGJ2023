@@ -196,6 +196,11 @@
                 "url": "./assets/images/rot-pile.png"
             },
             {
+                "type": "image",
+                "key": "magic",
+                "url": "./assets/images/magic.png"
+            },
+            {
                 "type": "spritesheet",
                 "key": "lab-walk",
                 "url": "./assets/images/lab-walk-sprite-sheet.png",
