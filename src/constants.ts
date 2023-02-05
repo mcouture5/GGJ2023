@@ -234,5 +234,8 @@ export const WORDS: string[] = [
     'reacted',
     'reacting',
     'distrustful',
-    'overplayed'
+    'overplayed',
+    'enlist',
+    'enlisted',
+    'enlisting'
 ];
