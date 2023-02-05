@@ -26,7 +26,7 @@ export class GameOver extends Phaser.Scene {
         this.awooSound.play();
 
         this.add.text(DISPLAY_SIZE.width / 2,DISPLAY_SIZE.height * 0.4,
-            'GAME OVER',
+            'You won! You saved the family farm!',
             {
                 fontFamily: 'Ace',
                 fontSize: '5rem',

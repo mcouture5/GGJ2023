@@ -1,9 +1,10 @@
-import { BACKGROUND_RBG, DISPLAY_SIZE, GOAL, TILE_SIZE } from '../constants';
+import {BACKGROUND_COLOR, BACKGROUND_RBG, DISPLAY_SIZE, GOAL, TILE_SIZE} from '../constants';
 import { GameManager } from '../GameManager';
 import { DogLayer } from '../layers/DogLayer';
 import { FarmLayer } from '../layers/FarmLayer';
 import { PlantLayer } from '../layers/PlantLayer';
 
+const { r, g, b } = BACKGROUND_RBG;
 export class GameScene extends Phaser.Scene {
 
     // Layers
@@ -36,6 +37,10 @@ export class GameScene extends Phaser.Scene {
         super({
             key: 'GameScene'
         });
+    }
+
+    preload() {
+        this.cameras.main.setBackgroundColor(BACKGROUND_COLOR);
     }
 
     init() {
@@ -170,6 +175,9 @@ export class GameScene extends Phaser.Scene {
     create(): void {
         let centerX = DISPLAY_SIZE.width / 2;
         let centerY = DISPLAY_SIZE.height / 2;
+
+        // fade in camera
+        this.cameras.main.fadeIn(1250, r, g, b);
 
         // start playing music if not already playing. fade it in.
         if (!this.music || !this.music.isPlaying) {
