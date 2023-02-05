@@ -25,26 +25,24 @@ export class DogSelection extends Phaser.Scene {
 
     init() {
         this.anims.create({
-            key: 'lab-idle-selection',
-            frames: this.anims.generateFrameNumbers('lab-walk', { frames: [0] }),
+            key: 'lab_idle_selection',
+            frames: this.anims.generateFrameNumbers('lab-idle-selection', { frames: [0] }),
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'lab_selected',
+            frames: this.anims.generateFrameNumbers('lab-idle-selection', { frames: [0, 1, 2] }),
             frameRate: 7,
             repeat: -1
         });
         this.anims.create({
-            key: 'lab-walk-selection',
-            frames: this.anims.generateFrameNumbers('lab-walk', { start: 0, end: 7 }),
-            frameRate: 7,
-            repeat: -1
+            key: 'phin_idle_selection',
+            frames: this.anims.generateFrameNumbers('phin-idle-selection', { frames: [0] }),
+            repeat: 0
         });
         this.anims.create({
-            key: 'phin-idle-selection',
-            frames: this.anims.generateFrameNumbers('phin-walk', { frames: [0] }),
-            frameRate: 7,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'phin-walk-selection',
-            frames: this.anims.generateFrameNumbers('phin-walk', { start: 0, end: 7 }),
+            key: 'phin_selected',
+            frames: this.anims.generateFrameNumbers('phin-idle-selection', { frames: [0, 1, 2] }),
             frameRate: 7,
             repeat: -1
         });
@@ -61,17 +59,13 @@ export class DogSelection extends Phaser.Scene {
             Phaser.Input.Keyboard.KeyCodes.SPACE
         );
 
-        this.lab = new Phaser.GameObjects.Sprite(this, DISPLAY_SIZE.width / 3, DISPLAY_SIZE.height / 2, 'lab-walk')
-            .setScale(2.5,2.5)
+        this.lab = new Phaser.GameObjects.Sprite(this, DISPLAY_SIZE.width / 3, DISPLAY_SIZE.height / 2, 'lab-idle-selection')
             .setOrigin(0.5, 0.5);
         this.add.existing(this.lab);
-        this.lab.play('lab-idle-selection');
 
-        this.phin = new Phaser.GameObjects.Sprite(this, (DISPLAY_SIZE.width / 2) + (DISPLAY_SIZE.width / 6), DISPLAY_SIZE.height / 2, 'phin-walk')
-            .setScale(2.5,2.5)
+        this.phin = new Phaser.GameObjects.Sprite(this, (DISPLAY_SIZE.width / 2) + (DISPLAY_SIZE.width / 6), DISPLAY_SIZE.height / 2, 'phin-idle-selection')
             .setOrigin(0.5, 0.5);
         this.add.existing(this.phin);
-        this.phin.play('phin-idle-selection');
 
         this.text = new Phaser.GameObjects.Text(this, DISPLAY_SIZE.width / 2, DISPLAY_SIZE.height / 4, 'Select a Farmer', {
             fontFamily: 'Ace',
@@ -95,14 +89,14 @@ export class DogSelection extends Phaser.Scene {
     }
 
     private selectLab() {
-        this.phin.play('phin-idle-selection', true);
-        this.lab.play('lab-walk-selection', true);
+        this.phin.play('phin_idle_selection', true);
+        this.lab.play('lab_selected', true);
         this.selectedDogId = 0;
     }
 
     private selectPhin() {
-        this.lab.play('lab-idle-selection', true);
-        this.phin.play('phin-walk-selection', true);
+        this.lab.play('lab_idle_selection', true);
+        this.phin.play('phin_selected', true);
         this.selectedDogId = 1;
     }
 

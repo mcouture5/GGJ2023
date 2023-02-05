@@ -379,6 +379,24 @@
                     "frameWidth": 60,
                     "frameHeight": 60
                 }
+            },
+            {
+                "type": "spritesheet",
+                "key": "lab-idle-selection",
+                "url": "./assets/images/labidle.png",
+                "frameConfig": {
+                    "frameWidth": 333,
+                    "frameHeight": 333
+                }
+            },
+            {
+                "type": "spritesheet",
+                "key": "phin-idle-selection",
+                "url": "./assets/images/phinidle.png",
+                "frameConfig": {
+                    "frameWidth": 333,
+                    "frameHeight": 333
+                }
             }
         ]
     }

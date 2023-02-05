@@ -145,7 +145,7 @@ export class GameScene extends Phaser.Scene {
         // Coin
         this.anims.create({
             key: 'coin-shine-anim',
-            frames: this.anims.generateFrameNumbers('coin-shine', { start: 0, end: 11 }),
+            frames: this.anims.generateFrameNumbers('coin-shine', { frames: [0,1,2,3,4,5,6,7,8,9,10,11,0] }),
             frameRate: 24,
             repeat: -1,
             repeatDelay: 2000
