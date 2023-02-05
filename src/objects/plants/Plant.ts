@@ -29,6 +29,7 @@ export class Plant extends Phaser.GameObjects.Container {
     // sounds
     private growSound: Phaser.Sound.BaseSound;
     private harvestSound: Phaser.Sound.BaseSound;
+    private rotSound: Phaser.Sound.BaseSound;
 
     constructor(params: PlantParams) {
         //super(scene, (x * TILE_SIZE) + (TILE_SIZE * 0.125), (y * TILE_SIZE) + (TILE_SIZE * 0.125), key);
@@ -42,6 +43,7 @@ export class Plant extends Phaser.GameObjects.Container {
 
         this.growSound = this.scene.sound.add('grow', {volume: 0.01});
         this.harvestSound = this.scene.sound.add('harvest', {volume: 0.5});
+        this.rotSound = this.scene.sound.add('rot', {volume: 0.1});
     }
     
     create() {
@@ -131,5 +133,6 @@ export class Plant extends Phaser.GameObjects.Container {
         this.plantSprite && this.plantSprite.setTexture('hero');
         this.text && this.text.setVisible(false);
         this.isRot = true;
+        this.rotSound.play();
     }
 }
