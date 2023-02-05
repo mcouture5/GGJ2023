@@ -1,4 +1,4 @@
-import { BACKGROUND_RBG, DISPLAY_SIZE } from '../constants';
+import {BACKGROUND_COLOR, BACKGROUND_RBG, DISPLAY_SIZE} from '../constants';
 
 const { r, g, b } = BACKGROUND_RBG;
 export class Credits extends Phaser.Scene {
@@ -10,7 +10,7 @@ export class Credits extends Phaser.Scene {
     }
 
     preload() {
-        this.cameras.main.setBackgroundColor("#FFFFFF");
+        this.cameras.main.setBackgroundColor(BACKGROUND_COLOR);
     }
 
     init() {
@@ -21,6 +21,9 @@ export class Credits extends Phaser.Scene {
     }
 
     create() {
+        // fade in camera
+        this.cameras.main.fadeIn(1250, r, g, b);
+
         // load background image
         let bg = this.add.sprite(0, 0, 'credits').setOrigin(0, 0);
         bg.displayWidth = DISPLAY_SIZE.width;
@@ -36,7 +39,7 @@ export class Credits extends Phaser.Scene {
         ).setOrigin(0.5, 0.5);
         mainMenuButton.setInteractive({cursor: 'pointer'});
         mainMenuButton.on('pointerup', () => {
-            this.scene.start('MainMenu');
+            this.fadeBackToMainMenu();
         });
         let mainMenuButtonBorder = this.add.graphics();
         mainMenuButtonBorder.lineStyle(5, 0xFFE016);
@@ -45,7 +48,17 @@ export class Credits extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
-            this.scene.start('MainMenu');
+            this.fadeBackToMainMenu();
         }
+    }
+
+    private fadeBackToMainMenu() {
+        // fade out camera
+        this.cameras.main.fadeOut(1250, r, g, b);
+        // once fade out is complete...
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+            // switch back to main menu
+            this.scene.start('MainMenu');
+        });
     }
 }
