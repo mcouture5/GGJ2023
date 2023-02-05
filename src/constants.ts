@@ -237,5 +237,6 @@ export const WORDS: string[] = [
     'overplayed',
     'enlist',
     'enlisted',
-    'enlisting'
+    'enlisting',
+    'unreadable'
 ];
