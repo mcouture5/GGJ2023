@@ -274,6 +274,7 @@ export class GameScene extends Phaser.Scene {
 
     update(): void {
         if (GameManager.getInstance().gameOver) {
+            this.music && this.music.stop();
             this.scene.start('GameOver');
         }
         this.farmLayer.update();
