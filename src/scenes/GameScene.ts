@@ -25,7 +25,9 @@ export class GameScene extends Phaser.Scene {
     private magicParticles: Phaser.GameObjects.Particles.ParticleEmitterManager;
 
     // foodmeter
+    private previousDrink: number;
     private drinkText: Phaser.GameObjects.Text;
+    private previousFood: number;
     private foodText: Phaser.GameObjects.Text;
 
     constructor() {
@@ -259,11 +261,31 @@ export class GameScene extends Phaser.Scene {
             this.updateProgress();
             this.previousWallet = GameManager.getInstance().wallet;
         }
+
+        // update foodmeter
+        this.drinkText.setText(GameManager.getInstance().drink + '');
+        if (this.previousDrink !== GameManager.getInstance().drink) {
+            this.updateDrinkProgress();
+            this.previousDrink = GameManager.getInstance().drink;
+        }
+        this.foodText.setText(GameManager.getInstance().food + '');
+        if (this.previousFood !== GameManager.getInstance().food) {
+            this.updateFoodProgress();
+            this.previousFood = GameManager.getInstance().food;
+        }
     }
 
     private updateProgress() {
         this.progress.clear();
         this.progress.fillStyle(0xFFFFFF, 0.7);
         this.progress.fillRect(192, 45, 470 * (GameManager.getInstance().wallet / GOAL), 30);
+    }
+
+    private updateDrinkProgress() {
+        // TODO
+    }
+
+    private updateFoodProgress() {
+        // TODO
     }
 }

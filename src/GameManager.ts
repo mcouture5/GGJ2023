@@ -32,8 +32,8 @@ export class GameManager {
     private ticketsWon: number = 0;
     private ticketsLost: number = 0;
     public wallet: number = 0;
-    public drink: number = 3;
-    public food: number = 3;
+    public drink: number = 0;
+    public food: number = 0;
     public gameOver: boolean = false;
 
     // Singleton baby
