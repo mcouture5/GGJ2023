@@ -13,6 +13,9 @@ export class Well extends Obstacle {
 
         this.drinkSound = this.scene.sound.add('drink', {volume: 0.4});
         this.eatSound = this.scene.sound.add('eat', {volume: 0.1});
+
+        this.scene.add.sprite(this.x + 90, this.y + 60, 'juice');
+        this.scene.add.sprite(this.x + 160, this.y + 60, 'sando');
     }
 
     update(): void {
