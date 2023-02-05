@@ -14,6 +14,9 @@ export class PlantLayer extends Phaser.GameObjects.Container {
     private plants: Array<new (scene: Phaser.Scene, x: number, y: number, isPrefix: boolean) => Plant> = [Potato, Carrot, Onion, Leek, Turnip, Beet];
     private shipButton: ShipButton;
 
+    // sounds
+    private seedingSound: Phaser.Sound.BaseSound;
+
     constructor(scene: Phaser.Scene) {
         super(scene, 0, 0);
     }
@@ -23,6 +26,8 @@ export class PlantLayer extends Phaser.GameObjects.Container {
         this.add(this.shipButton);
         GameManager.getInstance().registerObstacle(this.shipButton);
         this.sowPlant();
+
+        this.seedingSound = this.scene.sound.add('seeding', {volume: 0.4});
     }
 
     update() {
@@ -45,6 +50,7 @@ export class PlantLayer extends Phaser.GameObjects.Container {
             plant.create();
             GameManager.getInstance().registerPlant(plant);
             plant.grow();
+            this.seedingSound.play();
             this.sowPlant();
         }
     }
